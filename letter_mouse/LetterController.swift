@@ -8,23 +8,31 @@
 
 import UIKit
 
-class LetterController: UIViewController {
+public protocol ModalDimissDelegate{
+    func didReceiveDismiss()
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+class LetterController {
 
-        // Do any additional setup after loading the view.
+
+    static let getInstace : LetterController = LetterController()
+    var latitude : String
+    var longitude : String
+    var what3Words : String
+    var LetterSaveDismissDelegate : ModalDimissDelegate?
+    
+    public func setLetterSaveDismissDelegate(delegate : ModalDimissDelegate){
+        self.LetterSaveDismissDelegate = delegate
+    }
+    
+    private init(){
+        self.latitude = ""
+        self.longitude = ""
+        self.what3Words = ""
+        self.LetterSaveDismissDelegate = nil
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
