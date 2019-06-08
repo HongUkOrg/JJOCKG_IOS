@@ -1,0 +1,6 @@
+framework module Pods_letter_mouseTests {
+  umbrella header "Pods-letter_mouseTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
