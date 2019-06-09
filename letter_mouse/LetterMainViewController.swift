@@ -15,9 +15,7 @@ import Presentr
 
 
 
-class LetterMainViewController: UIViewController, CLLocationManagerDelegate, ModalDimissDelegate, w3wResponseDelegate {
-    
-    
+class LetterMainViewController: UIViewController, CLLocationManagerDelegate, ModalDimissDelegate {
    
     
     func didReceiveDismiss() {
@@ -109,7 +107,6 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         w3w_text.clipsToBounds = true
         
         LetterController.getInstace.setLetterSaveDismissDelegate(delegate: self)
-        HttpConnectionHandler.getInstance.setW3WResponseDelegate(self)
 
     }
     
@@ -140,7 +137,12 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         LetterController.getInstace.longitude = String(format:"%f",currentLongitude!)
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         
-        
+        let w3w = LetterController.getInstace.what3Words
+        if !w3w.isEmpty{
+            var words = w3w.characters.split(separator: ".")
+            w3w_text.text = "\(words[0]) \t / \t \(words[1]) \t / \t\(words[2])"
+            print(w3w)
+        }
         
     
     }
@@ -148,7 +150,6 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     @IBAction func letterSaveBtn(_ sender: UIButton) {
         
         
-        LetterController.getInstace.isSending = true
 //        showSaveLetterView(view: saveLetterView, hidden: false)
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SaveLetterViewController") as! SaveLetterViewController
 //        saveLetterView.isHidden = false
@@ -192,15 +193,6 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     
     public func setDismissDelegate(delegate : ModalDimissDelegate ){
         self.dismissDelegate = delegate
-    }
-    
-    func processResult(_ result: String) {
-        let words = result.characters.split(separator: ".")
-        if !LetterController.getInstace.isSending {
-            LetterController.getInstace.what3Words = result
-            w3w_text.text = "\(words[0]) \t / \t \(words[1]) \t / \t\(words[2])"
-            print(result)
-        }
     }
     
 }

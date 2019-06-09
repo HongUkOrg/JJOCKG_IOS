@@ -20,7 +20,6 @@ class LetterController {
     var longitude : String
     var what3Words : String
     var LetterSaveDismissDelegate : ModalDimissDelegate?
-    var isSending : Bool
     
     public func setLetterSaveDismissDelegate(delegate : ModalDimissDelegate){
         self.LetterSaveDismissDelegate = delegate
@@ -31,7 +30,6 @@ class LetterController {
         self.longitude = ""
         self.what3Words = ""
         self.LetterSaveDismissDelegate = nil
-        self.isSending = false
     }
     
 

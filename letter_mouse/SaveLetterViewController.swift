@@ -51,7 +51,7 @@ class SaveLetterViewController: UIViewController {
     @IBOutlet weak var saveLetterWhiteView: UIView!
 
     
-    static let presenter : Presentr = {
+    let presenter : Presentr = {
         let width = ModalSize.custom(size: Float(UIScreen.main.bounds.width*0.9))
         let height = ModalSize.custom(size:Float(UIScreen.main.bounds.height*0.75))
         let center = ModalCenterPosition.custom(
@@ -122,27 +122,25 @@ class SaveLetterViewController: UIViewController {
 
     @IBAction func sendLetterBtnClicked(_ sender: UIButton) {
 
-        LetterController.getInstace.isSending = false
+                var json : [String:String] = [String:String]()
+                let lati = LetterController.getInstace.latitude
+                let long = LetterController.getInstace.longitude
+                if lati != "" && long != "" {
+                    json["latitude"] = lati
+                    json["longitude"] = long
+                    json["message"] = contentTextView.text
+                    json["w3w_address"] = LetterController.getInstace.what3Words
+                    json["receiver_phone"] = phoneNumber.text
         
-        var json : [String:String] = [String:String]()
-        let lati = LetterController.getInstace.latitude
-        let long = LetterController.getInstace.longitude
-        if lati != "" && long != "" {
-            json["latitude"] = lati
-            json["longitude"] = long
-            json["message"] = contentTextView.text
-            json["w3w_address"] = LetterController.getInstace.what3Words
-            json["receiver_phone"] = phoneNumber.text
-
-        }
-        HttpConnectionHandler.getInstance.httpUrlConnection(isSave:true, json: json)
+                }
+//                HttpConnectionHandler.getInstance.httpUrlConnection(isSave:true, json: json)
         
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
 
-        let controller2 = self.storyboard?.instantiateViewController(withIdentifier: "SMSSendViewController") as! SMSViewController
-        customPresentViewController(SaveLetterViewController.presenter , viewController:controller2, animated: true,completion: {
-            print("SMS Send View Controller complete")
-        })
+//        let controller2 = self.storyboard?.instantiateViewController(withIdentifier: "SMSSendViewController") as! SMSViewController
+//        customPresentViewController(presenter , viewController:controller2, animated: true,completion: {
+//            print("SMS Send View Controller complete")
+//        })
         
         if let delegate:ModalDimissDelegate = LetterController.getInstace.LetterSaveDismissDelegate {
             delegate.didReceiveDismiss()

@@ -210,6 +210,7 @@
         <!--Cartoon04 View Controller-->
         <scene sceneID="j8n-lV-KUt">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5AG-wz-WFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="UCS-h7-WEp" customClass="cartoon04ViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r24-ki-du6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -239,7 +240,6 @@
                         <segue destination="b8s-5p-Bt7" kind="show" identifier="toCartoon05" id="D8a-vW-cu8"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5AG-wz-WFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5112" y="112"/>
         </scene>
@@ -291,7 +291,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_archon" translatesAutoresizingMaskIntoConstraints="NO" id="K4D-TC-aIk">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_acorn" translatesAutoresizingMaskIntoConstraints="NO" id="K4D-TC-aIk">
                                 <rect key="frame" x="167" y="722" width="80" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Wn7-uJ-xfJ"/>
@@ -304,7 +304,7 @@
                                     <constraint firstAttribute="height" constant="50" id="RlJ-GP-IkH"/>
                                     <constraint firstAttribute="width" constant="110" id="SC9-5G-ls2"/>
                                 </constraints>
-                                <state key="normal" image="find_letter_btn"/>
+                                <state key="normal" image="letter_find_btn"/>
                                 <connections>
                                     <action selector="letterFindBtn:" destination="m7q-8V-Z60" eventType="touchUpInside" id="vlT-nI-UgZ"/>
                                 </connections>
@@ -315,7 +315,7 @@
                                     <constraint firstAttribute="height" constant="50" id="HPd-E3-LzR"/>
                                     <constraint firstAttribute="width" constant="110" id="rOg-va-8AO"/>
                                 </constraints>
-                                <state key="normal" image="save_letter_btn"/>
+                                <state key="normal" image="letter_save_btn"/>
                                 <connections>
                                     <action selector="letterSaveBtn:" destination="m7q-8V-Z60" eventType="touchUpInside" id="cJe-o2-3rA"/>
                                 </connections>
@@ -443,7 +443,7 @@
                                     <constraint firstAttribute="width" constant="70" id="ofe-nk-VkQ"/>
                                     <constraint firstAttribute="height" constant="55" id="vyE-xY-dsN"/>
                                 </constraints>
-                                <state key="normal" image="phone_book"/>
+                                <state key="normal" image="contact"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -514,14 +514,14 @@
                                 <rect key="frame" x="0.0" y="174" width="414" height="722"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jz4-Eo-Hnn">
-                                        <rect key="frame" x="179" y="624" width="58" height="58"/>
+                                        <rect key="frame" x="169.66666666666666" y="605" width="77" height="77"/>
                                         <state key="normal" image="cancel_btn"/>
                                         <connections>
                                             <action selector="SMSCancelBtnClick:" destination="KIb-f8-qB1" eventType="touchUpInside" id="NVJ-T3-aSq"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShD-sx-VYY">
-                                        <rect key="frame" x="0.0" y="534" width="414" height="70"/>
+                                        <rect key="frame" x="0.0" y="515" width="414" height="70"/>
                                         <color key="backgroundColor" red="0.2274509804" green="0.1960784314" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="eje-BO-I8i"/>
@@ -589,9 +589,6 @@
                                 <state key="normal" title="SMS로 찾기">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="findLetterBySMSBtnClicked:" destination="AyS-Pa-cHJ" eventType="touchUpInside" id="4hQ-HI-2ju"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YK5-5E-ghO">
                                 <rect key="frame" x="37" y="742" width="341" height="40"/>
@@ -602,9 +599,6 @@
                                 <state key="normal" title="쪽지찾기">
                                     <color key="titleColor" red="0.2274509804" green="0.1960784314" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="findLetterBtnClicked:" destination="AyS-Pa-cHJ" eventType="touchUpInside" id="zMR-3o-Oc2"/>
-                                </connections>
                             </button>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1kw-aP-xrr">
                                 <rect key="frame" x="37" y="672" width="341" height="50"/>
@@ -687,7 +681,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone_book" translatesAutoresizingMaskIntoConstraints="NO" id="Ln8-Yb-CbC">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact" translatesAutoresizingMaskIntoConstraints="NO" id="Ln8-Yb-CbC">
                                 <rect key="frame" x="324" y="575" width="70" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="AoG-jb-u7r"/>
@@ -726,13 +720,10 @@
                     <connections>
                         <outlet property="SMS_findBtn" destination="0rV-pD-e8d" id="2N0-i7-NwC"/>
                         <outlet property="W3W_input_view" destination="1kw-aP-xrr" id="u2X-QI-xm9"/>
-                        <outlet property="firstWord" destination="Vd7-Gu-eBD" id="6Zs-Ro-ULq"/>
                         <outlet property="letterFindBtn" destination="YK5-5E-ghO" id="ib3-g1-4Nj"/>
                         <outlet property="numberInputTextField" destination="YtV-ad-iXK" id="lLl-Xx-yp1"/>
-                        <outlet property="secondWord" destination="ePF-yG-9xy" id="E5S-9D-ABs"/>
                         <outlet property="stackViewInW3W" destination="Ico-iF-o3B" id="8xN-rB-xZT"/>
                         <outlet property="superWhiteView" destination="Feb-OS-uSX" id="7vy-Vf-nLq"/>
-                        <outlet property="thirdWord" destination="bl6-Fx-oeA" id="AQ5-PL-Nvy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="666-OQ-8zL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -742,6 +733,7 @@
         <!--Cartoon05 View Controller-->
         <scene sceneID="Jb0-74-Mu9">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ds4-Kf-7wY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="b8s-5p-Bt7" customClass="cartoon05ViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A3b-wf-0uN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -771,13 +763,13 @@
                         <segue destination="ygM-9m-SCC" kind="show" identifier="toCartoon06" id="RvC-uW-v57"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ds4-Kf-7wY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5879.7101449275369" y="111.83035714285714"/>
         </scene>
         <!--Cartoon07 View Controller-->
         <scene sceneID="PpQ-AL-amw">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iGq-tJ-Umk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="NiX-nv-Fdo" customClass="cartoon07ViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7dV-9p-ETe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -807,13 +799,13 @@
                         <segue destination="rtu-3T-XHx" kind="show" identifier="toCartoon08" id="J7q-KN-rUJ"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iGq-tJ-Umk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7289.8550724637689" y="111.83035714285714"/>
         </scene>
         <!--Cartoon06 View Controller-->
         <scene sceneID="yRX-4L-42I">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xOe-zs-cXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ygM-9m-SCC" customClass="cartoon06ViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pn4-fw-pOn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -843,40 +835,12 @@
                         <segue destination="NiX-nv-Fdo" kind="show" identifier="toCartoon07" id="JOA-jA-pyt"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xOe-zs-cXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6626" y="112"/>
         </scene>
-        <!--Letter Result View Controller-->
-        <scene sceneID="R3Y-AJ-kJS">
-            <objects>
-                <viewController id="RvZ-0z-m9X" customClass="LetterResultViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eDi-0r-oXQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="empty" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Pyy-sc-CGG">
-                                <rect key="frame" x="20" y="266" width="374" height="327"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="qqA-gZ-dmo"/>
-                    </view>
-                    <connections>
-                        <outlet property="resultTextView" destination="Pyy-sc-CGG" id="m6f-Ql-Ldg"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6fs-zh-K5h" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="8494.2028985507259" y="953.57142857142856"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="cancel_btn" width="58" height="58"/>
+        <image name="cancel_btn" width="77" height="77"/>
         <image name="cartoon01" width="257" height="249"/>
         <image name="cartoon01-2" width="250" height="255"/>
         <image name="cartoon02" width="339" height="233"/>
@@ -886,7 +850,7 @@
         <image name="cartoon06" width="327" height="219"/>
         <image name="cartoon07" width="311" height="416.33334350585938"/>
         <image name="cartoon08" width="274" height="339"/>
-        <image name="find_letter_btn" width="123" height="58.666667938232422"/>
+        <image name="contact" width="86.666664123535156" height="66.666664123535156"/>
         <image name="finder_01" width="208.66667175292969" height="32.666667938232422"/>
         <image name="finder_02" width="207.66667175292969" height="32.666667938232422"/>
         <image name="finder_03" width="207.66667175292969" height="32.666667938232422"/>
@@ -895,10 +859,10 @@
         <image name="finder_06" width="207.66667175292969" height="32.666667938232422"/>
         <image name="finder_07" width="207.66667175292969" height="32.666667938232422"/>
         <image name="finder_08" width="207.66667175292969" height="32.666667938232422"/>
-        <image name="main_archon" width="83.666664123535156" height="59"/>
+        <image name="icon_acorn" width="111.33333587646484" height="78.666664123535156"/>
+        <image name="letter_find_btn" width="164" height="78.333335876464844"/>
+        <image name="letter_save_btn" width="164" height="74.666664123535156"/>
         <image name="nextpage" width="59" height="59"/>
-        <image name="phone_book" width="65" height="50"/>
-        <image name="save_letter_btn" width="123" height="56"/>
         <image name="skip" width="65" height="11"/>
         <image name="splash" width="360" height="640"/>
     </resources>
