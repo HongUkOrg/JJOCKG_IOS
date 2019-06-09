@@ -8,9 +8,7 @@
 
 import UIKit
 
-public protocol ModalDimissDelegate{
-    func didReceiveDismiss()
-}
+
 
 class LetterController {
 

@@ -10,106 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "letter_mouse/SaveLetterViewController.swift"
-            timestampString = "577118956.7115541"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "UITextField"
-            landmarkType = "21">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "letter_mouse.SaveLetterViewController.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; letter_mouse.SaveLetterViewController"
-                  moduleName = "letter_mouse"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/xcodeProjecrt/letter_mouse/letter_mouse/SaveLetterViewController.swift"
-                  timestampString = "576221810.824313"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "letter_mouse.SaveLetterViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; letter_mouse.SaveLetterViewController"
-                  moduleName = "letter_mouse"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/xcodeProjecrt/letter_mouse/letter_mouse/SaveLetterViewController.swift"
-                  timestampString = "576221810.8280571"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "15"
-                  endingLineNumber = "15"
-                  offsetFromSymbolStart = "164">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "letter_mouse.SaveLetterViewController.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;letter_mouse.SaveLetterViewController&gt;"
-                  moduleName = "letter_mouse"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/xcodeProjecrt/letter_mouse/letter_mouse/SaveLetterViewController.swift"
-                  timestampString = "576221810.830058"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "letter_mouse.SaveLetterViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;letter_mouse.SaveLetterViewController&gt;"
-                  moduleName = "letter_mouse"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/xcodeProjecrt/letter_mouse/letter_mouse/SaveLetterViewController.swift"
-                  timestampString = "576221810.831962"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "15"
-                  endingLineNumber = "15"
-                  offsetFromSymbolStart = "112">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "letter_mouse.SaveLetterViewController.__deallocating_deinit"
-                  moduleName = "letter_mouse"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/xcodeProjecrt/letter_mouse/letter_mouse/SaveLetterViewController.swift"
-                  timestampString = "576221810.83363"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "letter_mouse/SaveLetterViewController.swift"
-            timestampString = "577118956.711611"
+            timestampString = "581707477.582823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
             endingLineNumber = "86"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
+            landmarkName = "SaveLetterViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
