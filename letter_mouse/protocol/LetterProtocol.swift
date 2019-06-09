@@ -8,8 +8,18 @@
 
 import UIKit
 
-public protocol ModalDimissDelegate{
-    func didReceiveDismiss()
+public protocol ModalDimissDelegate_save{
+    func didReceiveDismiss_save()
+}
+public protocol ModalDimissDelegate_find{
+    func didReceiveDismiss_find()
+}
+
+protocol W3WResponseDelegate{
+    func processResult(_ result : String)
+}
+protocol FindLetterResultDelegate{
+    func processFindLetterResult(_ result : String)
 }
 class LetterProtocol: NSObject {
 

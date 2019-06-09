@@ -850,7 +850,7 @@
         <!--Letter Result View Controller-->
         <scene sceneID="R3Y-AJ-kJS">
             <objects>
-                <viewController id="RvZ-0z-m9X" customClass="LetterResultViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="LetterResultViewController" storyboardIdentifier="LetterResultViewController" id="RvZ-0z-m9X" customClass="LetterResultViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eDi-0r-oXQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

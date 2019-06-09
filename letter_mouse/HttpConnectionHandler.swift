@@ -12,14 +12,18 @@ import UIKit
 class HttpConnectionHandler {
 
     static let getInstance : HttpConnectionHandler = HttpConnectionHandler()
-    var w3wResponseDelegate : w3wResponseDelegate?
+    var w3wResponseDelegate : W3WResponseDelegate?
+    var findLetterResultDelegate : FindLetterResultDelegate?
 
     private init(){
         
     }
     
-    func setW3WResponseDelegate(_ delegate : w3wResponseDelegate) {
+    func setW3WResponseDelegate(_ delegate : W3WResponseDelegate) {
         self.w3wResponseDelegate = delegate
+    }
+    func setFindLetterResultDelegate(_ delegate : FindLetterResultDelegate){
+        self.findLetterResultDelegate = delegate
     }
     func httpUrlConnection (isSave : Bool, json : [String:String]){
         
@@ -59,6 +63,12 @@ class HttpConnectionHandler {
             
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(String(describing: responseString))")
+            if let findLetterResultDelegate = self.findLetterResultDelegate, !isSave {
+                if let findLetterResult = responseString {
+                    print("letter find!!")
+                    findLetterResultDelegate.processFindLetterResult(findLetterResult)
+                }
+            }
         }
         
         task.resume()

@@ -31,6 +31,7 @@
 		04C1DA3022ABA1A5009CBDC8 /* LetterResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DA2F22ABA1A5009CBDC8 /* LetterResultViewController.swift */; };
 		04F73CD622ACD2CD00F21912 /* LetterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F73CD522ACD2CD00F21912 /* LetterExtension.swift */; };
 		04F73CD822ACD33500F21912 /* LetterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F73CD722ACD33500F21912 /* LetterProtocol.swift */; };
+		04F73CDB22ACDEA000F21912 /* LetterUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F73CDA22ACDEA000F21912 /* LetterUtils.swift */; };
 		10F3BA933D8460B72F4532CC /* Pods_letter_mouseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B78A5E955DD11E5FB987AA /* Pods_letter_mouseUITests.framework */; };
 		3DD3F08E0EB622DA3AC04AAA /* Pods_letter_mouseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67011DF8190CF15B5ECA6FBE /* Pods_letter_mouseTests.framework */; };
 		DA3434D2B5D1B954807DE436 /* Pods_letter_mouse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDE75F8B990B91B7CF487CC /* Pods_letter_mouse.framework */; };
@@ -84,6 +85,7 @@
 		04C1DA2F22ABA1A5009CBDC8 /* LetterResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterResultViewController.swift; sourceTree = "<group>"; };
 		04F73CD522ACD2CD00F21912 /* LetterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterExtension.swift; sourceTree = "<group>"; };
 		04F73CD722ACD33500F21912 /* LetterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterProtocol.swift; sourceTree = "<group>"; };
+		04F73CDA22ACDEA000F21912 /* LetterUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterUtils.swift; sourceTree = "<group>"; };
 		2B42B42440795A00CEAD9FEE /* Pods-letter_mouseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouseTests.debug.xcconfig"; path = "Target Support Files/Pods-letter_mouseTests/Pods-letter_mouseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2B6BF9A07BF9C3986A468580 /* Pods-letter_mouseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouseUITests.debug.xcconfig"; path = "Target Support Files/Pods-letter_mouseUITests/Pods-letter_mouseUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2EDE75F8B990B91B7CF487CC /* Pods_letter_mouse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_letter_mouse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +166,7 @@
 		04B7EA23224625C800AADADE /* letter_mouse */ = {
 			isa = PBXGroup;
 			children = (
+				04F73CD922ACDE9000F21912 /* util */,
 				04F73CD422ACD2B600F21912 /* extension */,
 				04F73CD322ACD2AD00F21912 /* protocol */,
 				042A0111224A67C30070CEAE /* cartoons */,
@@ -215,6 +218,14 @@
 				04F73CD522ACD2CD00F21912 /* LetterExtension.swift */,
 			);
 			path = extension;
+			sourceTree = "<group>";
+		};
+		04F73CD922ACDE9000F21912 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				04F73CDA22ACDEA000F21912 /* LetterUtils.swift */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 		33C1D72652CED24A2CED188C /* Frameworks */ = {
@@ -492,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				042A0117224A784E0070CEAE /* cartoon03ViewController.swift in Sources */,
+				04F73CDB22ACDEA000F21912 /* LetterUtils.swift in Sources */,
 				04C1DA3022ABA1A5009CBDC8 /* LetterResultViewController.swift in Sources */,
 				04B7EA27224625C800AADADE /* ViewController.swift in Sources */,
 				042A0113224A67DC0070CEAE /* cartoon01ViewController.swift in Sources */,

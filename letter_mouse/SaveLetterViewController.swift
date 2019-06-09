@@ -118,8 +118,8 @@ class SaveLetterViewController: UIViewController {
             print("SMS Send View Controller complete")
         })
         
-        if let delegate:ModalDimissDelegate = LetterController.getInstace.LetterSaveDismissDelegate {
-            delegate.didReceiveDismiss()
+        if let delegate:ModalDimissDelegate_save = LetterController.getInstace.LetterSaveDismissDelegate {
+            delegate.didReceiveDismiss_save()
         }
         dismissFunc()
 
@@ -132,6 +132,5 @@ class SaveLetterViewController: UIViewController {
     }
     
     func dismissFunc(){
-        dismiss(animated: true, completion: nil)
     }
 }
