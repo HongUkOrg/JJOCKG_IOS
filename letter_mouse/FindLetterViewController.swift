@@ -12,6 +12,10 @@ import UIKit
 class FindLetterViewController: UIViewController {
 
     
+    @IBOutlet weak var firstWord: UITextField!
+    @IBOutlet weak var secondWord: UITextField!
+    @IBOutlet weak var thirdWord: UITextField!
+    
     @IBOutlet weak var stackViewInW3W: UIStackView!
     @IBOutlet weak var superWhiteView: UIView!
     @IBOutlet weak var numberInputTextField: UITextField!
@@ -55,7 +59,28 @@ class FindLetterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func findLetterBtnClicked(_ sender: UIButton) {
+        
+        var json : Dictionary<String,String> = Dictionary<String,String>()
+        let lati = LetterController.getInstace.latitude
+        let long = LetterController.getInstace.longitude
+        
+        if let firstWord = firstWord.text, let secondWord = secondWord.text, let thirdWord = thirdWord.text{
+            json["w3w_address"] = firstWord + "." + secondWord + "." + thirdWord
+        }
+        if let phoneNumber = numberInputTextField.text {
+            json["receiver_phone"] = phoneNumber
+        }
+        if json.count != 2 {
+            return
+        }
+        HttpConnectionHandler.getInstance.httpUrlConnection(isSave:false, json: json)
+        
+        
+    }
+    
+    @IBAction func findLetterBySMSBtnClicked(_ sender: UIButton) {
+    }
     /*
     // MARK: - Navigation
 
