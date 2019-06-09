@@ -8,29 +8,6 @@
 
 import UIKit
 
-extension Dictionary {
-    func percentEscaped() -> String {
-        return map { (key, value) in
-            let escapedKey = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
-            let escapedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
-            return escapedKey + "=" + escapedValue
-            }
-            .joined(separator: "&")
-    }
-}
-extension CharacterSet {
-    static let urlQueryValueAllowed: CharacterSet = {
-        let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
-        let subDelimitersToEncode = "!$&'()*+,;="
-        
-        var allowed = CharacterSet.urlQueryAllowed
-        allowed.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
-        return allowed
-    }()
-}
-protocol w3wResponseDelegate {
-    func processResult(_ result : String)
-}
 
 class HttpConnectionHandler {
 
@@ -44,7 +21,6 @@ class HttpConnectionHandler {
     func setW3WResponseDelegate(_ delegate : w3wResponseDelegate) {
         self.w3wResponseDelegate = delegate
     }
-    
     func httpUrlConnection (isSave : Bool, json : [String:String]){
         
         var url:String = "http://phwysl.dothome.co.kr/"
@@ -65,7 +41,6 @@ class HttpConnectionHandler {
         let prefix = "json=" + stringify(json: json)
         request.httpBody = prefix.data(using: .utf8)
         print(prefix)
-        
         
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in

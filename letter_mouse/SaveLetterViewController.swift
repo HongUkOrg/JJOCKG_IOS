@@ -9,33 +9,7 @@
 import UIKit
 import Presentr
 
-extension UITextField {
-    
-    func addShadowToTextField(color: UIColor = UIColor.gray, cornerRadius: CGFloat) {
-        
-        self.backgroundColor = UIColor.white
-        self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        self.layer.shadowOpacity = 1.0
-        self.backgroundColor = .white
-        self.layer.cornerRadius = cornerRadius
-    }
-}
 
-extension UIButton {
-    
-    func addRoundnessToButton(color: UIColor = UIColor.gray, cornerRadius: CGFloat)
-{
-    self.layer.cornerRadius = cornerRadius
-    self.clipsToBounds = true
-    self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-    self.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-    self.layer.shadowOpacity = 1.0
-    self.layer.shadowRadius = 0.0
-    self.layer.masksToBounds = false
-    }
-}
 
 
 class SaveLetterViewController: UIViewController {
