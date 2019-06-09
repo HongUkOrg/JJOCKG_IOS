@@ -12,15 +12,28 @@ import UIKit
 class HttpConnectionHandler {
 
     static let getInstance : HttpConnectionHandler = HttpConnectionHandler()
+    var w3wResponseDelegate : W3WResponseDelegate?
+    var findLetterResultDelegate : FindLetterResultDelegate?
 
     private init(){
         
     }
     
+    func setW3WResponseDelegate(_ delegate : W3WResponseDelegate) {
+        self.w3wResponseDelegate = delegate
+    }
+    func setFindLetterResultDelegate(_ delegate : FindLetterResultDelegate){
+        self.findLetterResultDelegate = delegate
+    }
     func httpUrlConnection (isSave : Bool, json : [String:String]){
         
         var url:String = "http://phwysl.dothome.co.kr/"
-        url += "send_letter.php"
+        if isSave {
+            url += "send_letter.php"
+        }
+        else {
+            url += "find_letter.php"
+        }
         let urlStr = URL(string: url)!
         let session = URLSession.shared
         
@@ -33,10 +46,6 @@ class HttpConnectionHandler {
         request.httpBody = prefix.data(using: .utf8)
         print(prefix)
         
-        NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
-            guard let data = data else { return }
-            print(String(data: data, encoding: .utf8)!)
-        }
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data,
@@ -54,6 +63,12 @@ class HttpConnectionHandler {
             
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(String(describing: responseString))")
+            if let findLetterResultDelegate = self.findLetterResultDelegate, !isSave {
+                if let findLetterResult = responseString {
+                    print("letter find!!")
+                    findLetterResultDelegate.processFindLetterResult(findLetterResult)
+                }
+            }
         }
         
         task.resume()
@@ -120,9 +135,13 @@ class HttpConnectionHandler {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data,options: .allowFragments) as? [String: Any]{
                     let j = json as NSDictionary
-                    print("w3w 결과값은 \(j["words"])")
-                    LetterController.getInstace.what3Words = j["words"] as! String
-                    // Parse JSON
+                    if let w3wResult = j["words"] as? String{
+                        DispatchQueue.main.async {
+                            if let delegate = self.w3wResponseDelegate{
+                                delegate.processResult(w3wResult)
+                            }
+                        }
+                    }
                 }
             } catch let parseError {
                 print("parsing error: \(parseError)")

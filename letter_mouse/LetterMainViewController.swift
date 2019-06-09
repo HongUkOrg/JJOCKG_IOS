@@ -15,11 +15,39 @@ import Presentr
 
 
 
-class LetterMainViewController: UIViewController, CLLocationManagerDelegate, ModalDimissDelegate {
-   
+class LetterMainViewController: UIViewController, CLLocationManagerDelegate, ModalDimissDelegate_save,ModalDimissDelegate_find, W3WResponseDelegate {
     
-    func didReceiveDismiss() {
-        print("MainViewController : called didReceiveDismiss func")
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
+        let camera = GMSCameraPosition.camera(withLatitude: 37.4980, longitude: 127.0761, zoom: 18.0)
+        googleMapView.camera = camera
+        //        view = mapView
+        
+        w3w_text.layer.cornerRadius = 18
+        w3w_text.clipsToBounds = true
+        
+        LetterController.getInstace.setLetterSaveDismissDelegate(self)
+        LetterController.getInstace.setLetterFindDismissDelegate(self)
+        HttpConnectionHandler.getInstance.setW3WResponseDelegate(self)
+        
+    }
+    
+    func didReceiveDismiss_save() {
+        print("MainViewController : called save didReceiveDismiss func")
         
         // Runs after 1 second on the main queue.
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
@@ -27,11 +55,20 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         }
         
     }
+    func didReceiveDismiss_find() {
+        print("MainViewController : called find didReceiveDismiss func")
+        
+        // Runs after 1 second on the main queue.
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
+            self.showLetterResultView()
+        }
+        
+    }
     
 
     
     static let getInstance : LetterMainViewController = LetterMainViewController()
-    public var dismissDelegate : ModalDimissDelegate?
+    public var dismissDelegate : ModalDimissDelegate_save?
     
     let presenter : Presentr = {
         let width = ModalSize.custom(size: Float(UIScreen.main.bounds.width*0.9))
@@ -84,31 +121,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     @IBOutlet weak var sendLetterBtn: UIButton!
     @IBOutlet weak var sendLetterCancelBtn: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        self.locationManager.requestAlwaysAuthorization()
-        
-        // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
-        
-        let camera = GMSCameraPosition.camera(withLatitude: 37.4980, longitude: 127.0761, zoom: 18.0)
-        googleMapView.camera = camera
-//        view = mapView
-        
-        w3w_text.layer.cornerRadius = 18
-        w3w_text.clipsToBounds = true
-        
-        LetterController.getInstace.setLetterSaveDismissDelegate(delegate: self)
-
-    }
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -122,7 +135,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         marker.position = CLLocationCoordinate2D(latitude: locValue.latitude, longitude: locValue.longitude)
         marker.title = "CurrentPosition"
         marker.snippet = "Letter"
-        marker.icon = UIImage(named: "map_letter")
+        marker.icon = UIImage(named: "current_letter")
         
         googleMapView.camera = camera
         marker.map = googleMapView
@@ -137,12 +150,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         LetterController.getInstace.longitude = String(format:"%f",currentLongitude!)
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         
-        let w3w = LetterController.getInstace.what3Words
-        if !w3w.isEmpty{
-            var words = w3w.characters.split(separator: ".")
-            w3w_text.text = "\(words[0]) \t / \t \(words[1]) \t / \t\(words[2])"
-            print(w3w)
-        }
+        
         
     
     }
@@ -150,6 +158,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     @IBAction func letterSaveBtn(_ sender: UIButton) {
         
         
+        LetterController.getInstace.isSending = true
 //        showSaveLetterView(view: saveLetterView, hidden: false)
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SaveLetterViewController") as! SaveLetterViewController
 //        saveLetterView.isHidden = false
@@ -176,6 +185,12 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
             print("complete")
         })
     }
+    func showLetterResultView(){
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "LetterResultViewController") as! LetterResultViewController
+        customPresentViewController(presenter , viewController:controller, animated: true,completion: {
+            print("complete")
+        })
+    }
     
     func showSaveLetterView(view: UIView, hidden: Bool) {
         
@@ -191,8 +206,17 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         }, completion: nil)
     }
     
-    public func setDismissDelegate(delegate : ModalDimissDelegate ){
+    public func setDismissDelegate(delegate : ModalDimissDelegate_save ){
         self.dismissDelegate = delegate
+    }
+    
+    func processResult(_ result: String) {
+        let words = result.characters.split(separator: ".")
+        if !LetterController.getInstace.isSending {
+            LetterController.getInstace.what3Words = result
+            w3w_text.text = "\(words[0]) \t / \t \(words[1]) \t / \t\(words[2])"
+            print(result)
+        }
     }
     
 }

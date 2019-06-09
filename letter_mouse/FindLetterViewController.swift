@@ -9,8 +9,12 @@
 import UIKit
 
 
-class FindLetterViewController: UIViewController {
+class FindLetterViewController: UIViewController,FindLetterResultDelegate {
 
+    
+    @IBOutlet weak var firstWord: UITextField!
+    @IBOutlet weak var secondWord: UITextField!
+    @IBOutlet weak var thirdWord: UITextField!
     
     @IBOutlet weak var stackViewInW3W: UIStackView!
     @IBOutlet weak var superWhiteView: UIView!
@@ -53,9 +57,32 @@ class FindLetterViewController: UIViewController {
         letterFindBtn.addRoundnessToButton(cornerRadius : 18)
         SMS_findBtn.addRoundnessToButton(cornerRadius : 18)
         // Do any additional setup after loading the view.
+        
+        HttpConnectionHandler.getInstance.setFindLetterResultDelegate(self)
     }
     
-
+    @IBAction func findLetterBtnClicked(_ sender: UIButton) {
+        
+        var json : Dictionary<String,String> = Dictionary<String,String>()
+        let lati = LetterController.getInstace.latitude
+        let long = LetterController.getInstace.longitude
+        
+        if let firstWord = firstWord.text, let secondWord = secondWord.text, let thirdWord = thirdWord.text{
+            json["w3w_address"] = firstWord + "." + secondWord + "." + thirdWord
+        }
+        if let phoneNumber = numberInputTextField.text {
+            json["receiver_phone"] = phoneNumber
+        }
+        if json.count != 2 {
+            return
+        }
+        HttpConnectionHandler.getInstance.httpUrlConnection(isSave:false, json: json)
+        
+        
+    }
+    
+    @IBAction func findLetterBySMSBtnClicked(_ sender: UIButton) {
+    }
     /*
     // MARK: - Navigation
 
@@ -65,5 +92,30 @@ class FindLetterViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func processFindLetterResult(_ result: String) {
+        print("process find letter result : \(result)")
+        
+        if let dict = LetterUtils.convertToDictionary(text: result){
+            if let letterContent = dict["letter"] as? [[String:String]] {
+                let json = letterContent[letterContent.startIndex]
+                LetterController.getInstace.findLetterResult = json["message"] as? String
+
+            }
+
+        }
+        callBackResultToMain()
+    }
+    func callBackResultToMain(){
+        
+        
+        if let delegate : ModalDimissDelegate_find = LetterController.getInstace.LetterFindDismissDelegate as! ModalDimissDelegate_find {
+            delegate.didReceiveDismiss_find()
+        }
+        dismissFunc()
+    }
+    func dismissFunc(){
+        dismiss(animated: true, completion: nil)
+    }
 
 }
