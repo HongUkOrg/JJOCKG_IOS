@@ -117,11 +117,11 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     }()
     let letterResultpresentR : Presentr = {
         let width = ModalSize.custom(size: Float(uiViewWidth*0.95))
-        let height = ModalSize.custom(size:Float(uiViewHeight*1.2))
+        let height = ModalSize.custom(size:Float(uiViewHeight*0.7))
         let center = ModalCenterPosition.custom(
             centerPoint: CGPoint.init(
-                x: UIScreen.main.bounds.width*0.5,
-                y: UIScreen.main.bounds.height*(0.625)
+                x: uiViewWidth*0.5,
+                y: uiViewHeight*(0.65)
         ))
         let customType = PresentationType.custom(width: width, height: height, center: center)
         let customPresenter = Presentr(presentationType: customType)
