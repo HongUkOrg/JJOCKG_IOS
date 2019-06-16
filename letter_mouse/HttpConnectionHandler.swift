@@ -48,8 +48,7 @@ class HttpConnectionHandler {
         
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data,
-                let response = response as? HTTPURLResponse,
+            guard let data = data, let response = response as? HTTPURLResponse,
                 error == nil else {                                              // check for fundamental networking error
                     print("error", error ?? "Unknown error")
                     return
@@ -60,14 +59,12 @@ class HttpConnectionHandler {
                 print("response = \(response)")
                 return
             }
-            
             let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(String(describing: responseString))")
+            var disableLineBreak = responseString?.replacingOccurrences(of: "\n", with: "\\n")
+            print(disableLineBreak!)
+           
             if let findLetterResultDelegate = self.findLetterResultDelegate, !isSave {
-                if let findLetterResult = responseString {
-                    print("letter find!!")
-                    findLetterResultDelegate.processFindLetterResult(findLetterResult)
-                }
+                findLetterResultDelegate.processFindLetterResult(disableLineBreak!)
             }
         }
         
