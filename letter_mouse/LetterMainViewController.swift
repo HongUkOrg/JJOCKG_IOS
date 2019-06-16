@@ -18,6 +18,9 @@ import Presentr
 class LetterMainViewController: UIViewController, CLLocationManagerDelegate, ModalDimissDelegate_save,ModalDimissDelegate_find, W3WResponseDelegate {
     
     
+    static let uiViewHeight = UIScreen.main.bounds.height
+    static let uiViewWidth  = UIScreen.main.bounds.width
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,8 +74,8 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     public var dismissDelegate : ModalDimissDelegate_save?
     
     let presenter : Presentr = {
-        let width = ModalSize.custom(size: Float(UIScreen.main.bounds.width*0.9))
-        let height = ModalSize.custom(size:Float(UIScreen.main.bounds.height*0.75))
+        let width = ModalSize.custom(size: Float(uiViewWidth*0.9))
+        let height = ModalSize.custom(size:Float(uiViewHeight*0.75))
         let center = ModalCenterPosition.custom(
             centerPoint: CGPoint.init(
                 x: UIScreen.main.bounds.width*0.5,
@@ -92,12 +95,33 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         
     }()
     let findPresenter : Presentr = {
-        let width = ModalSize.custom(size: Float(UIScreen.main.bounds.width*0.9))
-        let height = ModalSize.custom(size:Float(UIScreen.main.bounds.height*0.4))
+        let width = ModalSize.custom(size: Float(uiViewWidth*0.9))
+        let height = ModalSize.custom(size:Float(uiViewHeight*0.4))
         let center = ModalCenterPosition.custom(
             centerPoint: CGPoint.init(
                 x: UIScreen.main.bounds.width*0.5,
                 y: UIScreen.main.bounds.height*(0.5)
+        ))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        let customPresenter = Presentr(presentationType: customType)
+        customPresenter.transitionType = .coverVertical
+        customPresenter.dismissTransitionType = .coverVertical
+        customPresenter.dismissAnimated = true
+        customPresenter.dismissOnSwipe = true
+        customPresenter.dismissOnSwipeDirection = .bottom
+        customPresenter.backgroundOpacity = 0
+        
+        
+        return customPresenter
+        
+    }()
+    let letterResultpresentR : Presentr = {
+        let width = ModalSize.custom(size: Float(uiViewWidth*0.95))
+        let height = ModalSize.custom(size:Float(uiViewHeight*1.2))
+        let center = ModalCenterPosition.custom(
+            centerPoint: CGPoint.init(
+                x: UIScreen.main.bounds.width*0.5,
+                y: UIScreen.main.bounds.height*(0.625)
         ))
         let customType = PresentationType.custom(width: width, height: height, center: center)
         let customPresenter = Presentr(presentationType: customType)
@@ -156,8 +180,6 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     }
 
     @IBAction func letterSaveBtn(_ sender: UIButton) {
-        
-        
         LetterController.getInstace.isSending = true
 //        showSaveLetterView(view: saveLetterView, hidden: false)
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SaveLetterViewController") as! SaveLetterViewController
@@ -187,7 +209,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     }
     func showLetterResultView(){
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "LetterResultViewController") as! LetterResultViewController
-        customPresentViewController(presenter , viewController:controller, animated: true,completion: {
+        customPresentViewController(letterResultpresentR , viewController:controller, animated: true,completion: {
             print("complete")
         })
     }

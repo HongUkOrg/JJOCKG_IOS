@@ -53,11 +53,8 @@ class SaveLetterViewController: UIViewController {
         
         
         phoneNumber.addShadowToTextField(cornerRadius: 18)
-        saveLetterWhiteView.layer.cornerRadius = 18
-        saveLetterWhiteView.clipsToBounds = true
-        
-        saveLetterView.layer.cornerRadius = 18
-        saveLetterView.clipsToBounds = true
+        saveLetterWhiteView.addRoundness(cornerRadius :18)
+        saveLetterView.addRoundness(cornerRadius :18)
         
         sendLetterCancelBtn.layer.cornerRadius = 18
         sendLetterCancelBtn.clipsToBounds = true

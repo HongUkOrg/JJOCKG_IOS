@@ -10,7 +10,7 @@ import UIKit
 
 
 class FindLetterViewController: UIViewController,FindLetterResultDelegate {
-
+ 
     
     @IBOutlet weak var firstWord: UITextField!
     @IBOutlet weak var secondWord: UITextField!
@@ -27,14 +27,9 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate {
 
         numberInputTextField.addShadowToTextField(cornerRadius: 18)
         
-        W3W_input_view.layer.cornerRadius = 18
-        W3W_input_view.clipsToBounds = true
-        
-        superWhiteView.layer.cornerRadius = 18
-        superWhiteView.clipsToBounds = true
-        
-        stackViewInW3W.layer.cornerRadius = 18
-        stackViewInW3W.clipsToBounds = true
+        W3W_input_view.addRoundness(cornerRadius : 18)
+        superWhiteView.addRoundness(cornerRadius : 18)
+        stackViewInW3W.addRoundness(cornerRadius : 18)
         
         
         
@@ -54,8 +49,8 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate {
 //        SMS_findBtn.layer.shadowRadius = 0.0
 //        SMS_findBtn.layer.masksToBounds = false
         
-        letterFindBtn.addRoundnessToButton(cornerRadius : 18)
-        SMS_findBtn.addRoundnessToButton(cornerRadius : 18)
+        letterFindBtn.addRoundnessShadowToButton(cornerRadius : 18)
+        SMS_findBtn.addRoundnessShadowToButton(cornerRadius : 18)
         // Do any additional setup after loading the view.
         
         HttpConnectionHandler.getInstance.setFindLetterResultDelegate(self)
@@ -96,13 +91,13 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate {
     func processFindLetterResult(_ result: String) {
         print("process find letter result : \(result)")
         
-        if let dict = LetterUtils.convertToDictionary(text: result){
+        if let dict = LetterUtils.convertToDictionary(result){
             if let letterContent = dict["letter"] as? [[String:String]] {
                 let json = letterContent[letterContent.startIndex]
+                print("store letter content : \(json["message"])")
                 LetterController.getInstace.findLetterResult = json["message"] as? String
 
             }
-
         }
         callBackResultToMain()
     }
