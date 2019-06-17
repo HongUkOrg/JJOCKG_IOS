@@ -14,11 +14,13 @@ class LetterController {
 
     static let getInstace : LetterController = LetterController()
     
-    var latitude : String
-    var longitude : String
+    var latitude : Double
+    var longitude : Double
     var what3Words : String
     var isSending : Bool
-    var findLetterResult : String?
+    var findedLetterContent : String?
+    var findedLetterLati : Double?
+    var findedLetterLong : Double?
     
     var LetterSaveDismissDelegate : ModalDimissDelegate_save?
     var LetterFindDismissDelegate : ModalDimissDelegate_find?
@@ -32,8 +34,8 @@ class LetterController {
     }
     
     private init(){
-        self.latitude = ""
-        self.longitude = ""
+        self.latitude = 0
+        self.longitude = 0
         self.what3Words = ""
         self.LetterSaveDismissDelegate = nil
         self.isSending = false

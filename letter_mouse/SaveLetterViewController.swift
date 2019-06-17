@@ -96,8 +96,8 @@ class SaveLetterViewController: UIViewController {
         LetterController.getInstace.isSending = false
         
         var json : [String:String] = [String:String]()
-        let lati = LetterController.getInstace.latitude
-        let long = LetterController.getInstace.longitude
+        let lati = String(format:"%f",LetterController.getInstace.latitude)
+        let long = String(format:"%f",LetterController.getInstace.longitude)
         if lati != "" && long != "" {
             json["latitude"] = lati
             json["longitude"] = long

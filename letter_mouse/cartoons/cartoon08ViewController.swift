@@ -27,6 +27,7 @@ class cartoon08ViewController: UIViewController {
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .right {
+            navigationController?.popViewController(animated: true)
             print("Swipe Right")
             
         }

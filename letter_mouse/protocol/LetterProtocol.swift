@@ -12,7 +12,7 @@ public protocol ModalDimissDelegate_save{
     func didReceiveDismiss_save()
 }
 public protocol ModalDimissDelegate_find{
-    func didReceiveDismiss_find()
+    func didReceiveDismiss_find(_ success : Bool)
 }
 
 protocol W3WResponseDelegate{

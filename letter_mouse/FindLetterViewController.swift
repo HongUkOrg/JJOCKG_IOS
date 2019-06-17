@@ -58,9 +58,7 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate {
     
     @IBAction func findLetterBtnClicked(_ sender: UIButton) {
         
-        var json : Dictionary<String,String> = Dictionary<String,String>()
-        let lati = LetterController.getInstace.latitude
-        let long = LetterController.getInstace.longitude
+        var json : Dictionary<String,String> = Dictionary<String,String>() 
         
         if let firstWord = firstWord.text, let secondWord = secondWord.text, let thirdWord = thirdWord.text{
             json["w3w_address"] = firstWord + "." + secondWord + "." + thirdWord
@@ -94,18 +92,24 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate {
         if let dict = LetterUtils.convertToDictionary(result){
             if let letterContent = dict["letter"] as? [[String:String]] {
                 let json = letterContent[letterContent.startIndex]
-                print("store letter content : \(json["message"])")
-                LetterController.getInstace.findLetterResult = json["message"] as? String
+                if let message = json["message"], let lati = json["latitude"], let long = json["longitude"] {
+                    print("store letter content : \(String(describing: json["message"]))")
+                    LetterController.getInstace.findedLetterContent = message
+                    LetterController.getInstace.findedLetterLati = Double(lati)
+                    LetterController.getInstace.findedLetterLong = Double(long)
 
+                    callBackResultToMain(true)
+                }
+                else {
+                    callBackResultToMain(false)
+                }
             }
         }
-        callBackResultToMain()
+        
     }
-    func callBackResultToMain(){
-        
-        
+    func callBackResultToMain(_ success : Bool){
         if let delegate : ModalDimissDelegate_find = LetterController.getInstace.LetterFindDismissDelegate as! ModalDimissDelegate_find {
-            delegate.didReceiveDismiss_find()
+            delegate.didReceiveDismiss_find(success)
         }
         dismissFunc()
     }

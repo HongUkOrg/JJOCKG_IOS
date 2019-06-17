@@ -58,12 +58,17 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         }
         
     }
-    func didReceiveDismiss_find() {
+    func didReceiveDismiss_find(_ success : Bool) {
         print("MainViewController : called find didReceiveDismiss func")
         
         // Runs after 1 second on the main queue.
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
-            self.showLetterResultView()
+        if success{
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
+                self.showLetterResultView()
+            }
+        }
+        else {
+            print("ERROR :: find fail!!!!!!!")
         }
         
     }
@@ -96,7 +101,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     }()
     let findPresenter : Presentr = {
         let width = ModalSize.custom(size: Float(uiViewWidth*0.9))
-        let height = ModalSize.custom(size:Float(uiViewHeight*0.4))
+        let height = ModalSize.custom(size: 350.0)
         let center = ModalCenterPosition.custom(
             centerPoint: CGPoint.init(
                 x: UIScreen.main.bounds.width*0.5,
@@ -117,11 +122,11 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     }()
     let letterResultpresentR : Presentr = {
         let width = ModalSize.custom(size: Float(uiViewWidth*0.95))
-        let height = ModalSize.custom(size:Float(uiViewHeight*0.7))
+        let height = ModalSize.custom(size:Float(uiViewHeight*0.8))
         let center = ModalCenterPosition.custom(
             centerPoint: CGPoint.init(
                 x: uiViewWidth*0.5,
-                y: uiViewHeight*(0.65)
+                y: uiViewHeight*(0.60)
         ))
         let customType = PresentationType.custom(width: width, height: height, center: center)
         let customPresenter = Presentr(presentationType: customType)
@@ -170,8 +175,8 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
             latitude: String(format:"%f",currentLatitude!),
             longitude: String(format:"%f",currentLongitude!)
         )
-        LetterController.getInstace.latitude = String(format:"%f",currentLatitude!)
-        LetterController.getInstace.longitude = String(format:"%f",currentLongitude!)
+        LetterController.getInstace.latitude = currentLatitude!
+        LetterController.getInstace.longitude = currentLongitude!
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         
         
