@@ -25,6 +25,10 @@ class cartoon02ViewController: UIViewController {
     }
     @IBOutlet var splashView: UIView!
     
+    @IBAction func skipBtnClicked(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "mainLetterView") as! LetterMainViewController
+        self.present(vc, animated: true, completion: nil)
+    }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .right {

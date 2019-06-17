@@ -15,15 +15,33 @@ import Presentr
 
 
 
-class LetterMainViewController: UIViewController, CLLocationManagerDelegate, ModalDimissDelegate_save,ModalDimissDelegate_find, W3WResponseDelegate {
+class LetterMainViewController: UIViewController, CLLocationManagerDelegate, ModalDimissDelegate_save,ModalDimissDelegate_find, W3WResponseDelegate, UpdateMainViewStateDelegate {
+
+    
+    let locationManager = CLLocationManager()
+    var currentLatitude : Double?
+    var currentLongitude : Double?
+    @IBOutlet fileprivate weak var googleMapView: GMSMapView!
+    
+    @IBOutlet weak var w3w_text: UITextField!
+    @IBOutlet weak var sendLetterBtn: UIButton!
+    @IBOutlet weak var sendLetterCancelBtn: UIButton!
+    @IBOutlet weak var distanceLabel: UILabel!
+    
+    @IBOutlet weak var mainUpperYellowView: UIView!
+    @IBOutlet weak var mainUpperWhiteView: UIView!
+    @IBOutlet weak var stateLabel: UILabel!
     
     
-    static let uiViewHeight = UIScreen.main.bounds.height
-    static let uiViewWidth  = UIScreen.main.bounds.width
+    
+    static let getInstance : LetterMainViewController = LetterMainViewController()
+    public var dismissDelegate : ModalDimissDelegate_save?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("Main View Acitivity View Did Load!!!")
+        updateViewState()
         
         self.locationManager.requestAlwaysAuthorization()
         
@@ -43,8 +61,9 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         w3w_text.layer.cornerRadius = 18
         w3w_text.clipsToBounds = true
         
-        LetterController.getInstace.setLetterSaveDismissDelegate(self)
-        LetterController.getInstace.setLetterFindDismissDelegate(self)
+        LetterController.getInstance.setLetterSaveDismissDelegate(self)
+        LetterController.getInstance.setLetterFindDismissDelegate(self)
+        LetterController.getInstance.setUpdateMainVewStateDelegate(self)
         HttpConnectionHandler.getInstance.setW3WResponseDelegate(self)
         
     }
@@ -52,7 +71,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     func didReceiveDismiss_save() {
         print("MainViewController : called save didReceiveDismiss func")
         
-        // Runs after 1 second on the main queue.
+        updateViewState()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
             self.showSMSView()
         }
@@ -61,7 +80,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     func didReceiveDismiss_find(_ success : Bool) {
         print("MainViewController : called find didReceiveDismiss func")
         
-        // Runs after 1 second on the main queue.
+        updateViewState()
         if success{
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
                 self.showLetterResultView()
@@ -73,87 +92,10 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         
     }
     
-
-    
-    static let getInstance : LetterMainViewController = LetterMainViewController()
-    public var dismissDelegate : ModalDimissDelegate_save?
-    
-    let presenter : Presentr = {
-        let width = ModalSize.custom(size: Float(uiViewWidth*0.9))
-        let height = ModalSize.custom(size:Float(uiViewHeight*0.75))
-        let center = ModalCenterPosition.custom(
-            centerPoint: CGPoint.init(
-                x: UIScreen.main.bounds.width*0.5,
-                y: UIScreen.main.bounds.height*(0.625)
-        ))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
-        let customPresenter = Presentr(presentationType: customType)
-        customPresenter.transitionType = .coverVertical
-        customPresenter.dismissTransitionType = .coverVertical
-        customPresenter.dismissAnimated = true
-        customPresenter.dismissOnSwipe = true
-        customPresenter.dismissOnSwipeDirection = .bottom
-        customPresenter.backgroundOpacity = 0
-        
-
-        return customPresenter
-        
-    }()
-    let findPresenter : Presentr = {
-        let width = ModalSize.custom(size: Float(uiViewWidth*0.9))
-        let height = ModalSize.custom(size: 350.0)
-        let center = ModalCenterPosition.custom(
-            centerPoint: CGPoint.init(
-                x: UIScreen.main.bounds.width*0.5,
-                y: UIScreen.main.bounds.height*(0.5)
-        ))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
-        let customPresenter = Presentr(presentationType: customType)
-        customPresenter.transitionType = .coverVertical
-        customPresenter.dismissTransitionType = .coverVertical
-        customPresenter.dismissAnimated = true
-        customPresenter.dismissOnSwipe = true
-        customPresenter.dismissOnSwipeDirection = .bottom
-        customPresenter.backgroundOpacity = 0
-        
-        
-        return customPresenter
-        
-    }()
-    let letterResultpresentR : Presentr = {
-        let width = ModalSize.custom(size: Float(uiViewWidth*0.95))
-        let height = ModalSize.custom(size:Float(uiViewHeight*0.8))
-        let center = ModalCenterPosition.custom(
-            centerPoint: CGPoint.init(
-                x: uiViewWidth*0.5,
-                y: uiViewHeight*(0.60)
-        ))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
-        let customPresenter = Presentr(presentationType: customType)
-        customPresenter.transitionType = .coverVertical
-        customPresenter.dismissTransitionType = .coverVertical
-        customPresenter.dismissAnimated = true
-        customPresenter.dismissOnSwipe = true
-        customPresenter.dismissOnSwipeDirection = .bottom
-        customPresenter.backgroundOpacity = 0
-        
-        
-        return customPresenter
-        
-    }()
-    let locationManager = CLLocationManager()
-    var currentLatitude : Double?
-    var currentLongitude : Double?
-    @IBOutlet fileprivate weak var googleMapView: GMSMapView!
-    
-    @IBOutlet weak var w3w_text: UITextField!
-    @IBOutlet weak var sendLetterBtn: UIButton!
-    @IBOutlet weak var sendLetterCancelBtn: UIButton!
-    
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
+        updateViewState()
         
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         
@@ -175,25 +117,47 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
             latitude: String(format:"%f",currentLatitude!),
             longitude: String(format:"%f",currentLongitude!)
         )
-        LetterController.getInstace.latitude = currentLatitude!
-        LetterController.getInstace.longitude = currentLongitude!
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        LetterController.getInstance.latitude = currentLatitude!
+        LetterController.getInstance.longitude = currentLongitude!
+
         
+        if let isTrackingNow = LetterController.getInstance.isTrackingLetterNow, isTrackingNow {
+            setLetterTrackingMode()
+            var calculatedDistance = calculateDistance()
+            var distanceMsg = String(Int(calculatedDistance)) + "m 남았습니다"
+            self.distanceLabel.text = distanceMsg
+            if let delegate = LetterController.getInstance.canLetterReadDelegate {
+                if canOpenLetter(calculatedDistance)  {
+                    callBackLetterTrackingView(true)
+                }
+                else {
+                    callBackLetterTrackingView(false)
+                }
+            }
+        }
+        else {
+            setNormalMode()
+        }
         
         
     
     }
+    
+    func callBackLetterTrackingView(_ canOpen : Bool){
+        if let delegate = LetterController.getInstance.canLetterReadDelegate {
+            delegate.enableLetterReading(canOpen)
+        }
+        else {
+            print("ERROR :: canLetterReadDelegate is not set yet")
+        }
+    }
 
     @IBAction func letterSaveBtn(_ sender: UIButton) {
-        LetterController.getInstace.isSending = true
-//        showSaveLetterView(view: saveLetterView, hidden: false)
+        LetterController.getInstance.isSending = true
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SaveLetterViewController") as! SaveLetterViewController
-//        saveLetterView.isHidden = false
-//        presenter.customBackgroundView = saveLetterView
-//        animateW3WTextView(offset: 0.08)
-        // dismiss를 감지할 수 없으니까.. 굳이 이걸 할 필요가 있나 싶음
-        
-        customPresentViewController(presenter , viewController:controller, animated: true,completion: {
+
+        customPresentViewController(PresentrStore.getInstance.simplePresentR , viewController:controller, animated: true,completion: {
+            self.stateLabel.text = "쪽지 남기기"
             print("complete")
         })
         
@@ -201,20 +165,23 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     }
     
     @IBAction func letterFindBtn(_ sender: UIButton) {
+        
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "findLetterViewController") as! FindLetterViewController
-        customPresentViewController(findPresenter , viewController:controller, animated: true,completion: {
+        customPresentViewController(PresentrStore.getInstance.findPresentR , viewController:controller, animated: true,completion: {
             print("complete")
         })
     }
     func showSMSView(){
+        
          let controller = self.storyboard?.instantiateViewController(withIdentifier: "SMSSendViewController") as! SMSViewController
-        customPresentViewController(presenter , viewController:controller, animated: true,completion: {
+        customPresentViewController(PresentrStore.getInstance.simplePresentR , viewController:controller, animated: true,completion: {
+            self.stateLabel.text = "SMS로 보내기"
             print("complete")
         })
     }
     func showLetterResultView(){
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "LetterResultViewController") as! LetterResultViewController
-        customPresentViewController(letterResultpresentR , viewController:controller, animated: true,completion: {
+        customPresentViewController(PresentrStore.getInstance.letterResultpresentR , viewController:controller, animated: true,completion: {
             print("complete")
         })
     }
@@ -237,13 +204,59 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         self.dismissDelegate = delegate
     }
     
+    
     func processResult(_ result: String) {
         let words = result.characters.split(separator: ".")
-        if !LetterController.getInstace.isSending {
-            LetterController.getInstace.what3Words = result
+        if !LetterController.getInstance.isSending {
+            LetterController.getInstance.what3Words = result
             w3w_text.text = "\(words[0]) \t / \t \(words[1]) \t / \t\(words[2])"
             print(result)
         }
+    }
+    
+    func canOpenLetter(_ distance : Double) -> Bool{
+        if distance <= 50.0 {
+            print("can Open message, remained distance :\(distance)")
+            return true
+        }
+        else {
+            print("can't open message, remained distance : \(distance)")
+            return false
+        }
+    }
+    func calculateDistance() -> Double {
+        let destinationCoordinate = CLLocation(latitude: LetterController.getInstance.findedLetterLati!,
+                                               longitude: LetterController.getInstance.findedLetterLong!)
+        let currentCoordinate = CLLocation(latitude: LetterController.getInstance.latitude,
+                                           longitude: LetterController.getInstance.longitude)
+        
+        return destinationCoordinate.distance(from: currentCoordinate)
+    }
+    
+    func updateViewState() {
+        if let isTrakcing = LetterController.getInstance.isTrackingLetterNow, isTrakcing {
+            setLetterTrackingMode()
+        }
+        else {
+            setNormalMode()
+        }
+    }
+    func setLetterTrackingMode(){
+        DispatchQueue.main.async {
+        self.stateLabel.text = "쪽지 찾기"
+        self.w3w_text.isHidden = true
+        self.mainUpperWhiteView.isHidden = false
+        }
+    }
+    func setNormalMode(){
+        DispatchQueue.main.async {
+            self.stateLabel.text = "나의 현재 주소"
+            self.w3w_text.isHidden = false
+            self.mainUpperWhiteView.isHidden = true
+        }
+    }
+    func updateMainViewState(){
+        updateViewState()
     }
     
 }

@@ -94,9 +94,9 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate {
                 let json = letterContent[letterContent.startIndex]
                 if let message = json["message"], let lati = json["latitude"], let long = json["longitude"] {
                     print("store letter content : \(String(describing: json["message"]))")
-                    LetterController.getInstace.findedLetterContent = message
-                    LetterController.getInstace.findedLetterLati = Double(lati)
-                    LetterController.getInstace.findedLetterLong = Double(long)
+                    LetterController.getInstance.findedLetterContent = message
+                    LetterController.getInstance.findedLetterLati = Double(lati)
+                    LetterController.getInstance.findedLetterLong = Double(long)
 
                     callBackResultToMain(true)
                 }
@@ -108,7 +108,7 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate {
         
     }
     func callBackResultToMain(_ success : Bool){
-        if let delegate : ModalDimissDelegate_find = LetterController.getInstace.LetterFindDismissDelegate as! ModalDimissDelegate_find {
+        if let delegate : ModalDimissDelegate_find = LetterController.getInstance.LetterFindDismissDelegate as! ModalDimissDelegate_find {
             delegate.didReceiveDismiss_find(success)
         }
         dismissFunc()

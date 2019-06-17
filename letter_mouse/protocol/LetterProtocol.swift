@@ -21,8 +21,13 @@ protocol W3WResponseDelegate{
 protocol FindLetterResultDelegate{
     func processFindLetterResult(_ result : String)
 }
+protocol CanLetterReadDelegate {
+    func enableLetterReading(_ canOpen : Bool)
+}
+protocol UpdateMainViewStateDelegate{
+    func updateMainViewState()
+}
+
+
 class LetterProtocol: NSObject {
-
-    
-
 }

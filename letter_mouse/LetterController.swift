@@ -12,18 +12,22 @@ import UIKit
 class LetterController {
 
 
-    static let getInstace : LetterController = LetterController()
+    static let getInstance : LetterController = LetterController()
     
     var latitude : Double
     var longitude : Double
     var what3Words : String
     var isSending : Bool
+    var isTrackingLetterNow : Bool?
     var findedLetterContent : String?
     var findedLetterLati : Double?
     var findedLetterLong : Double?
     
     var LetterSaveDismissDelegate : ModalDimissDelegate_save?
     var LetterFindDismissDelegate : ModalDimissDelegate_find?
+    var canLetterReadDelegate : CanLetterReadDelegate?
+    var updateMainVewStateDelegate : UpdateMainViewStateDelegate?
+ 
 
     
     public func setLetterSaveDismissDelegate(_ delegate : ModalDimissDelegate_save){
@@ -31,6 +35,12 @@ class LetterController {
     }
     func setLetterFindDismissDelegate(_ delegate : ModalDimissDelegate_find){
         self.LetterFindDismissDelegate = delegate
+    }
+    func setCanOpenLetterDelegate(_ delegate : CanLetterReadDelegate ){
+        self.canLetterReadDelegate = delegate
+    }
+    func setUpdateMainVewStateDelegate(_ delegate : UpdateMainViewStateDelegate ){
+        self.updateMainVewStateDelegate = delegate
     }
     
     private init(){

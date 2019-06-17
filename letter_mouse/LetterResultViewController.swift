@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class LetterResultViewController: UIViewController {
+class LetterResultViewController: UIViewController, CanLetterReadDelegate {
     
     @IBOutlet var superMainView: UIView!
     @IBOutlet weak var mainUiView: UIView!
@@ -19,38 +19,7 @@ class LetterResultViewController: UIViewController {
     
     var isOpend : Bool = false
     var letterHeight : CGFloat?
-    
-    
-    @IBAction func underOpenBtnClicked(_ sender: UIButton) {
-        
-        if canOpenLetter(){
-            if !isOpend {
-                let originalTransform = self.mainUiView.transform
-                let scaledTransform = originalTransform.translatedBy(x: 0.0, y: +(letterHeight ?? 500) * 0.5)
-                UIView.animate(withDuration: 0.7, animations: {
-                    self.mainUiView.transform = scaledTransform
-                })
-                self.isOpend = !self.isOpend
-            }
-            else {
-                let originalTransform = self.mainUiView.transform
-                let scaledTransform = originalTransform.translatedBy(x: 0.0, y: -(letterHeight ?? 500) * 0.5)
-                UIView.animate(withDuration: 0.7, animations: {
-                    self.mainUiView.transform = scaledTransform
-                })
-                self.isOpend = !self.isOpend
-            }
-        }
-        else {
-            print("under open btn clicekd ... : can not open")
-        }
-        
-        
-    }
-    
-    @IBAction func underCancleBtnClicked(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
+    var canOpenLetter : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +31,7 @@ class LetterResultViewController: UIViewController {
         underView.addRoundness(cornerRadius : 18)
         
         
-        if let resultText = LetterController.getInstace.findedLetterContent {
+        if let resultText = LetterController.getInstance.findedLetterContent {
             print("unoptional result text \(resultText)")
             let attributedString = NSMutableAttributedString(string: resultText)
             let paragraphStyle = NSMutableParagraphStyle()
@@ -74,46 +43,66 @@ class LetterResultViewController: UIViewController {
             
         }
         
+        LetterController.getInstance.setCanOpenLetterDelegate(self)
         setDefaultLetterState()
-
-        // Do any additional setup after loading the view.
+        notifyToUpdateMainViewState()
+        
     }
     
-    func canOpenLetter() -> Bool{
-        let lamnentDistance = calculateDistance()
-        if lamnentDistance <= 50.0 {
-            print("can Open message \(lamnentDistance)")
-            return true
-        }
-        else {
-            print("can't open message, remained distance : \(lamnentDistance)")
-            return false
-        }
-    }
-    func calculateDistance() -> Double {
-        let destinationCoordinate = CLLocation(latitude: LetterController.getInstace.findedLetterLati!,
-                                               longitude: LetterController.getInstace.findedLetterLong!)
-        let currentCoordinate = CLLocation(latitude: LetterController.getInstace.latitude,
-                                           longitude: LetterController.getInstace.longitude)
-        
-        return destinationCoordinate.distance(from: currentCoordinate)
-    }
     
     func setDefaultLetterState() {
         let originalTransform = self.mainUiView.transform
         let scaledTransform = originalTransform.translatedBy(x: 0.0, y: (letterHeight ?? 500) * 0.5)
         self.mainUiView.transform = scaledTransform
-        self.isOpend = !self.isOpend
+        self.isOpend = false
+        
+        underOpenBtn.backgroundColor = UIColor(red: 0.7, green: 0.7, blue:0.7, alpha: 1)
+        LetterController.getInstance.isTrackingLetterNow = true
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func enableLetterReading(_ canOpen : Bool){
+        if canOpen {
+        self.canOpenLetter = true
+        underOpenBtn.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        }
     }
-    */
+    
+    @IBAction func underOpenBtnClicked(_ sender: UIButton) {
+        if !canOpenLetter {
+            return
+        }
+        if isOpend {
+            let originalTransform = self.mainUiView.transform
+            let scaledTransform = originalTransform.translatedBy(x: 0.0, y: +(letterHeight ?? 500) * 0.5)
+            UIView.animate(withDuration: 0.7, animations: {
+                self.mainUiView.transform = scaledTransform
+            })
+            self.isOpend = false
+            self.underOpenBtn.setTitle("쪽지 열어보기", for: .normal)
+        }
+        else {
+            let originalTransform = self.mainUiView.transform
+            let scaledTransform = originalTransform.translatedBy(x: 0.0, y: -(letterHeight ?? 500) * 0.5)
+            UIView.animate(withDuration: 0.7, animations: {
+                self.mainUiView.transform = scaledTransform
+            })
+            self.isOpend = true
+            self.underOpenBtn.setTitle("쪽지 닫기", for: .normal)
+        }
+        
+    }
+    
+    
+    @IBAction func underCancleBtnClicked(_ sender: UIButton) {
+        LetterController.getInstance.isTrackingLetterNow = false
+        notifyToUpdateMainViewState()
+        self.canOpenLetter = false
+        self.dismiss(animated: true, completion: nil)
+    }
+    func notifyToUpdateMainViewState(){
+        if let delegate = LetterController.getInstance.updateMainVewStateDelegate{
+            delegate.updateMainViewState()
+        }
+    }
 
 }
