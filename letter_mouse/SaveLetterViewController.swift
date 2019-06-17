@@ -93,16 +93,16 @@ class SaveLetterViewController: UIViewController {
 
     @IBAction func sendLetterBtnClicked(_ sender: UIButton) {
 
-        LetterController.getInstace.isSending = false
+        LetterController.getInstance.isSending = false
         
         var json : [String:String] = [String:String]()
-        let lati = LetterController.getInstace.latitude
-        let long = LetterController.getInstace.longitude
+        let lati = String(format:"%f",LetterController.getInstance.latitude)
+        let long = String(format:"%f",LetterController.getInstance.longitude)
         if lati != "" && long != "" {
             json["latitude"] = lati
             json["longitude"] = long
             json["message"] = contentTextView.text
-            json["w3w_address"] = LetterController.getInstace.what3Words
+            json["w3w_address"] = LetterController.getInstance.what3Words
             json["receiver_phone"] = phoneNumber.text
 
         }
@@ -115,7 +115,7 @@ class SaveLetterViewController: UIViewController {
             print("SMS Send View Controller complete")
         })
         
-        if let delegate:ModalDimissDelegate_save = LetterController.getInstace.LetterSaveDismissDelegate {
+        if let delegate : ModalDimissDelegate_save = LetterController.getInstance.LetterSaveDismissDelegate {
             delegate.didReceiveDismiss_save()
         }
         dismissFunc()
@@ -123,8 +123,11 @@ class SaveLetterViewController: UIViewController {
     }
     
     @IBAction func cancelBtnClicked(_ sender: UIButton) {
-        
-        dismiss(animated: true, completion: nil)
+        if let delegate = LetterController.getInstance.updateMainVewStateDelegate{
+            print("update main view from save letter controller")
+            delegate.updateMainViewState()
+        }
+        self.dismiss(animated: true, completion: nil)
         print("cancel btn clicekd")
     }
     

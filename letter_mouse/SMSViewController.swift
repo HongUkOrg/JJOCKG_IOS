@@ -40,7 +40,9 @@ class SMSViewController: UIViewController {
     */
     @IBAction func SMSCancelBtnClick(_ sender: UIButton) {
        
-        
+        if let delegate = LetterController.getInstance.updateMainVewStateDelegate{
+            delegate.updateMainViewState()
+        }
         dismiss(animated: true, completion: nil)
     }
     

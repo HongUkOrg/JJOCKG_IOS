@@ -23,11 +23,15 @@ class cartoon03ViewController: UIViewController {
         self.view.addGestureRecognizer(swipeRight)
         // Do any additional setup after loading the view, typically from a nib.
     }
+    @IBAction func skipBtnClicked(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "mainLetterView") as! LetterMainViewController
+        self.present(vc, animated: true, completion: nil)
+    }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .right {
             print("Swipe Right")
-            
+            navigationController?.popViewController(animated: true)
         }
         else if gesture.direction == .left {
             performSegue(withIdentifier: "toCartoon04", sender: self)

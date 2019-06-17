@@ -34,6 +34,7 @@
 		04F73CDB22ACDEA000F21912 /* LetterUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F73CDA22ACDEA000F21912 /* LetterUtils.swift */; };
 		10F3BA933D8460B72F4532CC /* Pods_letter_mouseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B78A5E955DD11E5FB987AA /* Pods_letter_mouseUITests.framework */; };
 		3DD3F08E0EB622DA3AC04AAA /* Pods_letter_mouseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67011DF8190CF15B5ECA6FBE /* Pods_letter_mouseTests.framework */; };
+		633C72E622B7827100159631 /* PresentrStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C72E522B7827100159631 /* PresentrStore.swift */; };
 		DA3434D2B5D1B954807DE436 /* Pods_letter_mouse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDE75F8B990B91B7CF487CC /* Pods_letter_mouse.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		2EDE75F8B990B91B7CF487CC /* Pods_letter_mouse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_letter_mouse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3214F9BC3BF47AD72D7FC1F8 /* Pods-letter_mouse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouse.debug.xcconfig"; path = "Target Support Files/Pods-letter_mouse/Pods-letter_mouse.debug.xcconfig"; sourceTree = "<group>"; };
 		3C41F9457FC674C8A7775141 /* Pods-letter_mouse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouse.release.xcconfig"; path = "Target Support Files/Pods-letter_mouse/Pods-letter_mouse.release.xcconfig"; sourceTree = "<group>"; };
+		633C72E522B7827100159631 /* PresentrStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentrStore.swift; sourceTree = "<group>"; };
 		65B78A5E955DD11E5FB987AA /* Pods_letter_mouseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_letter_mouseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67011DF8190CF15B5ECA6FBE /* Pods_letter_mouseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_letter_mouseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72036A90FC14EE9572936A41 /* Pods-letter_mouseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouseTests.release.xcconfig"; path = "Target Support Files/Pods-letter_mouseTests/Pods-letter_mouseTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -166,22 +168,23 @@
 		04B7EA23224625C800AADADE /* letter_mouse */ = {
 			isa = PBXGroup;
 			children = (
+				633C72E422B7825B00159631 /* presentr */,
 				04F73CD922ACDE9000F21912 /* util */,
 				04F73CD422ACD2B600F21912 /* extension */,
 				04F73CD322ACD2AD00F21912 /* protocol */,
 				042A0111224A67C30070CEAE /* cartoons */,
-				04B7EA24224625C800AADADE /* AppDelegate.swift */,
-				04B7EA26224625C800AADADE /* ViewController.swift */,
 				04B7EA28224625C800AADADE /* Main.storyboard */,
 				04B7EA2D224625C900AADADE /* LaunchScreen.storyboard */,
-				04B7EA30224625C900AADADE /* Info.plist */,
-				04A409FC225077F400671C3C /* LetterMainViewController.swift */,
 				0424C0E02250954B00DBB82E /* HttpConnectionHandler.swift */,
+				04B7EA24224625C800AADADE /* AppDelegate.swift */,
+				04B7EA26224625C800AADADE /* ViewController.swift */,
+				04A409FC225077F400671C3C /* LetterMainViewController.swift */,
 				0424C0E22250C80500DBB82E /* LetterController.swift */,
 				0424C0E62251141200DBB82E /* SaveLetterViewController.swift */,
 				04AD639922588BF500B6360C /* SMSViewController.swift */,
 				040C4FB4226617B0009663CB /* FindLetterViewController.swift */,
 				04C1DA2F22ABA1A5009CBDC8 /* LetterResultViewController.swift */,
+				04B7EA30224625C900AADADE /* Info.plist */,
 			);
 			path = letter_mouse;
 			sourceTree = "<group>";
@@ -236,6 +239,14 @@
 				65B78A5E955DD11E5FB987AA /* Pods_letter_mouseUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		633C72E422B7825B00159631 /* presentr */ = {
+			isa = PBXGroup;
+			children = (
+				633C72E522B7827100159631 /* PresentrStore.swift */,
+			);
+			path = presentr;
 			sourceTree = "<group>";
 		};
 		84E7167E65F6EAF02D6F6B05 /* Pods */ = {
@@ -509,6 +520,7 @@
 				042A0113224A67DC0070CEAE /* cartoon01ViewController.swift in Sources */,
 				0424C0E32250C80500DBB82E /* LetterController.swift in Sources */,
 				042A0119224A78570070CEAE /* cartoon04ViewController.swift in Sources */,
+				633C72E622B7827100159631 /* PresentrStore.swift in Sources */,
 				04C1DA2E22A69EE5009CBDC8 /* cartoon08ViewController.swift in Sources */,
 				042A011B224A78C10070CEAE /* cartoon05ViewController.swift in Sources */,
 				0424C0E72251141200DBB82E /* SaveLetterViewController.swift in Sources */,

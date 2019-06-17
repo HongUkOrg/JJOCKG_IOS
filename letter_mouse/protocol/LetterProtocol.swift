@@ -12,7 +12,7 @@ public protocol ModalDimissDelegate_save{
     func didReceiveDismiss_save()
 }
 public protocol ModalDimissDelegate_find{
-    func didReceiveDismiss_find()
+    func didReceiveDismiss_find(_ success : Bool)
 }
 
 protocol W3WResponseDelegate{
@@ -21,8 +21,13 @@ protocol W3WResponseDelegate{
 protocol FindLetterResultDelegate{
     func processFindLetterResult(_ result : String)
 }
+protocol CanLetterReadDelegate {
+    func enableLetterReading(_ canOpen : Bool)
+}
+protocol UpdateMainViewStateDelegate{
+    func updateMainViewState()
+}
+
+
 class LetterProtocol: NSObject {
-
-    
-
 }
