@@ -243,9 +243,12 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     }
     func setLetterTrackingMode(){
         DispatchQueue.main.async {
-        self.stateLabel.text = "쪽지 찾기"
-        self.w3w_text.isHidden = true
-        self.mainUpperWhiteView.isHidden = false
+            if !LetterController.getInstance.isSending{
+                self.stateLabel.text = "쪽지 찾기"
+
+            }
+            self.w3w_text.isHidden = true
+            self.mainUpperWhiteView.isHidden = false
         }
     }
     func setNormalMode(){
@@ -253,6 +256,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
             self.stateLabel.text = "나의 현재 주소"
             self.w3w_text.isHidden = false
             self.mainUpperWhiteView.isHidden = true
+            LetterController.getInstance.isSending = false
         }
     }
     func updateMainViewState(){

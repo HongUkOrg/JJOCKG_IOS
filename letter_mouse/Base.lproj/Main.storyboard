@@ -926,7 +926,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cartoon05" translatesAutoresizingMaskIntoConstraints="NO" id="chz-Gz-eTh">
-                                <rect key="frame" x="30.666666666666657" y="268.66666666666663" width="353" height="358.66666666666663"/>
+                                <rect key="frame" x="199" y="268.66666666666663" width="16" height="358.66666666666663"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRb-eq-je3">
                                 <rect key="frame" x="339" y="99" width="65" height="11"/>
@@ -1041,7 +1041,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cartoon06" translatesAutoresizingMaskIntoConstraints="NO" id="yj6-Gl-pV6">
-                                <rect key="frame" x="43.666666666666657" y="268.66666666666663" width="327" height="358.66666666666663"/>
+                                <rect key="frame" x="199" y="268.66666666666663" width="16" height="358.66666666666663"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nextpage" translatesAutoresizingMaskIntoConstraints="NO" id="tbi-xX-Fo9">
                                 <rect key="frame" x="352" y="803" width="59" height="59"/>
@@ -1140,7 +1140,7 @@
                                                 <rect key="frame" x="0.0" y="68.333333333333371" width="398" height="127"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcy-1X-YKU">
-                                                        <rect key="frame" x="170.33333333333334" y="34.666666666666629" width="57.666666666666657" height="57.666666666666657"/>
+                                                        <rect key="frame" x="191" y="52.666666666666629" width="16" height="22"/>
                                                         <state key="normal" image="cancel_btn"/>
                                                         <connections>
                                                             <action selector="underCancleBtnClicked:" destination="RvZ-0z-m9X" eventType="touchUpInside" id="WYF-35-gch"/>
