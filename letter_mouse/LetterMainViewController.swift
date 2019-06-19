@@ -40,6 +40,9 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.hideKeyboardWhenTappedAround()
+        
         print("Main View Acitivity View Did Load!!!")
         updateViewState()
         

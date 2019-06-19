@@ -25,6 +25,7 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.hideKeyboardWhenTappedAround()
         numberInputTextField.addShadowToTextField(cornerRadius: 18)
         
         W3W_input_view.addRoundness(cornerRadius : 18)

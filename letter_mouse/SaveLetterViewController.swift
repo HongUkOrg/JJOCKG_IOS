@@ -41,6 +41,7 @@ class SaveLetterViewController: UIViewController {
         customPresenter.dismissOnSwipe = true
         customPresenter.dismissOnSwipeDirection = .bottom
         customPresenter.backgroundOpacity = 0
+        customPresenter.outsideContextTap = .noAction
         
         
         return customPresenter
@@ -50,7 +51,8 @@ class SaveLetterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        self.hideKeyboardWhenTappedAround()
         
         phoneNumber.addShadowToTextField(cornerRadius: 18)
         saveLetterWhiteView.addRoundness(cornerRadius :18)

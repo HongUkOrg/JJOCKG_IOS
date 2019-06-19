@@ -32,6 +32,7 @@ class PresentrStore: NSObject {
         customPresenter.dismissOnSwipe = false
         customPresenter.dismissOnSwipeDirection = .bottom
         customPresenter.backgroundOpacity = 0
+        customPresenter.backgroundTap = .noAction
         
         
         return customPresenter
