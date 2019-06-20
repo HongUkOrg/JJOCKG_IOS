@@ -6,7 +6,7 @@ target 'letter_mouse' do
   use_frameworks!
 	pod 'GoogleMaps'
 	pod 'GooglePlaces'
-	pod 'Presentr'
+#	pod 'Presentr'
   # Pods for letter_mouse
 
   target 'letter_mouseTests' do

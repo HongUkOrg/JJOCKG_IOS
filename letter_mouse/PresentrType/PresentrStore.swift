@@ -33,6 +33,7 @@ class PresentrStore: NSObject {
         customPresenter.dismissOnSwipeDirection = .bottom
         customPresenter.backgroundOpacity = 0
         customPresenter.backgroundTap = .noAction
+        customPresenter.keyboardTranslationType = .stickToTop
         
         
         return customPresenter
@@ -44,7 +45,7 @@ class PresentrStore: NSObject {
         let center = ModalCenterPosition.custom(
             centerPoint: CGPoint.init(
                 x: UIScreen.main.bounds.width*0.5,
-                y: UIScreen.main.bounds.height*(0.5)
+                y: UIScreen.main.bounds.height - 175.0
         ))
         let customType = PresentationType.custom(width: width, height: height, center: center)
         let customPresenter = Presentr(presentationType: customType)
@@ -54,6 +55,7 @@ class PresentrStore: NSObject {
         customPresenter.dismissOnSwipe = true
         customPresenter.dismissOnSwipeDirection = .bottom
         customPresenter.backgroundOpacity = 0
+        customPresenter.keyboardTranslationType = .moveUp
         
         
         return customPresenter

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A2AC3D198FBF85DCCD253E4DF63DEC3"
+               BlueprintIdentifier = "29F99C6BA6B773CAEC76B1FBB5D05DFE"
                BuildableName = "Pods_letter_mouse.framework"
                BlueprintName = "Pods-letter_mouse"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A2AC3D198FBF85DCCD253E4DF63DEC3"
+            BlueprintIdentifier = "29F99C6BA6B773CAEC76B1FBB5D05DFE"
             BuildableName = "Pods_letter_mouse.framework"
             BlueprintName = "Pods-letter_mouse"
             ReferencedContainer = "container:Pods.xcodeproj">

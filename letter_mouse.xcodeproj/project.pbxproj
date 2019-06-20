@@ -35,6 +35,8 @@
 		10F3BA933D8460B72F4532CC /* Pods_letter_mouseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B78A5E955DD11E5FB987AA /* Pods_letter_mouseUITests.framework */; };
 		3DD3F08E0EB622DA3AC04AAA /* Pods_letter_mouseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67011DF8190CF15B5ECA6FBE /* Pods_letter_mouseTests.framework */; };
 		633C72E622B7827100159631 /* PresentrStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C72E522B7827100159631 /* PresentrStore.swift */; };
+		63DAA07422BB1FF200E409DB /* Presentr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63DAA07122BB1FEB00E409DB /* Presentr.framework */; };
+		63DAA07522BB1FF200E409DB /* Presentr.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63DAA07122BB1FEB00E409DB /* Presentr.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DA3434D2B5D1B954807DE436 /* Pods_letter_mouse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDE75F8B990B91B7CF487CC /* Pods_letter_mouse.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +55,42 @@
 			remoteGlobalIDString = 04B7EA20224625C800AADADE;
 			remoteInfo = letter_mouse;
 		};
+		63DAA07022BB1FEB00E409DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0680CC2F1CE3EFA900CBAE4F;
+			remoteInfo = Presentr;
+		};
+		63DAA07222BB1FEB00E409DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0680CC391CE3EFA900CBAE4F;
+			remoteInfo = PresentrTests;
+		};
+		63DAA07622BB1FF200E409DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0680CC2E1CE3EFA900CBAE4F;
+			remoteInfo = Presentr;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		63DAA07822BB1FF200E409DB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				63DAA07522BB1FF200E409DB /* Presentr.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		040C4FB4226617B0009663CB /* FindLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLetterViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +130,7 @@
 		3214F9BC3BF47AD72D7FC1F8 /* Pods-letter_mouse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouse.debug.xcconfig"; path = "Target Support Files/Pods-letter_mouse/Pods-letter_mouse.debug.xcconfig"; sourceTree = "<group>"; };
 		3C41F9457FC674C8A7775141 /* Pods-letter_mouse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouse.release.xcconfig"; path = "Target Support Files/Pods-letter_mouse/Pods-letter_mouse.release.xcconfig"; sourceTree = "<group>"; };
 		633C72E522B7827100159631 /* PresentrStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentrStore.swift; sourceTree = "<group>"; };
+		63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Presentr.xcodeproj; path = "../Downloads/Presentr-master/Presentr.xcodeproj"; sourceTree = "<group>"; };
 		65B78A5E955DD11E5FB987AA /* Pods_letter_mouseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_letter_mouseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67011DF8190CF15B5ECA6FBE /* Pods_letter_mouseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_letter_mouseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72036A90FC14EE9572936A41 /* Pods-letter_mouseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouseTests.release.xcconfig"; path = "Target Support Files/Pods-letter_mouseTests/Pods-letter_mouseTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA3434D2B5D1B954807DE436 /* Pods_letter_mouse.framework in Frameworks */,
+				63DAA07422BB1FF200E409DB /* Presentr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +184,7 @@
 		04B7EA18224625C800AADADE = {
 			isa = PBXGroup;
 			children = (
+				63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */,
 				04C1DA2B22A69952009CBDC8 /* assets.xcassets */,
 				04B7EA23224625C800AADADE /* letter_mouse */,
 				04B7EA38224625C900AADADE /* letter_mouseTests */,
@@ -168,7 +208,7 @@
 		04B7EA23224625C800AADADE /* letter_mouse */ = {
 			isa = PBXGroup;
 			children = (
-				633C72E422B7825B00159631 /* presentr */,
+				63DAA06A22BB1FBE00E409DB /* PresentrType */,
 				04F73CD922ACDE9000F21912 /* util */,
 				04F73CD422ACD2B600F21912 /* extension */,
 				04F73CD322ACD2AD00F21912 /* protocol */,
@@ -241,12 +281,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		633C72E422B7825B00159631 /* presentr */ = {
+		63DAA06A22BB1FBE00E409DB /* PresentrType */ = {
 			isa = PBXGroup;
 			children = (
 				633C72E522B7827100159631 /* PresentrStore.swift */,
 			);
-			path = presentr;
+			path = PresentrType;
+			sourceTree = "<group>";
+		};
+		63DAA06C22BB1FEB00E409DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63DAA07122BB1FEB00E409DB /* Presentr.framework */,
+				63DAA07322BB1FEB00E409DB /* PresentrTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		84E7167E65F6EAF02D6F6B05 /* Pods */ = {
@@ -274,11 +323,12 @@
 				04B7EA1E224625C800AADADE /* Frameworks */,
 				04B7EA1F224625C800AADADE /* Resources */,
 				C6F1B1E89B1E39B29BE7007A /* [CP] Copy Pods Resources */,
-				113FC17EA53E8AC456CBC98E /* [CP] Embed Pods Frameworks */,
+				63DAA07822BB1FF200E409DB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				63DAA07722BB1FF200E409DB /* PBXTargetDependency */,
 			);
 			name = letter_mouse;
 			productName = letter_mouse;
@@ -357,6 +407,12 @@
 			mainGroup = 04B7EA18224625C800AADADE;
 			productRefGroup = 04B7EA22224625C800AADADE /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 63DAA06C22BB1FEB00E409DB /* Products */;
+					ProjectRef = 63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				04B7EA20224625C800AADADE /* letter_mouse */,
@@ -365,6 +421,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		63DAA07122BB1FEB00E409DB /* Presentr.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Presentr.framework;
+			remoteRef = 63DAA07022BB1FEB00E409DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63DAA07322BB1FEB00E409DB /* PresentrTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PresentrTests.xctest;
+			remoteRef = 63DAA07222BB1FEB00E409DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		04B7EA1F224625C800AADADE /* Resources */ = {
@@ -394,28 +467,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		113FC17EA53E8AC456CBC98E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-letter_mouse/Pods-letter_mouse-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-letter_mouse/Pods-letter_mouse-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A0546C017112642F55B47268 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -566,6 +617,11 @@
 			target = 04B7EA20224625C800AADADE /* letter_mouse */;
 			targetProxy = 04B7EA41224625C900AADADE /* PBXContainerItemProxy */;
 		};
+		63DAA07722BB1FF200E409DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Presentr;
+			targetProxy = 63DAA07622BB1FF200E409DB /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -708,6 +764,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3214F9BC3BF47AD72D7FC1F8 /* Pods-letter_mouse.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -730,6 +787,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C41F9457FC674C8A7775141 /* Pods-letter_mouse.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
