@@ -23,7 +23,11 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     var currentLongitude : Double?
     @IBOutlet fileprivate weak var googleMapView: GMSMapView!
     
-    @IBOutlet weak var w3w_text: UITextField!
+    @IBOutlet weak var w3w_text_view: UIView!
+    @IBOutlet weak var w3w_first_word: UILabel!
+    @IBOutlet weak var w3w_second_word: UILabel!
+    @IBOutlet weak var w3w_third_word: UILabel!
+    
     @IBOutlet weak var sendLetterBtn: UIButton!
     @IBOutlet weak var sendLetterCancelBtn: UIButton!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -61,8 +65,8 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         googleMapView.camera = camera
         //        view = mapView
         
-        w3w_text.layer.cornerRadius = 18
-        w3w_text.clipsToBounds = true
+        w3w_text_view.layer.cornerRadius = 18
+        w3w_text_view.clipsToBounds = true
         
         LetterController.getInstance.setLetterSaveDismissDelegate(self)
         LetterController.getInstance.setLetterFindDismissDelegate(self)
@@ -198,7 +202,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     func animateW3WTextView(offset : CGFloat){
         UIView.animate(withDuration: 0.5, delay: 0, options: [.beginFromCurrentState],
                        animations: {
-                        self.w3w_text.frame.origin.y += UIScreen.main.bounds.height * offset
+                        self.w3w_text_view.frame.origin.y += UIScreen.main.bounds.height * offset
                         self.view.layoutIfNeeded()
         }, completion: nil)
     }
@@ -212,7 +216,9 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         let words = result.characters.split(separator: ".")
         if !LetterController.getInstance.isSending {
             LetterController.getInstance.what3Words = result
-            w3w_text.text = "\(words[0]) \t / \t \(words[1]) \t / \t\(words[2])"
+            w3w_first_word.text = "\(words[0])"
+            w3w_second_word.text = "\(words[1])"
+            w3w_third_word.text = "\(words[2])"
             print(result)
         }
     }
@@ -250,14 +256,14 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
                 self.stateLabel.text = "쪽지 찾기"
 
             }
-            self.w3w_text.isHidden = true
+            self.w3w_text_view.isHidden = true
             self.mainUpperWhiteView.isHidden = false
         }
     }
     func setNormalMode(){
         DispatchQueue.main.async {
             self.stateLabel.text = "나의 현재 주소"
-            self.w3w_text.isHidden = false
+            self.w3w_text_view.isHidden = false
             self.mainUpperWhiteView.isHidden = true
             LetterController.getInstance.isSending = false
         }
