@@ -8,11 +8,10 @@
 
 import UIKit
 import Presentr
+import ContactsUI
 
 
-
-
-class SaveLetterViewController: UIViewController {
+class SaveLetterViewController: UIViewController, CNContactPickerDelegate {
 
     
     @IBOutlet weak var contentTextView: UITextView!
@@ -96,6 +95,7 @@ class SaveLetterViewController: UIViewController {
     @IBAction func sendLetterBtnClicked(_ sender: UIButton) {
 
         LetterController.getInstance.isSending = false
+        LetterController.getInstance.receiverPhoneNumber = phoneNumber.text
         
         var json : [String:String] = [String:String]()
         let lati = String(format:"%f",LetterController.getInstance.latitude)
@@ -125,12 +125,33 @@ class SaveLetterViewController: UIViewController {
     }
     
     @IBAction func cancelBtnClicked(_ sender: UIButton) {
+        LetterController.getInstance.isSending = false
         if let delegate = LetterController.getInstance.updateMainVewStateDelegate{
             print("update main view from save letter controller")
             delegate.updateMainViewState()
         }
         self.dismiss(animated: true, completion: nil)
         print("cancel btn clicekd")
+    }
+    
+    @IBAction func contactBtnClicked(_ sender: Any) {
+        let cnPicker = CNContactPickerViewController()
+        cnPicker.delegate = self
+        self.present(cnPicker, animated: true, completion: nil)
+        
+    }
+    
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
+        contacts.forEach { contact in
+            for number in contact.phoneNumbers {
+                let selectedPhoneNumber = number.value
+                print("number is = \(selectedPhoneNumber)")
+                phoneNumber.text = "\(selectedPhoneNumber.stringValue)"
+            }
+        }
+    }
+    func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
+        print("Cancel Contact Picker")
     }
     
     func dismissFunc(){

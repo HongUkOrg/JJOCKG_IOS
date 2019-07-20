@@ -22,6 +22,7 @@ class LetterController {
     var findedLetterContent : String?
     var findedLetterLati : Double?
     var findedLetterLong : Double?
+    var receiverPhoneNumber : String?
     
     var LetterSaveDismissDelegate : ModalDimissDelegate_save?
     var LetterFindDismissDelegate : ModalDimissDelegate_find?

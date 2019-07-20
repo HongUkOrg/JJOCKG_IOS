@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import ContactsUI
 
 
-class FindLetterViewController: UIViewController,FindLetterResultDelegate {
+class FindLetterViewController: UIViewController,FindLetterResultDelegate, CNContactPickerDelegate {
  
     
     @IBOutlet weak var firstWord: UITextField!
@@ -113,6 +114,17 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate {
             delegate.didReceiveDismiss_find(success)
         }
         dismissFunc()
+    }
+    @IBAction func contactBtnClicked(_ sender: Any) {
+        func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
+            contacts.forEach { contact in
+                for number in contact.phoneNumbers {
+                    let selectedPhoneNumber = number.value
+                    print("number is = \(selectedPhoneNumber)")
+                    numberInputTextField.text = "\(selectedPhoneNumber.stringValue)"
+                }
+            }
+        }
     }
     func dismissFunc(){
         dismiss(animated: true, completion: nil)

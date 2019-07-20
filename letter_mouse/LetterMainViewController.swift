@@ -12,11 +12,13 @@ import CoreLocation
 import GoogleMaps
 import Presentr
 
-
+enum ViewState {
+    case SENDING_LETTER, TRACKING_LETTER, NORMAL
+}
 
 
 class LetterMainViewController: UIViewController, CLLocationManagerDelegate, ModalDimissDelegate_save,ModalDimissDelegate_find, W3WResponseDelegate, UpdateMainViewStateDelegate {
-
+    
     
     let locationManager = CLLocationManager()
     var currentLatitude : Double?
@@ -48,7 +50,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         self.hideKeyboardWhenTappedAround()
         
         print("Main View Acitivity View Did Load!!!")
-        updateViewState()
+        getViewState()
         
         self.locationManager.requestAlwaysAuthorization()
         
@@ -78,7 +80,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     func didReceiveDismiss_save() {
         print("MainViewController : called save didReceiveDismiss func")
         
-        updateViewState()
+        getViewState()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
             self.showSMSView()
         }
@@ -87,7 +89,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     func didReceiveDismiss_find(_ success : Bool) {
         print("MainViewController : called find didReceiveDismiss func")
         
-        updateViewState()
+        getViewState()
         if success{
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
                 self.showLetterResultView()
@@ -103,6 +105,9 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         updateViewState()
+        if getViewState() == ViewState.SENDING_LETTER {
+            return
+        }
         
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         
@@ -131,7 +136,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         if let isTrackingNow = LetterController.getInstance.isTrackingLetterNow, isTrackingNow {
             setLetterTrackingMode()
             var calculatedDistance = calculateDistance()
-            var distanceMsg = String(Int(calculatedDistance)) + "m 남았습니다"
+            var distanceMsg = "쪽지까지 앞으로\n"+String(Int(calculatedDistance)) + " 미터!"
             self.distanceLabel.text = distanceMsg
             if let delegate = LetterController.getInstance.canLetterReadDelegate {
                 if canOpenLetter(calculatedDistance)  {
@@ -242,12 +247,35 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         return destinationCoordinate.distance(from: currentCoordinate)
     }
     
-    func updateViewState() {
+    func getViewState() -> ViewState {
         if let isTrakcing = LetterController.getInstance.isTrackingLetterNow, isTrakcing {
-            setLetterTrackingMode()
+            return ViewState.TRACKING_LETTER
+        }
+        else if LetterController.getInstance.isSending {
+            return ViewState.SENDING_LETTER
         }
         else {
+            return ViewState.NORMAL
+        }
+    }
+    func updateViewState() {
+        switch getViewState() {
+        case .SENDING_LETTER :
+            setLetterSendingMode()
+        case .TRACKING_LETTER :
+            setLetterTrackingMode()
+        case .NORMAL :
             setNormalMode()
+        }
+    }
+    func setLetterSendingMode() {
+        DispatchQueue.main.async {
+            if !LetterController.getInstance.isSending{
+                self.stateLabel.text = "쪽지 남기기"
+                
+            }
+            self.w3w_text_view.isHidden = false
+            self.mainUpperWhiteView.isHidden = true
         }
     }
     func setLetterTrackingMode(){
