@@ -17,7 +17,7 @@ class ViewController: UIViewController {
          self.navigationController?.isNavigationBarHidden = true
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000) ) {
-            self.performSegue(withIdentifier: "toCartoon01", sender: self)
+            self.performSegue(withIdentifier: "toCartoonContainer", sender: self)
         }
     }
     @IBOutlet var splashView: UIView!
