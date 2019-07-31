@@ -13,9 +13,9 @@ class LetterResultViewController: UIViewController, CanLetterReadDelegate {
     
     @IBOutlet var superMainView: UIView!
     @IBOutlet weak var mainUiView: UIView!
-    @IBOutlet weak var mainTextView: UITextView!
     @IBOutlet weak var underView: UIView!
     @IBOutlet weak var underOpenBtn: UIButton!
+    @IBOutlet weak var mainLabel: UILabel!
     
     var isOpend : Bool = false
     var letterHeight : CGFloat?
@@ -37,7 +37,7 @@ class LetterResultViewController: UIViewController, CanLetterReadDelegate {
             let paragraphStyle = NSMutableParagraphStyle()
             attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
             
-            mainTextView.attributedText = attributedString
+            mainLabel.attributedText = attributedString
             
             underOpenBtn.addShadowToButton()
             

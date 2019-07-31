@@ -39,13 +39,35 @@ class PresentrStore: NSObject {
         return customPresenter
         
     }()
-    let findPresentR : Presentr = {
+    let smsFindPresentR : Presentr = {
         let width = ModalSize.custom(size: Float(uiViewWidth*0.9))
-        let height = ModalSize.custom(size: 350.0)
+        let height = ModalSize.custom(size: Float(uiViewHeight * 0.6))
         let center = ModalCenterPosition.custom(
             centerPoint: CGPoint.init(
                 x: UIScreen.main.bounds.width*0.5,
-                y: UIScreen.main.bounds.height - 175.0
+                y: UIScreen.main.bounds.height*0.7
+        ))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        let customPresenter = Presentr(presentationType: customType)
+        customPresenter.transitionType = .coverVertical
+        customPresenter.dismissTransitionType = .coverVertical
+        customPresenter.dismissAnimated = true
+        customPresenter.dismissOnSwipe = true
+        customPresenter.dismissOnSwipeDirection = .bottom
+        customPresenter.backgroundOpacity = 0
+        customPresenter.keyboardTranslationType = .moveUp
+        
+        
+        return customPresenter
+        
+    }()
+    let findPresentR : Presentr = {
+        let width = ModalSize.custom(size: Float(uiViewWidth*0.9))
+        let height = ModalSize.custom(size: Float(uiViewHeight * 0.5))
+        let center = ModalCenterPosition.custom(
+            centerPoint: CGPoint.init(
+                x: UIScreen.main.bounds.width*0.5,
+                y: UIScreen.main.bounds.height*0.75
         ))
         let customType = PresentationType.custom(width: width, height: height, center: center)
         let customPresenter = Presentr(presentationType: customType)

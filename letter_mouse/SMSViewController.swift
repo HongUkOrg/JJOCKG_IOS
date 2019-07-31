@@ -37,7 +37,10 @@ class SMSViewController: UIViewController, MFMessageComposeViewControllerDelegat
         w3wResultView.layer.cornerRadius = 18
         w3wResultView.clipsToBounds = true
         
-        let words : Array<Substring> = LetterController.getInstance.what3Words.characters.split(separator: ".")
+        guard let savedW3W = LetterController.getInstance.savedWhat3Words else {
+            return
+        }
+        let words : Array<Substring> = savedW3W.characters.split(separator: ".")
         if words.count == 3 {
             firstWord.text = "\(words[0])"
             secondWord.text = "\(words[1])"
@@ -71,12 +74,15 @@ class SMSViewController: UIViewController, MFMessageComposeViewControllerDelegat
             self.dismiss(animated: true, completion: nil)
         }
         else {
+            var content : String = "쪽지가 도착했습니다.\n" + LetterController.getInstance.receiverPhoneNumber!+"\n"
+            content += LetterController.getInstance.savedWhat3Words!
+            content += "\n-쪽쥐-"
             let composeVC = MFMessageComposeViewController()
             composeVC.messageComposeDelegate = self
             
             // Configure the fields of the interface.
             composeVC.recipients = [LetterController.getInstance.receiverPhoneNumber!]
-            composeVC.body = LetterController.getInstance.what3Words
+            composeVC.body = content
             
             // Present the view controller modally.
             self.present(composeVC, animated: true, completion: nil)

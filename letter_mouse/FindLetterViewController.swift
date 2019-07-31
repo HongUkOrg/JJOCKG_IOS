@@ -23,11 +23,14 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate, CNCon
     @IBOutlet weak var W3W_input_view: UIView!
     @IBOutlet weak var letterFindBtn: UIButton!
     @IBOutlet weak var SMS_findBtn: UIButton!
+    
+    private var previousInputCount = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.hideKeyboardWhenTappedAround()
         numberInputTextField.addShadowToTextField(cornerRadius: 18)
+        numberInputTextField.keyboardType = UIKeyboardType.numberPad
         
         W3W_input_view.addRoundness(cornerRadius : 18)
         superWhiteView.addRoundness(cornerRadius : 18)
@@ -76,8 +79,6 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate, CNCon
         
     }
     
-    @IBAction func findLetterBySMSBtnClicked(_ sender: UIButton) {
-    }
     /*
     // MARK: - Navigation
 
@@ -116,18 +117,57 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate, CNCon
         dismissFunc()
     }
     @IBAction func contactBtnClicked(_ sender: Any) {
-        func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
-            contacts.forEach { contact in
-                for number in contact.phoneNumbers {
-                    let selectedPhoneNumber = number.value
-                    print("number is = \(selectedPhoneNumber)")
-                    numberInputTextField.text = "\(selectedPhoneNumber.stringValue)"
-                }
-            }
+        let cnPicker = CNContactPickerViewController()
+        cnPicker.delegate = self
+        self.present(cnPicker, animated: true, completion: nil)
+    }
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: CNContact) {
+        let number = contacts.phoneNumbers
+        for selectedNumber in number {
+            numberInputTextField.text = "\(selectedNumber.value.stringValue)"
         }
     }
+    @IBAction func findLetterBySMS(_ sender: Any) {
+        self.dismissFunc()
+        
+        if let delegate : ModalDimissDelegate_sms = LetterController.getInstance.smsFindDismissDeleagte {
+            delegate.didReceiveDismiss_sms()
+        }
+    }
+    
+    
     func dismissFunc(){
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func addDashToPhoneNumber(_ sender: Any) {
+        var beforeChangeCount : Int = 0
+
+        if let input = numberInputTextField.text {
+            beforeChangeCount = input.count
+            switch input.count {
+            case 3, 8:
+                if previousInputCount == 2 || previousInputCount == 7{
+                    numberInputTextField.text = input + "-"
+                }
+            case 4:
+                if(input[input.index(input.startIndex,offsetBy: 3)] == "-"){
+                    break
+                }
+                var temp = input
+                temp.insert("-", at: input.index(input.startIndex, offsetBy: 3))
+                numberInputTextField.text = temp
+            case 9:
+                if(input[input.index(input.startIndex,offsetBy: 8)] == "-"){
+                    break
+                }
+                var temp = input
+                temp.insert("-", at: input.index(input.startIndex, offsetBy: 8))
+                numberInputTextField.text = temp
+            default:
+                break
+            }
+        }
+        previousInputCount = beforeChangeCount
+    }
 }

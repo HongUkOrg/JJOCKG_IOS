@@ -127,8 +127,10 @@ class HttpConnectionHandler {
                 return
             }
             
+            if LetterController.getInstance.isSending {
+                return
+            }
             let responseString = String(data: data, encoding: .utf8)
-            
             do {
                 if let json = try JSONSerialization.jsonObject(with: data,options: .allowFragments) as? [String: Any]{
                     let j = json as NSDictionary

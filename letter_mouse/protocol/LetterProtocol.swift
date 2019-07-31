@@ -14,6 +14,9 @@ public protocol ModalDimissDelegate_save{
 public protocol ModalDimissDelegate_find{
     func didReceiveDismiss_find(_ success : Bool)
 }
+public protocol ModalDimissDelegate_sms{
+    func didReceiveDismiss_sms()
+}
 
 protocol W3WResponseDelegate{
     func processResult(_ result : String)
@@ -27,6 +30,7 @@ protocol CanLetterReadDelegate {
 protocol UpdateMainViewStateDelegate{
     func updateMainViewState()
 }
+
 
 
 class LetterProtocol: NSObject {

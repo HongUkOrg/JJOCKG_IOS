@@ -17,8 +17,9 @@ enum ViewState {
 }
 
 
-class LetterMainViewController: UIViewController, CLLocationManagerDelegate, ModalDimissDelegate_save,ModalDimissDelegate_find, W3WResponseDelegate, UpdateMainViewStateDelegate {
+class LetterMainViewController: UIViewController, CLLocationManagerDelegate, ModalDimissDelegate_save,ModalDimissDelegate_find, W3WResponseDelegate, UpdateMainViewStateDelegate, ModalDimissDelegate_sms {
     
+
     
     let locationManager = CLLocationManager()
     var currentLatitude : Double?
@@ -45,7 +46,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mainUpperYellowView.frame = CGRect(x : 0,y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.10 )
         
         self.hideKeyboardWhenTappedAround()
         
@@ -73,6 +74,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         LetterController.getInstance.setLetterSaveDismissDelegate(self)
         LetterController.getInstance.setLetterFindDismissDelegate(self)
         LetterController.getInstance.setUpdateMainVewStateDelegate(self)
+        LetterController.getInstance.setSmsFindDismissDelegate(self)
         HttpConnectionHandler.getInstance.setW3WResponseDelegate(self)
         
     }
@@ -99,6 +101,12 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
             print("ERROR :: find fail!!!!!!!")
         }
         
+    }
+    func didReceiveDismiss_sms() {
+        getViewState()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
+            self.showSmsFindView()
+        }
     }
     
     
@@ -183,6 +191,13 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
             print("complete")
         })
     }
+    func showSmsFindView() {
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SMSFindLetterViewController") as! SMSFindViewController
+        customPresentViewController(PresentrStore.getInstance.smsFindPresentR , viewController:controller, animated: true,completion: {
+            self.stateLabel.text = "SMS로 찾기"
+            print("complete")
+        })
+    }
     func showSMSView(){
         
          let controller = self.storyboard?.instantiateViewController(withIdentifier: "SMSSendViewController") as! SMSViewController
@@ -220,7 +235,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     func processResult(_ result: String) {
         let words = result.characters.split(separator: ".")
         if !LetterController.getInstance.isSending {
-            LetterController.getInstance.what3Words = result
+            LetterController.getInstance.currentWhat3Words = result
             w3w_first_word.text = "\(words[0])"
             w3w_second_word.text = "\(words[1])"
             w3w_third_word.text = "\(words[2])"

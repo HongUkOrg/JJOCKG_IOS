@@ -16,7 +16,8 @@ class LetterController {
     
     var latitude : Double
     var longitude : Double
-    var what3Words : String
+    var currentWhat3Words : String
+    var savedWhat3Words : String?
     var isSending : Bool
     var isTrackingLetterNow : Bool?
     var findedLetterContent : String?
@@ -28,9 +29,12 @@ class LetterController {
     var LetterFindDismissDelegate : ModalDimissDelegate_find?
     var canLetterReadDelegate : CanLetterReadDelegate?
     var updateMainVewStateDelegate : UpdateMainViewStateDelegate?
+    var smsFindDismissDeleagte : ModalDimissDelegate_sms?
  
 
-    
+    public func setSmsFindDismissDelegate(_ delegate : ModalDimissDelegate_sms){
+        self.smsFindDismissDeleagte = delegate
+    }
     public func setLetterSaveDismissDelegate(_ delegate : ModalDimissDelegate_save){
         self.LetterSaveDismissDelegate = delegate
     }
@@ -47,7 +51,7 @@ class LetterController {
     private init(){
         self.latitude = 0
         self.longitude = 0
-        self.what3Words = ""
+        self.currentWhat3Words = ""
         self.LetterSaveDismissDelegate = nil
         self.isSending = false
     }

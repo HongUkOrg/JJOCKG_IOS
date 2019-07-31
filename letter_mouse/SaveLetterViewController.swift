@@ -23,6 +23,7 @@ class SaveLetterViewController: UIViewController, CNContactPickerDelegate {
     @IBOutlet weak var sendLetterCancelBtn: UIButton!
     @IBOutlet weak var saveLetterWhiteView: UIView!
 
+    var previousInputCount : Int = 0
     
     static let presenter : Presentr = {
         let width = ModalSize.custom(size: Float(UIScreen.main.bounds.width*0.9))
@@ -54,6 +55,7 @@ class SaveLetterViewController: UIViewController, CNContactPickerDelegate {
         self.hideKeyboardWhenTappedAround()
         
         phoneNumber.addShadowToTextField(cornerRadius: 18)
+        phoneNumber.keyboardType = UIKeyboardType.numberPad
         saveLetterWhiteView.addRoundness(cornerRadius :18)
         saveLetterView.addRoundness(cornerRadius :18)
         
@@ -94,6 +96,7 @@ class SaveLetterViewController: UIViewController, CNContactPickerDelegate {
 
     @IBAction func sendLetterBtnClicked(_ sender: UIButton) {
 
+        LetterController.getInstance.savedWhat3Words = LetterController.getInstance.currentWhat3Words
         LetterController.getInstance.isSending = false
         LetterController.getInstance.receiverPhoneNumber = phoneNumber.text
         
@@ -104,18 +107,13 @@ class SaveLetterViewController: UIViewController, CNContactPickerDelegate {
             json["latitude"] = lati
             json["longitude"] = long
             json["message"] = contentTextView.text
-            json["w3w_address"] = LetterController.getInstance.what3Words
+            json["w3w_address"] = LetterController.getInstance.currentWhat3Words
             json["receiver_phone"] = phoneNumber.text
 
         }
         HttpConnectionHandler.getInstance.httpUrlConnection(isSave:true, json: json)
         
         dismiss(animated: true, completion: nil)
-
-        let controller2 = self.storyboard?.instantiateViewController(withIdentifier: "SMSSendViewController") as! SMSViewController
-        customPresentViewController(SaveLetterViewController.presenter , viewController:controller2, animated: true,completion: {
-            print("SMS Send View Controller complete")
-        })
         
         if let delegate : ModalDimissDelegate_save = LetterController.getInstance.LetterSaveDismissDelegate {
             delegate.didReceiveDismiss_save()
@@ -141,13 +139,10 @@ class SaveLetterViewController: UIViewController, CNContactPickerDelegate {
         
     }
     
-    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
-        contacts.forEach { contact in
-            for number in contact.phoneNumbers {
-                let selectedPhoneNumber = number.value
-                print("number is = \(selectedPhoneNumber)")
-                phoneNumber.text = "\(selectedPhoneNumber.stringValue)"
-            }
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: CNContact) {
+        let number = contacts.phoneNumbers
+        for selectedNumber in number {
+            phoneNumber.text = "\(selectedNumber.value.stringValue)"
         }
     }
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
@@ -155,5 +150,35 @@ class SaveLetterViewController: UIViewController, CNContactPickerDelegate {
     }
     
     func dismissFunc(){
+    }
+    @IBAction func addDashToPhoneNumber(_ sender: Any) {
+        var beforeChangeCount : Int = 0
+        
+        if let input = phoneNumber.text {
+            beforeChangeCount = input.count
+            switch input.count {
+            case 3, 8:
+                if previousInputCount == 2 || previousInputCount == 7{
+                    phoneNumber.text = input + "-"
+                }
+            case 4:
+                if(input[input.index(input.startIndex,offsetBy: 3)] == "-"){
+                    break
+                }
+                var temp = input
+                temp.insert("-", at: input.index(input.startIndex, offsetBy: 3))
+                phoneNumber.text = temp
+            case 9:
+                if(input[input.index(input.startIndex,offsetBy: 8)] == "-"){
+                    break
+                }
+                var temp = input
+                temp.insert("-", at: input.index(input.startIndex, offsetBy: 8))
+                phoneNumber.text = temp
+            default:
+                break
+            }
+        }
+        previousInputCount = beforeChangeCount
     }
 }
