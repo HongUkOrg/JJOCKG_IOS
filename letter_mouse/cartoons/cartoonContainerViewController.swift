@@ -43,9 +43,6 @@ extension cartoonContainerViewController: EZSwipeControllerDataSource {
         let vc7 = self.storyboard?.instantiateViewController(withIdentifier: "cartoon_07_view") as! cartoon07ViewController
         let vc8 = self.storyboard?.instantiateViewController(withIdentifier: "cartoon_08_view") as! cartoon08ViewController
         
-        
-        
-        
         return [vc1, vc2, vc3, vc4, vc5, vc6, vc7, vc8]
     }
 }
