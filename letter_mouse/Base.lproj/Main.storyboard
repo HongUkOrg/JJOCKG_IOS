@@ -86,7 +86,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="finder_01" translatesAutoresizingMaskIntoConstraints="NO" id="Pi5-8p-I7S">
-                                <rect key="frame" x="97" y="741" width="250.00000000000006" height="35"/>
+                                <rect key="frame" x="97" y="741" width="250" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="mhF-xr-jbg"/>
                                     <constraint firstAttribute="width" constant="250" id="wB7-Um-MXG"/>
@@ -107,7 +107,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cartoon01" translatesAutoresizingMaskIntoConstraints="NO" id="7XS-xf-duA">
-                                <rect key="frame" x="50" y="133.66666666666663" width="315" height="295.66666666666674"/>
+                                <rect key="frame" x="50" y="133.66666666666666" width="315" height="295.66666666666674"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
