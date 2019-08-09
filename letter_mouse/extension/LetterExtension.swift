@@ -56,11 +56,11 @@ extension UIButton {
         self.layer.shadowRadius = 0.0
         self.layer.masksToBounds = false
     }
-    func addShadowToButton(color: UIColor = UIColor.gray)
+    func addShadowToButton(color: UIColor = UIColor.gray, height : CGFloat = 2.0)
     {
         self.clipsToBounds = true
         self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        self.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        self.layer.shadowOffset = CGSize(width: 0.0, height: height)
         self.layer.shadowOpacity = 1.0
         self.layer.shadowRadius = 0.0
         self.layer.masksToBounds = false

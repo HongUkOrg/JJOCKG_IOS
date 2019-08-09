@@ -18,6 +18,8 @@ class SMSFindViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var pastTextView: UITextView!
     @IBOutlet weak var superWhiteView: UIView!
     @IBOutlet weak var yellowView: UIView!
+    @IBOutlet weak var pasteBtn: UIButton!
+    
     
   
     override func viewDidLoad() {
@@ -28,9 +30,12 @@ class SMSFindViewController: UIViewController, UITextViewDelegate {
         superWhiteView.addRoundness(cornerRadius: 18)
         yellowView.addRoundness(cornerRadius: 18)
         pastTextView.delegate = self
-        pastTextView.text = "붙여넣기"
+        pastTextView.text = "1. SMS로 전달받은 문자 전문을 복사해주세요!\n2. 붙여넣기 버튼 클릭!"
         pastTextView.textColor = UIColor.lightGray
         // Do any additional setup after loading the view.
+        
+        pasteBtn.addShadowToButton(height: 0.7)
+        
     }
     
 
@@ -69,4 +74,10 @@ class SMSFindViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    @IBAction func pasteBtnClicked(_ sender: Any) {
+        let pb: UIPasteboard = UIPasteboard.general
+        if let pastedString : String = pb.string, pastedString.hasPrefix("쪽지가 도착했습니다.") {
+            pastTextView.text = pastedString
+        }
+    }
 }
