@@ -375,7 +375,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     }
     func setNormalMode(){
         DispatchQueue.main.async {
-            googleMapView.clear()
+            self.googleMapView.clear()
             self.stateLabel.text = "나의 현재 주소"
             self.w3w_text_view.isHidden = false
             self.mainUpperWhiteView.isHidden = true
