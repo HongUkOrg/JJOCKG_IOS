@@ -434,15 +434,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="거리 계산중..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3j-HW-DoZ">
-                                        <rect key="frame" x="161" y="149.66666666666666" width="92" height="20.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="160" y="144.66666666666666" width="94.333333333333314" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="0.2274509804" green="0.1960784314" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="S3j-HW-DoZ" secondAttribute="bottom" constant="10" id="adA-0u-xdl"/>
+                                    <constraint firstAttribute="bottom" secondItem="S3j-HW-DoZ" secondAttribute="bottom" constant="15" id="adA-0u-xdl"/>
                                     <constraint firstItem="S3j-HW-DoZ" firstAttribute="centerX" secondItem="93Z-0X-x2Y" secondAttribute="centerX" id="ffh-vR-jNV"/>
                                 </constraints>
                             </view>

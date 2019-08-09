@@ -29,6 +29,7 @@ class LetterResultViewController: UIViewController, CanLetterReadDelegate {
         superMainView.addRoundness(cornerRadius: 18)
         mainUiView.addRoundness(cornerRadius : 18)
         underView.addRoundness(cornerRadius : 18)
+        underOpenBtn.addRoundness(cornerRadius: 18)
         
         
         if let resultText = LetterController.getInstance.findedLetterContent {
@@ -56,7 +57,7 @@ class LetterResultViewController: UIViewController, CanLetterReadDelegate {
         self.mainUiView.transform = scaledTransform
         self.isOpend = false
         
-        underOpenBtn.backgroundColor = UIColor(red: 0.7, green: 0.7, blue:0.7, alpha: 1)
+        underOpenBtn.backgroundColor = UIColor(red: 0.8, green: 0.8, blue:0.8, alpha: 1)
         LetterController.getInstance.isTrackingLetterNow = true
     }
     

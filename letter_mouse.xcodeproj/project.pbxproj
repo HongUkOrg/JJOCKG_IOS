@@ -42,6 +42,7 @@
 		63F1BEB622F1578900E7454C /* GIFUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F1BEB522F1578900E7454C /* GIFUtils.swift */; };
 		63F1BEB922F158B000E7454C /* main_g.gif in Resources */ = {isa = PBXBuildFile; fileRef = 63F1BEB822F158B000E7454C /* main_g.gif */; };
 		63F1BEBE22F16B2E00E7454C /* SMSFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F1BEBD22F16B2E00E7454C /* SMSFindViewController.swift */; };
+		63F4BD8422FD4D8100A30902 /* LetterMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A409FC225077F400671C3C /* LetterMainViewController.swift */; };
 		DA3434D2B5D1B954807DE436 /* Pods_letter_mouse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDE75F8B990B91B7CF487CC /* Pods_letter_mouse.framework */; };
 /* End PBXBuildFile section */
 
@@ -614,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B7EA3A224625C900AADADE /* letter_mouseTests.swift in Sources */,
+				63F4BD8422FD4D8100A30902 /* LetterMainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

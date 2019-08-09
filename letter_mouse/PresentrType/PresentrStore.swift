@@ -96,8 +96,9 @@ class PresentrStore: NSObject {
         customPresenter.transitionType = .coverVertical
         customPresenter.dismissTransitionType = .coverVertical
         customPresenter.dismissAnimated = true
-        customPresenter.dismissOnSwipe = true
+        customPresenter.dismissOnSwipe = false
         customPresenter.dismissOnSwipeDirection = .bottom
+        customPresenter.backgroundTap = .noAction
         customPresenter.backgroundOpacity = 0
         
         

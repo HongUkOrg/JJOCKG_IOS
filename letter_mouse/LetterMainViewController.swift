@@ -24,6 +24,9 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     let locationManager = CLLocationManager()
     var currentLatitude : Double?
     var currentLongitude : Double?
+    private var nextUpdateCount : Int = 0
+    private var zoomedNow : Bool = false
+    
     @IBOutlet fileprivate weak var googleMapView: GMSMapView!
     
     @IBOutlet weak var w3w_text_view: UIView!
@@ -66,7 +69,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         
         let camera = GMSCameraPosition.camera(withLatitude: 37.4980, longitude: 127.0761, zoom: 18.0)
         googleMapView.camera = camera
-        //        view = mapView
+        googleMapView.isMyLocationEnabled = true
         
         w3w_text_view.layer.cornerRadius = 18
         w3w_text_view.clipsToBounds = true
@@ -118,49 +121,116 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         }
         
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        
-        googleMapView.clear()
-        let marker = GMSMarker()
-        let camera = GMSCameraPosition.camera(withLatitude: locValue.latitude, longitude: locValue.longitude, zoom: 18.0)
-        
-        marker.position = CLLocationCoordinate2D(latitude: locValue.latitude, longitude: locValue.longitude)
-        marker.title = "CurrentPosition"
-        marker.snippet = "Letter"
-        marker.icon = UIImage(named: "current_letter")
-        
-        googleMapView.camera = camera
-        marker.map = googleMapView
-        
-        currentLatitude = locValue.latitude
-        currentLongitude = locValue.longitude
-        HttpConnectionHandler.getInstance.getWhat3WordsFromGPS(
-            latitude: String(format:"%f",currentLatitude!),
-            longitude: String(format:"%f",currentLongitude!)
-        )
-        LetterController.getInstance.latitude = currentLatitude!
-        LetterController.getInstance.longitude = currentLongitude!
 
+        if nextUpdateCount >= 5 || nextUpdateCount == 0 {
+            
+            googleMapView.clear()
+            
+//            let marker = GMSMarker()
+//
+//            marker.position = CLLocationCoordinate2D(latitude: locValue.latitude, longitude: locValue.longitude)
+//            marker.title = "CurrentPosition"
+//            marker.snippet = "Letter"
+//            marker.icon = UIImage(named: "current_letter")
+//            marker.map = googleMapView
+
+            
+            let camera = GMSCameraPosition.camera(withLatitude: locValue.latitude, longitude: locValue.longitude, zoom: 18.0)
+            googleMapView.camera = camera
+            
+            currentLatitude = locValue.latitude
+            currentLongitude = locValue.longitude
+            
+            HttpConnectionHandler.getInstance.getWhat3WordsFromGPS(
+                latitude: String(format:"%f",currentLatitude!),
+                longitude: String(format:"%f",currentLongitude!)
+            )
+            LetterController.getInstance.latitude = currentLatitude!
+            LetterController.getInstance.longitude = currentLongitude!
+            
+            nextUpdateCount = 1
+        }
+        else {
+            nextUpdateCount += 1
+        }
+        
+       
         
         if let isTrackingNow = LetterController.getInstance.isTrackingLetterNow, isTrackingNow {
             setLetterTrackingMode()
-            var calculatedDistance = calculateDistance()
-            var distanceMsg = "쪽지까지 앞으로\n"+String(Int(calculatedDistance)) + " 미터!"
-            self.distanceLabel.text = distanceMsg
-            if let delegate = LetterController.getInstance.canLetterReadDelegate {
-                if canOpenLetter(calculatedDistance)  {
-                    callBackLetterTrackingView(true)
+            
+            DispatchQueue.main.async {
+                let calculatedDistance = self.calculateDistance()
+                let distanceMsg = "쪽지까지 앞으로\n"+String(Int(calculatedDistance)) + " 미터!"
+                
+                self.distanceLabel.text = distanceMsg
+                if self.canOpenLetter(calculatedDistance)  {
+                    self.callBackLetterTrackingView(true)
                 }
                 else {
-                    callBackLetterTrackingView(false)
+                    self.callBackLetterTrackingView(false)
                 }
+                
+                if !self.zoomedNow {
+                    let zoomLevel = self.getZoomLevel(calculatedDistance)
+                    let middleLati : Double = (LetterController.getInstance.latitude + LetterController.getInstance.findedLetterLati!)/2.0
+                    let middleLong : Double = (LetterController.getInstance.longitude + LetterController.getInstance.findedLetterLong!)/2.0
+                    let camera = GMSCameraPosition.camera(withLatitude: middleLati, longitude: middleLong, zoom: zoomLevel)
+                    self.googleMapView.camera = camera
+                }
+                self.zoomedNow = true
             }
+            
         }
         else {
             setNormalMode()
         }
+    }
+    func setSavedLetterMarker() {
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: LetterController.getInstance.findedLetterLati!, longitude: LetterController.getInstance.findedLetterLong!)
+        marker.title = "under seal Letter"
+        marker.snippet = "Letter"
+        marker.icon = UIImage(named: "current_letter")
+        marker.map = googleMapView
+        
+        let path = GMSMutablePath()
+        path.addLatitude(LetterController.getInstance.latitude, longitude: LetterController.getInstance.longitude)
+        path.addLatitude(LetterController.getInstance.findedLetterLati!, longitude: LetterController.getInstance.findedLetterLong!)
+        
+        let polyline = GMSPolyline(path: path)
+        polyline.strokeWidth = 4.0
+        polyline.strokeColor = UIColor.init(red: 0.2274, green: 0.1960, blue: 0.035, alpha: 1)
+        polyline.geodesic = true
+        polyline.map = googleMapView
         
         
-    
+    }
+    func getZoomLevel(_ calculatedDistance : Double) -> Float {
+        var level : Float = 11.0
+        var distance = 8000.0
+        
+        if calculatedDistance > distance {
+            while calculatedDistance > distance {
+                distance *= 2
+                level -= 1
+                if level == 1 {
+                    break
+                }
+            }
+        }
+        else {
+            while calculatedDistance < distance {
+                distance /= 2
+                level += 1
+                if level == 18 {
+                    break
+                }
+            }
+        }
+        print("get zoom level \(calculatedDistance), \(level)")
+
+        return level
     }
     
     func callBackLetterTrackingView(_ canOpen : Bool){
@@ -297,18 +367,20 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         DispatchQueue.main.async {
             if !LetterController.getInstance.isSending{
                 self.stateLabel.text = "쪽지 찾기"
-
             }
+            self.setSavedLetterMarker()
             self.w3w_text_view.isHidden = true
             self.mainUpperWhiteView.isHidden = false
         }
     }
     func setNormalMode(){
         DispatchQueue.main.async {
+            googleMapView.clear()
             self.stateLabel.text = "나의 현재 주소"
             self.w3w_text_view.isHidden = false
             self.mainUpperWhiteView.isHidden = true
             LetterController.getInstance.isSending = false
+            self.zoomedNow = false
         }
     }
     func updateMainViewState(){
