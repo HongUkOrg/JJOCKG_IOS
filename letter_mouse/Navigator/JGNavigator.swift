@@ -24,6 +24,7 @@ extension JGNavigateStep {
     }
     
     enum CartoonStep {
+        case main
         case one
         case two
         case three
@@ -34,6 +35,7 @@ extension JGNavigateStep {
 protocol JGNavigatorProtocol {
     
     // MARK: Properties
+    var window: UIWindow? { get }
     var rootViewController: UIViewController? { get set }
     
     // MARK: Methods
@@ -43,17 +45,22 @@ protocol JGNavigatorProtocol {
 class JGNavigator: JGNavigatorProtocol {
     
     // MARK: Properties
-    var rootViewController: UIViewController?
+    var window: UIWindow?
+    var rootViewController: UIViewController? {
+        get {
+            return window?.rootViewController
+        }
+        set { }
+    }
     
     // MARK: Initialize
-    init(_ rootView: UIViewController?) {
-        rootViewController = rootView
+    init(_ window: UIWindow?) {
+        self.window = window
     }
     
     // MARK: Navigate
     func navigate(_ step: JGNavigateStep) {
 
-            
         // MARK: Navigation - Splash <-> Main
         switch step {
             
@@ -72,6 +79,13 @@ class JGNavigator: JGNavigatorProtocol {
             Logger.info("Navigate to Cartoon - \(destination)")
             
             switch destination {
+            case .main:
+                
+                let cartoonReactor = CartoonReactor(navigator: self)
+                let cartoonMainVC = CartoonMainVC(reactor: cartoonReactor)
+                cartoonMainVC.modalPresentationStyle = .fullScreen
+                
+                self.rootViewController?.present(cartoonMainVC, animated: true)
             case .one:
                 break
             case .two:

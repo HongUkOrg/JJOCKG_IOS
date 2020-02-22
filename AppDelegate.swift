@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
         
-        let navigator = JGNavigator(window?.rootViewController)
+        let navigator = JGNavigator(window)
         
         let splashReactor = SplashReactor(navigator: navigator)
         let splashVC = SplashVC(reactor: splashReactor)

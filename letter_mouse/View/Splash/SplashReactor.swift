@@ -45,7 +45,6 @@ final class SplashReactor: Reactor {
             // TODO: 상태값 저장
             return .just(.navigateToCartoon)
         }
-        return .empty()
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
@@ -55,7 +54,7 @@ final class SplashReactor: Reactor {
         switch mutation {
         case .navigateToCartoon:
             
-            navigator.navigate(.cartoon(.one))
+            navigator.navigate(.cartoon(.main))
             
         case .navigateToMain:
             

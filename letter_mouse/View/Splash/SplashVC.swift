@@ -34,9 +34,6 @@ final class SplashVC: BaseViewController, View {
         
         Logger.debug("SplashVC view did loaded")
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5 ) {
-            self.performSegue(withIdentifier: "toCartoonContainer", sender: self)
-        }
     }
     
     // MARK: UI
@@ -56,7 +53,7 @@ final class SplashVC: BaseViewController, View {
     
     // MARK: Remake UI Constraints
     override func setupConstraints() {
-        view.backgroundColor = .maize
+        view.backgroundColor = .ganari
         
         view.addSubview(splashGifImageView)
         splashGifImageView.snp.remakeConstraints {
@@ -67,12 +64,14 @@ final class SplashVC: BaseViewController, View {
         horizontalDivider.snp.remakeConstraints {
             $0.width.equalToSuperview()
             $0.height.equalTo(1)
-            $0.top.equalTo(splashGifImageView.snp.bottom).offset(5)
+            $0.top.equalTo(splashGifImageView.snp.bottom).offset(-10)
         }
         
         view.addSubview(appNameImageView)
         appNameImageView.snp.remakeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-50)
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(45)
         }
     }
     
@@ -82,8 +81,8 @@ final class SplashVC: BaseViewController, View {
         self.rx
             .viewWillAppear
             .take(1)
-            .delay(3)
-            .map { Reactor.Action.viewWillAppear }
+            .delay(.seconds(3), scheduler: MainScheduler.instance)
+            .map { (_) in Reactor.Action.viewWillAppear }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
