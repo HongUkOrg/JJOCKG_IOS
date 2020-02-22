@@ -1,0 +1,7 @@
+input_dir: ../letter_mouse/Resources
+output_dir: ../letter_mouse/Resources/
+xcassets:
+  - inputs: JGAssets.xcassets
+    outputs:
+      - templatePath: ./templates/images-swift4.stencil
+        output: JGImages.swift

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,14 +19,14 @@
 		04A409FD225077F400671C3C /* LetterMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A409FC225077F400671C3C /* LetterMainViewController.swift */; };
 		04AD639A22588BF500B6360C /* SMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD639922588BF500B6360C /* SMSViewController.swift */; };
 		04B7EA25224625C800AADADE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7EA24224625C800AADADE /* AppDelegate.swift */; };
-		04B7EA27224625C800AADADE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7EA26224625C800AADADE /* ViewController.swift */; };
+		04B7EA27224625C800AADADE /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7EA26224625C800AADADE /* SplashVC.swift */; };
 		04B7EA2A224625C800AADADE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B7EA28224625C800AADADE /* Main.storyboard */; };
 		04B7EA2F224625C900AADADE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B7EA2D224625C900AADADE /* LaunchScreen.storyboard */; };
 		04B7EA3A224625C900AADADE /* letter_mouseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7EA39224625C900AADADE /* letter_mouseTests.swift */; };
 		04B7EA45224625C900AADADE /* letter_mouseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7EA44224625C900AADADE /* letter_mouseUITests.swift */; };
 		04C1DA2822A69732009CBDC8 /* cartoon06ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DA2722A69732009CBDC8 /* cartoon06ViewController.swift */; };
 		04C1DA2A22A6973D009CBDC8 /* cartoon07ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DA2922A6973D009CBDC8 /* cartoon07ViewController.swift */; };
-		04C1DA2C22A69952009CBDC8 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C1DA2B22A69952009CBDC8 /* assets.xcassets */; };
+		04C1DA2C22A69952009CBDC8 /* JGAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C1DA2B22A69952009CBDC8 /* JGAssets.xcassets */; };
 		04C1DA2E22A69EE5009CBDC8 /* cartoon08ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DA2D22A69EE5009CBDC8 /* cartoon08ViewController.swift */; };
 		04C1DA3022ABA1A5009CBDC8 /* LetterResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DA2F22ABA1A5009CBDC8 /* LetterResultViewController.swift */; };
 		04F73CD622ACD2CD00F21912 /* LetterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F73CD522ACD2CD00F21912 /* LetterExtension.swift */; };
@@ -36,13 +36,20 @@
 		3DD3F08E0EB622DA3AC04AAA /* Pods_letter_mouseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67011DF8190CF15B5ECA6FBE /* Pods_letter_mouseTests.framework */; };
 		630F2AFE22E6EE67009FB2AF /* cartoonContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630F2AFD22E6EE67009FB2AF /* cartoonContainerViewController.swift */; };
 		630F2B0122E6EE9A009FB2AF /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630F2B0022E6EE9A009FB2AF /* EZSwipeController.swift */; };
-		633C72E622B7827100159631 /* PresentrStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C72E522B7827100159631 /* PresentrStore.swift */; };
-		63DAA07422BB1FF200E409DB /* Presentr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63DAA07122BB1FEB00E409DB /* Presentr.framework */; };
-		63DAA07522BB1FF200E409DB /* Presentr.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63DAA07122BB1FEB00E409DB /* Presentr.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63F1BEB622F1578900E7454C /* GIFUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F1BEB522F1578900E7454C /* GIFUtils.swift */; };
 		63F1BEB922F158B000E7454C /* main_g.gif in Resources */ = {isa = PBXBuildFile; fileRef = 63F1BEB822F158B000E7454C /* main_g.gif */; };
 		63F1BEBE22F16B2E00E7454C /* SMSFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F1BEBD22F16B2E00E7454C /* SMSFindViewController.swift */; };
 		63F4BD8422FD4D8100A30902 /* LetterMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A409FC225077F400671C3C /* LetterMainViewController.swift */; };
+		774767D02401778E0099105B /* JGNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774767CF2401778E0099105B /* JGNavigator.swift */; };
+		774767D424017A3C0099105B /* CartoonReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774767D324017A3C0099105B /* CartoonReactor.swift */; };
+		776B091C2401711500A5F0E7 /* SplashReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B091B2401711500A5F0E7 /* SplashReactor.swift */; };
+		776B091F2401728F00A5F0E7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B091E2401728F00A5F0E7 /* UIColor+Extensions.swift */; };
+		77DAF8892401034600928DDE /* JGImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF8882401034600928DDE /* JGImages.swift */; };
+		77DAF88C2401060500928DDE /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF88B2401060500928DDE /* UIImage+Extensions.swift */; };
+		77DAF88E2401062100928DDE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF88D2401062100928DDE /* String+Extensions.swift */; };
+		77DAF8912401066A00928DDE /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF8902401066A00928DDE /* Logger.swift */; };
+		77DAF894240107C500928DDE /* GIFModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF893240107C500928DDE /* GIFModule.swift */; };
+		77DAF8962401081600928DDE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF8952401081600928DDE /* BaseViewController.swift */; };
 		DA3434D2B5D1B954807DE436 /* Pods_letter_mouse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDE75F8B990B91B7CF487CC /* Pods_letter_mouse.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,42 +68,7 @@
 			remoteGlobalIDString = 04B7EA20224625C800AADADE;
 			remoteInfo = letter_mouse;
 		};
-		63DAA07022BB1FEB00E409DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0680CC2F1CE3EFA900CBAE4F;
-			remoteInfo = Presentr;
-		};
-		63DAA07222BB1FEB00E409DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0680CC391CE3EFA900CBAE4F;
-			remoteInfo = PresentrTests;
-		};
-		63DAA07622BB1FF200E409DB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0680CC2E1CE3EFA900CBAE4F;
-			remoteInfo = Presentr;
-		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		63DAA07822BB1FF200E409DB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				63DAA07522BB1FF200E409DB /* Presentr.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		040C4FB4226617B0009663CB /* FindLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLetterViewController.swift; sourceTree = "<group>"; };
@@ -112,7 +84,7 @@
 		04AD639922588BF500B6360C /* SMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSViewController.swift; sourceTree = "<group>"; };
 		04B7EA21224625C800AADADE /* letter_mouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = letter_mouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B7EA24224625C800AADADE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		04B7EA26224625C800AADADE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		04B7EA26224625C800AADADE /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		04B7EA29224625C800AADADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04B7EA2E224625C900AADADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04B7EA30224625C900AADADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -124,7 +96,7 @@
 		04B7EA46224625C900AADADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04C1DA2722A69732009CBDC8 /* cartoon06ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartoon06ViewController.swift; sourceTree = "<group>"; };
 		04C1DA2922A6973D009CBDC8 /* cartoon07ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartoon07ViewController.swift; sourceTree = "<group>"; };
-		04C1DA2B22A69952009CBDC8 /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
+		04C1DA2B22A69952009CBDC8 /* JGAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = JGAssets.xcassets; sourceTree = "<group>"; };
 		04C1DA2D22A69EE5009CBDC8 /* cartoon08ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartoon08ViewController.swift; sourceTree = "<group>"; };
 		04C1DA2F22ABA1A5009CBDC8 /* LetterResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterResultViewController.swift; sourceTree = "<group>"; };
 		04F73CD522ACD2CD00F21912 /* LetterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterExtension.swift; sourceTree = "<group>"; };
@@ -137,14 +109,22 @@
 		3C41F9457FC674C8A7775141 /* Pods-letter_mouse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouse.release.xcconfig"; path = "Target Support Files/Pods-letter_mouse/Pods-letter_mouse.release.xcconfig"; sourceTree = "<group>"; };
 		630F2AFD22E6EE67009FB2AF /* cartoonContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartoonContainerViewController.swift; sourceTree = "<group>"; };
 		630F2B0022E6EE9A009FB2AF /* EZSwipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
-		633C72E522B7827100159631 /* PresentrStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentrStore.swift; sourceTree = "<group>"; };
-		63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Presentr.xcodeproj; path = "../Downloads/Presentr-master/Presentr.xcodeproj"; sourceTree = "<group>"; };
 		63F1BEB522F1578900E7454C /* GIFUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFUtils.swift; sourceTree = "<group>"; };
 		63F1BEB822F158B000E7454C /* main_g.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = main_g.gif; sourceTree = "<group>"; };
 		63F1BEBD22F16B2E00E7454C /* SMSFindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSFindViewController.swift; sourceTree = "<group>"; };
 		65B78A5E955DD11E5FB987AA /* Pods_letter_mouseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_letter_mouseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67011DF8190CF15B5ECA6FBE /* Pods_letter_mouseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_letter_mouseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72036A90FC14EE9572936A41 /* Pods-letter_mouseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouseTests.release.xcconfig"; path = "Target Support Files/Pods-letter_mouseTests/Pods-letter_mouseTests.release.xcconfig"; sourceTree = "<group>"; };
+		774767CF2401778E0099105B /* JGNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGNavigator.swift; sourceTree = "<group>"; };
+		774767D324017A3C0099105B /* CartoonReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonReactor.swift; sourceTree = "<group>"; };
+		776B091B2401711500A5F0E7 /* SplashReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashReactor.swift; sourceTree = "<group>"; };
+		776B091E2401728F00A5F0E7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		77DAF8882401034600928DDE /* JGImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGImages.swift; sourceTree = "<group>"; };
+		77DAF88B2401060500928DDE /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		77DAF88D2401062100928DDE /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		77DAF8902401066A00928DDE /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		77DAF893240107C500928DDE /* GIFModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFModule.swift; sourceTree = "<group>"; };
+		77DAF8952401081600928DDE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		95D6A9F5D51C6183DBFDDDB9 /* Pods-letter_mouseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouseUITests.release.xcconfig"; path = "Target Support Files/Pods-letter_mouseUITests/Pods-letter_mouseUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,7 +134,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA3434D2B5D1B954807DE436 /* Pods_letter_mouse.framework in Frameworks */,
-				63DAA07422BB1FF200E409DB /* Presentr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,15 +159,6 @@
 		042A0111224A67C30070CEAE /* cartoons */ = {
 			isa = PBXGroup;
 			children = (
-				042A0112224A67DC0070CEAE /* cartoon01ViewController.swift */,
-				042A0114224A67F30070CEAE /* cartoon02ViewController.swift */,
-				042A0116224A784E0070CEAE /* cartoon03ViewController.swift */,
-				042A0118224A78570070CEAE /* cartoon04ViewController.swift */,
-				042A011A224A78C10070CEAE /* cartoon05ViewController.swift */,
-				04C1DA2722A69732009CBDC8 /* cartoon06ViewController.swift */,
-				04C1DA2922A6973D009CBDC8 /* cartoon07ViewController.swift */,
-				04C1DA2D22A69EE5009CBDC8 /* cartoon08ViewController.swift */,
-				630F2AFD22E6EE67009FB2AF /* cartoonContainerViewController.swift */,
 			);
 			path = cartoons;
 			sourceTree = "<group>";
@@ -197,8 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				63F1BEB822F158B000E7454C /* main_g.gif */,
-				63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */,
-				04C1DA2B22A69952009CBDC8 /* assets.xcassets */,
 				04B7EA23224625C800AADADE /* letter_mouse */,
 				04B7EA38224625C900AADADE /* letter_mouseTests */,
 				04B7EA43224625C900AADADE /* letter_mouseUITests */,
@@ -221,7 +189,12 @@
 		04B7EA23224625C800AADADE /* letter_mouse */ = {
 			isa = PBXGroup;
 			children = (
-				63DAA06A22BB1FBE00E409DB /* PresentrType */,
+				774767CE240177840099105B /* Navigator */,
+				776B091A2401710800A5F0E7 /* View */,
+				77DAF892240107B700928DDE /* Modules */,
+				77DAF88F2401066300928DDE /* Logger */,
+				77DAF88A240105FA00928DDE /* Extensions */,
+				77DAF8872401021800928DDE /* Resources */,
 				04F73CD922ACDE9000F21912 /* util */,
 				04F73CD422ACD2B600F21912 /* extension */,
 				04F73CD322ACD2AD00F21912 /* protocol */,
@@ -230,7 +203,6 @@
 				04B7EA2D224625C900AADADE /* LaunchScreen.storyboard */,
 				0424C0E02250954B00DBB82E /* HttpConnectionHandler.swift */,
 				04B7EA24224625C800AADADE /* AppDelegate.swift */,
-				04B7EA26224625C800AADADE /* ViewController.swift */,
 				04A409FC225077F400671C3C /* LetterMainViewController.swift */,
 				0424C0E22250C80500DBB82E /* LetterController.swift */,
 				0424C0E62251141200DBB82E /* SaveLetterViewController.swift */,
@@ -239,6 +211,7 @@
 				04C1DA2F22ABA1A5009CBDC8 /* LetterResultViewController.swift */,
 				04B7EA30224625C900AADADE /* Info.plist */,
 				63F1BEBD22F16B2E00E7454C /* SMSFindViewController.swift */,
+				77DAF8952401081600928DDE /* BaseViewController.swift */,
 			);
 			path = letter_mouse;
 			sourceTree = "<group>";
@@ -273,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				04F73CD522ACD2CD00F21912 /* LetterExtension.swift */,
+				776B091E2401728F00A5F0E7 /* UIColor+Extensions.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -297,21 +271,81 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		63DAA06A22BB1FBE00E409DB /* PresentrType */ = {
+		774767CE240177840099105B /* Navigator */ = {
 			isa = PBXGroup;
 			children = (
-				633C72E522B7827100159631 /* PresentrStore.swift */,
+				774767CF2401778E0099105B /* JGNavigator.swift */,
 			);
-			path = PresentrType;
+			path = Navigator;
 			sourceTree = "<group>";
 		};
-		63DAA06C22BB1FEB00E409DB /* Products */ = {
+		774767D124017A010099105B /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				63DAA07122BB1FEB00E409DB /* Presentr.framework */,
-				63DAA07322BB1FEB00E409DB /* PresentrTests.xctest */,
+				04B7EA26224625C800AADADE /* SplashVC.swift */,
+				776B091B2401711500A5F0E7 /* SplashReactor.swift */,
 			);
-			name = Products;
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		774767D224017A070099105B /* Cartoon */ = {
+			isa = PBXGroup;
+			children = (
+				042A0112224A67DC0070CEAE /* cartoon01ViewController.swift */,
+				042A0114224A67F30070CEAE /* cartoon02ViewController.swift */,
+				042A0116224A784E0070CEAE /* cartoon03ViewController.swift */,
+				042A0118224A78570070CEAE /* cartoon04ViewController.swift */,
+				042A011A224A78C10070CEAE /* cartoon05ViewController.swift */,
+				04C1DA2722A69732009CBDC8 /* cartoon06ViewController.swift */,
+				04C1DA2922A6973D009CBDC8 /* cartoon07ViewController.swift */,
+				04C1DA2D22A69EE5009CBDC8 /* cartoon08ViewController.swift */,
+				630F2AFD22E6EE67009FB2AF /* cartoonContainerViewController.swift */,
+				774767D324017A3C0099105B /* CartoonReactor.swift */,
+			);
+			path = Cartoon;
+			sourceTree = "<group>";
+		};
+		776B091A2401710800A5F0E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				774767D124017A010099105B /* Splash */,
+				774767D224017A070099105B /* Cartoon */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		77DAF8872401021800928DDE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				04C1DA2B22A69952009CBDC8 /* JGAssets.xcassets */,
+				77DAF8882401034600928DDE /* JGImages.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		77DAF88A240105FA00928DDE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				77DAF88B2401060500928DDE /* UIImage+Extensions.swift */,
+				77DAF88D2401062100928DDE /* String+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		77DAF88F2401066300928DDE /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				77DAF8902401066A00928DDE /* Logger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		77DAF892240107B700928DDE /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				77DAF893240107C500928DDE /* GIFModule.swift */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		84E7167E65F6EAF02D6F6B05 /* Pods */ = {
@@ -339,12 +373,12 @@
 				04B7EA1E224625C800AADADE /* Frameworks */,
 				04B7EA1F224625C800AADADE /* Resources */,
 				C6F1B1E89B1E39B29BE7007A /* [CP] Copy Pods Resources */,
-				63DAA07822BB1FF200E409DB /* Embed Frameworks */,
+				E658365E2F76DEDCD2D232C4 /* [CP] Embed Pods Frameworks */,
+				776B091D2401717600A5F0E7 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				63DAA07722BB1FF200E409DB /* PBXTargetDependency */,
 			);
 			name = letter_mouse;
 			productName = letter_mouse;
@@ -424,12 +458,6 @@
 			mainGroup = 04B7EA18224625C800AADADE;
 			productRefGroup = 04B7EA22224625C800AADADE /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 63DAA06C22BB1FEB00E409DB /* Products */;
-					ProjectRef = 63DAA06B22BB1FEB00E409DB /* Presentr.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				04B7EA20224625C800AADADE /* letter_mouse */,
@@ -439,23 +467,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		63DAA07122BB1FEB00E409DB /* Presentr.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Presentr.framework;
-			remoteRef = 63DAA07022BB1FEB00E409DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		63DAA07322BB1FEB00E409DB /* PresentrTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = PresentrTests.xctest;
-			remoteRef = 63DAA07222BB1FEB00E409DB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		04B7EA1F224625C800AADADE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -464,7 +475,7 @@
 				04B7EA2F224625C900AADADE /* LaunchScreen.storyboard in Resources */,
 				63F1BEB922F158B000E7454C /* main_g.gif in Resources */,
 				04B7EA2A224625C800AADADE /* Main.storyboard in Resources */,
-				04C1DA2C22A69952009CBDC8 /* assets.xcassets in Resources */,
+				04C1DA2C22A69952009CBDC8 /* JGAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +496,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		776B091D2401717600A5F0E7 /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi  \n";
+		};
 		A0546C017112642F55B47268 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -513,18 +542,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-letter_mouse/Pods-letter_mouse-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-letter_mouse/Pods-letter_mouse-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-letter_mouse/Pods-letter_mouse-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -551,6 +573,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E658365E2F76DEDCD2D232C4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-letter_mouse/Pods-letter_mouse-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-letter_mouse/Pods-letter_mouse-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-letter_mouse/Pods-letter_mouse-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA97CEE7A3205C3FED605A9B /* [CP] Check Pods Manifest.lock */ = {
@@ -585,16 +624,22 @@
 				042A0117224A784E0070CEAE /* cartoon03ViewController.swift in Sources */,
 				04F73CDB22ACDEA000F21912 /* LetterUtils.swift in Sources */,
 				04C1DA3022ABA1A5009CBDC8 /* LetterResultViewController.swift in Sources */,
-				04B7EA27224625C800AADADE /* ViewController.swift in Sources */,
+				04B7EA27224625C800AADADE /* SplashVC.swift in Sources */,
 				630F2B0122E6EE9A009FB2AF /* EZSwipeController.swift in Sources */,
+				77DAF8962401081600928DDE /* BaseViewController.swift in Sources */,
 				042A0113224A67DC0070CEAE /* cartoon01ViewController.swift in Sources */,
 				0424C0E32250C80500DBB82E /* LetterController.swift in Sources */,
 				042A0119224A78570070CEAE /* cartoon04ViewController.swift in Sources */,
+				77DAF894240107C500928DDE /* GIFModule.swift in Sources */,
 				63F1BEB622F1578900E7454C /* GIFUtils.swift in Sources */,
-				633C72E622B7827100159631 /* PresentrStore.swift in Sources */,
+				776B091F2401728F00A5F0E7 /* UIColor+Extensions.swift in Sources */,
+				77DAF8892401034600928DDE /* JGImages.swift in Sources */,
 				04C1DA2E22A69EE5009CBDC8 /* cartoon08ViewController.swift in Sources */,
+				77DAF8912401066A00928DDE /* Logger.swift in Sources */,
 				042A011B224A78C10070CEAE /* cartoon05ViewController.swift in Sources */,
+				774767D02401778E0099105B /* JGNavigator.swift in Sources */,
 				0424C0E72251141200DBB82E /* SaveLetterViewController.swift in Sources */,
+				77DAF88E2401062100928DDE /* String+Extensions.swift in Sources */,
 				04A409FD225077F400671C3C /* LetterMainViewController.swift in Sources */,
 				04C1DA2A22A6973D009CBDC8 /* cartoon07ViewController.swift in Sources */,
 				040C4FB5226617B0009663CB /* FindLetterViewController.swift in Sources */,
@@ -603,8 +648,11 @@
 				04C1DA2822A69732009CBDC8 /* cartoon06ViewController.swift in Sources */,
 				63F1BEBE22F16B2E00E7454C /* SMSFindViewController.swift in Sources */,
 				0424C0E12250954B00DBB82E /* HttpConnectionHandler.swift in Sources */,
+				776B091C2401711500A5F0E7 /* SplashReactor.swift in Sources */,
 				04F73CD822ACD33500F21912 /* LetterProtocol.swift in Sources */,
+				774767D424017A3C0099105B /* CartoonReactor.swift in Sources */,
 				042A0115224A67F30070CEAE /* cartoon02ViewController.swift in Sources */,
+				77DAF88C2401060500928DDE /* UIImage+Extensions.swift in Sources */,
 				04F73CD622ACD2CD00F21912 /* LetterExtension.swift in Sources */,
 				630F2AFE22E6EE67009FB2AF /* cartoonContainerViewController.swift in Sources */,
 			);
@@ -639,11 +687,6 @@
 			isa = PBXTargetDependency;
 			target = 04B7EA20224625C800AADADE /* letter_mouse */;
 			targetProxy = 04B7EA41224625C900AADADE /* PBXContainerItemProxy */;
-		};
-		63DAA07722BB1FF200E409DB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Presentr;
-			targetProxy = 63DAA07622BB1FF200E409DB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -787,14 +830,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3214F9BC3BF47AD72D7FC1F8 /* Pods-letter_mouse.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZTQD3VYFK;
 				INFOPLIST_FILE = letter_mouse/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -812,14 +854,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C41F9457FC674C8A7775141 /* Pods-letter_mouse.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZTQD3VYFK;
 				INFOPLIST_FILE = letter_mouse/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 import CoreLocation
 import GoogleMaps
-import Presentr
 
 enum ViewState {
     case SENDING_LETTER, TRACKING_LETTER, NORMAL
@@ -246,41 +245,41 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         LetterController.getInstance.isSending = true
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SaveLetterViewController") as! SaveLetterViewController
 
-        customPresentViewController(PresentrStore.getInstance.simplePresentR , viewController:controller, animated: true,completion: {
-            self.stateLabel.text = "쪽지 남기기"
-            print("complete")
-        })
+//        customPresentViewController(PresentrStore.getInstance.simplePresentR , viewController:controller, animated: true,completion: {
+//            self.stateLabel.text = "쪽지 남기기"
+//            print("complete")
+//        })
         
     
     }
     
     @IBAction func letterFindBtn(_ sender: UIButton) {
         
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "findLetterViewController") as! FindLetterViewController
-        customPresentViewController(PresentrStore.getInstance.findPresentR , viewController:controller, animated: true,completion: {
-            print("complete")
-        })
+//        let controller = self.storyboard?.instantiateViewController(withIdentifier: "findLetterViewController") as! FindLetterViewController
+//        customPresentViewController(PresentrStore.getInstance.findPresentR , viewController:controller, animated: true,completion: {
+//            print("complete")
+//        })
     }
     func showSmsFindView() {
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SMSFindLetterViewController") as! SMSFindViewController
-        customPresentViewController(PresentrStore.getInstance.smsFindPresentR , viewController:controller, animated: true,completion: {
-            self.stateLabel.text = "SMS로 찾기"
-            print("complete")
-        })
+//        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SMSFindLetterViewController") as! SMSFindViewController
+//        customPresentViewController(PresentrStore.getInstance.smsFindPresentR , viewController:controller, animated: true,completion: {
+//            self.stateLabel.text = "SMS로 찾기"
+//            print("complete")
+//        })
     }
     func showSMSView(){
         
-         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SMSSendViewController") as! SMSViewController
-        customPresentViewController(PresentrStore.getInstance.simplePresentR , viewController:controller, animated: true,completion: {
-            self.stateLabel.text = "SMS로 보내기"
-            print("complete")
-        })
+//         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SMSSendViewController") as! SMSViewController
+//        customPresentViewController(PresentrStore.getInstance.simplePresentR , viewController:controller, animated: true,completion: {
+//            self.stateLabel.text = "SMS로 보내기"
+//            print("complete")
+//        })
     }
     func showLetterResultView(){
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "LetterResultViewController") as! LetterResultViewController
-        customPresentViewController(PresentrStore.getInstance.letterResultpresentR , viewController:controller, animated: true,completion: {
-            print("complete")
-        })
+//        let controller = self.storyboard?.instantiateViewController(withIdentifier: "LetterResultViewController") as! LetterResultViewController
+//        customPresentViewController(PresentrStore.getInstance.letterResultpresentR , viewController:controller, animated: true,completion: {
+//            print("complete")
+//        })
     }
     
     func showSaveLetterView(view: UIView, hidden: Bool) {
@@ -389,6 +388,6 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
     
 }
 
-extension ViewController: GMSMapViewDelegate {
+extension SplashVC: GMSMapViewDelegate {
     
 }

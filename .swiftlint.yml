@@ -1,0 +1,74 @@
+disabled_rules:
+opt_in_rules:
+included:
+    - letter_mouse
+excluded:
+    - letter_mouse/Resource
+whitelist_rules:
+    - closing_brace
+    - closure_end_indentation
+    - closure_spacing
+    - colon
+    - comma
+    - control_statement
+#    - cyclomatic_complexity
+    - discarded_notification_center_observer
+    - empty_enum_arguments
+    - empty_parameters
+    - empty_parentheses_with_trailing_closure
+    - first_where
+    - for_where
+#    - force_cast
+    - force_try
+#    - force_unwrapping
+#    - identifier_name
+    - leading_whitespace
+    - legacy_cggeometry_functions
+    - legacy_constant
+    - legacy_constructor
+    - legacy_nsgeometry_functions
+#    - multiline_parameters
+#    - nesting
+#    - notification_center_detachment
+    - opening_brace
+    - operator_usage_whitespace
+#    - operator_whitespace
+    - private_over_fileprivate
+    - redundant_discardable_let
+    - redundant_nil_coalescing
+    - redundant_void_return
+    - return_arrow_whitespace
+#    - strict_fileprivate
+    - syntactic_sugar
+    - trailing_semicolon
+#    - trailing_whitespace
+    - vertical_whitespace
+    - void_return
+    - switch_case_on_newline
+# Custom rules
+    - custom_rules
+
+custom_rules:
+    no_placeholder_in_string:
+        name: "No placeholder in string"
+        regex: (\"_*PLACEHOLDER_*)
+        match_kinds: string
+        severity: error
+    no_adhoc_prefix:
+        name: "should remove ADHOC prefix."
+        regex: (ADHOC_)
+        match_kinds:
+            - identifier
+    ObjCRule:
+        message: "@objc should be written on the same line."
+        regex: (@objc[\n]+)
+        match_tokens: identifier
+        severity: error
+
+    thumbs_up_naming:
+        name: "Unify with the name 'ThumbsUp'."
+        regex: ((([\s.]t)|([\w]T))(humbUp|humbsUP|humbsup|humbup|humbUP))|(_THUMBUP|_THUMBSUP|_THUMB_UP)
+        severity: error
+        match_kinds:
+            - identifier
+        excluded: ".*/Manager/ConfigManager.*\\.swift"

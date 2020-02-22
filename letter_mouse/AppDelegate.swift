@@ -13,12 +13,22 @@ import GoogleMaps
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey("AIzaSyCCKhLABNJV7CAAe9jXS-AnlLq_yvKelGg")
     
+        window?.backgroundColor = .white
+        window?.makeKeyAndVisible()
+        
+        let navigator = JGNavigator(window?.rootViewController)
+        
+        let splashReactor = SplashReactor(navigator: navigator)
+        let splashVC = SplashVC(reactor: splashReactor)
+        
+        window?.rootViewController = splashVC
+        navigator.rootViewController = window?.rootViewController
+        
         return true
     }
 

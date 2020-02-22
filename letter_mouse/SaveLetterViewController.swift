@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Presentr
 import ContactsUI
 
 
@@ -24,29 +23,7 @@ class SaveLetterViewController: UIViewController, CNContactPickerDelegate {
     @IBOutlet weak var saveLetterWhiteView: UIView!
 
     var previousInputCount : Int = 0
-    
-    static let presenter : Presentr = {
-        let width = ModalSize.custom(size: Float(UIScreen.main.bounds.width*0.9))
-        let height = ModalSize.custom(size:Float(UIScreen.main.bounds.height*0.75))
-        let center = ModalCenterPosition.custom(
-            centerPoint: CGPoint.init(
-                x: UIScreen.main.bounds.width*0.5,
-                y: UIScreen.main.bounds.height*0.625
-        ))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
-        let customPresenter = Presentr(presentationType: customType)
-        customPresenter.transitionType = .coverVertical
-        customPresenter.dismissTransitionType = .coverVertical
-        customPresenter.dismissAnimated = true
-        customPresenter.dismissOnSwipe = true
-        customPresenter.dismissOnSwipeDirection = .bottom
-        customPresenter.backgroundOpacity = 0
-        customPresenter.outsideContextTap = .noAction
-        
-        
-        return customPresenter
-        
-    }()
+
     
     
     override func viewDidLoad() {
