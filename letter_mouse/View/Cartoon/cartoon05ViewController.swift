@@ -15,11 +15,4 @@ class cartoon05ViewController: UIViewController {
         print("view did loaded on main")
         self.navigationController?.isNavigationBarHidden = true
     }
-    @IBOutlet var splashView: UIView!
-    
-    @IBAction func skipBtnClicked(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "mainLetterView") as! LetterMainViewController
-        self.present(vc, animated: true, completion: nil)
-    }
-    
 }

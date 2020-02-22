@@ -12,7 +12,7 @@ import UIKit
     @objc optional func changedToPageIndex(_ index: Int)
 }
 
-open class EZSwipeController: UIViewController {
+class EZSwipeController: BaseViewController {
     
     public struct Constants {
         public static var Orientation: UIInterfaceOrientation {
@@ -65,13 +65,8 @@ open class EZSwipeController: UIViewController {
     public var navigationBarShouldNotExist = true
     public var cancelStandardButtonEvents = false
     
-    public init() {
-        super.init(nibName: nil, bundle: nil)
-        setupView()
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    override init() {
+        super.init()
         setupView()
     }
     
@@ -94,44 +89,6 @@ open class EZSwipeController: UIViewController {
             navBars.append(navigationBar)
         }
         stackNavBars = navBars
-    }
-    
-    private func setupNavigationBar() {
-        guard stackNavBars.isEmpty else { return }
-        guard !navigationBarShouldNotExist else { return }
-        
-        guard let _ = datasource?.navigationBarDataForPageIndex?(0) else {
-            if let titles = datasource?.titlesForPages?() {
-                setupDefaultNavigationBars(titles)
-            }
-            return
-        }
-        
-        for index in 0..<stackVC.count {
-            let navigationBar = datasource?.navigationBarDataForPageIndex?(index)
-            
-            if let nav = navigationBar {
-                if navigationBarShouldBeOnBottom {
-                    nav.frame = CGRect(x: 0, y: Constants.ScreenHeightWithoutStatusBar - Constants.navigationBarHeight, width: Constants.ScreenWidth, height: Constants.navigationBarHeight)
-                } else {
-                    nav.frame = CGRect(x: 0, y: 0, width: Constants.ScreenWidth, height: Constants.navigationBarHeight)
-                }
-                
-                if let items = nav.items , !cancelStandardButtonEvents {
-                    items.forEach { item in
-                        if let leftButton = item.leftBarButtonItem {
-                            leftButton.target = self
-                            leftButton.action = #selector(leftButtonAction)
-                        }
-                        if let rightButton = item.rightBarButtonItem {
-                            rightButton.target = self
-                            rightButton.action = #selector(rightButtonAction)
-                        }
-                    }
-                }
-                stackNavBars.append(nav)
-            }
-        }
     }
     
     private func setupViewControllers() {
@@ -185,7 +142,7 @@ open class EZSwipeController: UIViewController {
         
     }
     
-    public func setFrameForCurrentOrientation(){
+    public func setFrameForCurrentOrientation() {
         pageViewController.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
     }
     
@@ -197,7 +154,6 @@ open class EZSwipeController: UIViewController {
             print("Problem: EZSwipeController needs ViewController Data, please implement EZSwipeControllerDataSource")
             return
         }
-        setupNavigationBar()
         setupViewControllers()
         setupPageViewController()
     }

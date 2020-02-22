@@ -34,8 +34,8 @@ class cartoonContainerViewController: EZSwipeController {
 extension cartoonContainerViewController: EZSwipeControllerDataSource {
     func viewControllerData() -> [UIViewController] {
         
-        let vc1 = self.storyboard?.instantiateViewController(withIdentifier: "cartoon_01_view") as! cartoon01ViewController
-        let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "cartoon_02_view") as! cartoon02ViewController
+        let vc1 = self.storyboard?.instantiateViewController(withIdentifier: "cartoon_01_view") as! Cartoon01VC
+        let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "cartoon_02_view") as! Cartoon02VC
         let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "cartoon_03_view") as! cartoon03ViewController
         let vc4 = self.storyboard?.instantiateViewController(withIdentifier: "cartoon_04_view") as! cartoon04ViewController
         let vc5 = self.storyboard?.instantiateViewController(withIdentifier: "cartoon_05_view") as! cartoon05ViewController

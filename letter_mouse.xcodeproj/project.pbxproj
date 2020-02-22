@@ -11,8 +11,8 @@
 		0424C0E12250954B00DBB82E /* HttpConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424C0E02250954B00DBB82E /* HttpConnectionHandler.swift */; };
 		0424C0E32250C80500DBB82E /* LetterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424C0E22250C80500DBB82E /* LetterController.swift */; };
 		0424C0E72251141200DBB82E /* SaveLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424C0E62251141200DBB82E /* SaveLetterViewController.swift */; };
-		042A0113224A67DC0070CEAE /* cartoon01ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042A0112224A67DC0070CEAE /* cartoon01ViewController.swift */; };
-		042A0115224A67F30070CEAE /* cartoon02ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042A0114224A67F30070CEAE /* cartoon02ViewController.swift */; };
+		042A0113224A67DC0070CEAE /* Cartoon01VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042A0112224A67DC0070CEAE /* Cartoon01VC.swift */; };
+		042A0115224A67F30070CEAE /* Cartoon02VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042A0114224A67F30070CEAE /* Cartoon02VC.swift */; };
 		042A0117224A784E0070CEAE /* cartoon03ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042A0116224A784E0070CEAE /* cartoon03ViewController.swift */; };
 		042A0119224A78570070CEAE /* cartoon04ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042A0118224A78570070CEAE /* cartoon04ViewController.swift */; };
 		042A011B224A78C10070CEAE /* cartoon05ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042A011A224A78C10070CEAE /* cartoon05ViewController.swift */; };
@@ -76,8 +76,8 @@
 		0424C0E02250954B00DBB82E /* HttpConnectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpConnectionHandler.swift; sourceTree = "<group>"; };
 		0424C0E22250C80500DBB82E /* LetterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterController.swift; sourceTree = "<group>"; };
 		0424C0E62251141200DBB82E /* SaveLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLetterViewController.swift; sourceTree = "<group>"; };
-		042A0112224A67DC0070CEAE /* cartoon01ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartoon01ViewController.swift; sourceTree = "<group>"; };
-		042A0114224A67F30070CEAE /* cartoon02ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartoon02ViewController.swift; sourceTree = "<group>"; };
+		042A0112224A67DC0070CEAE /* Cartoon01VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartoon01VC.swift; sourceTree = "<group>"; };
+		042A0114224A67F30070CEAE /* Cartoon02VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartoon02VC.swift; sourceTree = "<group>"; };
 		042A0116224A784E0070CEAE /* cartoon03ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartoon03ViewController.swift; sourceTree = "<group>"; };
 		042A0118224A78570070CEAE /* cartoon04ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartoon04ViewController.swift; sourceTree = "<group>"; };
 		042A011A224A78C10070CEAE /* cartoon05ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartoon05ViewController.swift; sourceTree = "<group>"; };
@@ -293,8 +293,8 @@
 		774767D224017A070099105B /* Cartoon */ = {
 			isa = PBXGroup;
 			children = (
-				042A0112224A67DC0070CEAE /* cartoon01ViewController.swift */,
-				042A0114224A67F30070CEAE /* cartoon02ViewController.swift */,
+				042A0112224A67DC0070CEAE /* Cartoon01VC.swift */,
+				042A0114224A67F30070CEAE /* Cartoon02VC.swift */,
 				042A0116224A784E0070CEAE /* cartoon03ViewController.swift */,
 				042A0118224A78570070CEAE /* cartoon04ViewController.swift */,
 				042A011A224A78C10070CEAE /* cartoon05ViewController.swift */,
@@ -630,7 +630,7 @@
 				04B7EA27224625C800AADADE /* SplashVC.swift in Sources */,
 				630F2B0122E6EE9A009FB2AF /* EZSwipeController.swift in Sources */,
 				77DAF8962401081600928DDE /* BaseViewController.swift in Sources */,
-				042A0113224A67DC0070CEAE /* cartoon01ViewController.swift in Sources */,
+				042A0113224A67DC0070CEAE /* Cartoon01VC.swift in Sources */,
 				0424C0E32250C80500DBB82E /* LetterController.swift in Sources */,
 				042A0119224A78570070CEAE /* cartoon04ViewController.swift in Sources */,
 				77DAF894240107C500928DDE /* GIFModule.swift in Sources */,
@@ -654,7 +654,7 @@
 				776B091C2401711500A5F0E7 /* SplashReactor.swift in Sources */,
 				04F73CD822ACD33500F21912 /* LetterProtocol.swift in Sources */,
 				774767D424017A3C0099105B /* CartoonReactor.swift in Sources */,
-				042A0115224A67F30070CEAE /* cartoon02ViewController.swift in Sources */,
+				042A0115224A67F30070CEAE /* Cartoon02VC.swift in Sources */,
 				77DAF88C2401060500928DDE /* UIImage+Extensions.swift in Sources */,
 				04F73CD622ACD2CD00F21912 /* LetterExtension.swift in Sources */,
 				630F2AFE22E6EE67009FB2AF /* cartoonContainerViewController.swift in Sources */,

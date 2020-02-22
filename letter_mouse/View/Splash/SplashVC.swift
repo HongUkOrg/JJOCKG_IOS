@@ -81,7 +81,7 @@ final class SplashVC: BaseViewController, View {
         self.rx
             .viewWillAppear
             .take(1)
-            .delay(.seconds(3), scheduler: MainScheduler.instance)
+            .delay(.seconds(1), scheduler: MainScheduler.instance)
             .map { (_) in Reactor.Action.viewWillAppear }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)

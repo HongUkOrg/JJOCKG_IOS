@@ -22,10 +22,4 @@ class cartoon08ViewController: UIViewController {
             self.performSegue(withIdentifier: "toMain", sender: self)
         })
     }
-    
-    @IBAction func skipBtnClicked(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "mainLetterView") as! LetterMainViewController
-        self.present(vc, animated: true, completion: nil)
-    }
-    
 }
