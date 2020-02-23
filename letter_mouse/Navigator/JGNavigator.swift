@@ -14,6 +14,7 @@ enum JGNavigateStep {
     
     case splash(SplashStep)
     case cartoon(CartoonStep)
+    case main(MainStep)
     
 }
 
@@ -28,6 +29,10 @@ extension JGNavigateStep {
         case one
         case two
         case three
+    }
+    
+    enum MainStep {
+        case home
     }
     
 }
@@ -92,6 +97,22 @@ class JGNavigator: JGNavigatorProtocol {
                 break
             case .three:
                 break
+            }
+            
+        case .main(let destination):
+            
+            Logger.info("Navigate to Main - \(destination)")
+            switch destination {
+            case .home:
+                let mainReactor = MainReactor(navigator: self)
+                let mainVC = MainVC(reactor: mainReactor)
+                self.window?.rootViewController = mainVC
+                
+                UIView.transition(with: window!,
+                                  duration: 0.5,
+                                  options: .transitionCrossDissolve,
+                                  animations: {},
+                                  completion: nil)
             }
             
         /// end switch

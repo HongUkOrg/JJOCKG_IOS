@@ -34,11 +34,20 @@ final class SplashVC: BaseViewController, View {
         
         Logger.debug("SplashVC view did loaded")
         
+        for family: String in UIFont.familyNames
+        {
+            print(family)
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
+        
     }
     
     // MARK: UI
     private let splashGifImageView = UIImageView().then {
-        $0.image = LetterUtils.gifImage("main_g")
+        $0.image = GIFModule().gifImage("main_g")
         $0.contentMode = .scaleAspectFit
     }
     

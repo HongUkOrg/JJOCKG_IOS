@@ -245,12 +245,6 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         LetterController.getInstance.isSending = true
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "SaveLetterViewController") as! SaveLetterViewController
 
-//        customPresentViewController(PresentrStore.getInstance.simplePresentR , viewController:controller, animated: true,completion: {
-//            self.stateLabel.text = "쪽지 남기기"
-//            print("complete")
-//        })
-        
-    
     }
     
     @IBAction func letterFindBtn(_ sender: UIButton) {

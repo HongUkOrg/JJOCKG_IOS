@@ -171,16 +171,16 @@
             </objects>
             <point key="canvasLocation" x="2430" y="-788"/>
         </scene>
-        <!--Cartoon03 View Controller-->
+        <!--Cartoon03VC-->
         <scene sceneID="PeD-LP-5RO">
             <objects>
-                <viewController storyboardIdentifier="cartoon_03_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7si-3p-yoe" customClass="cartoon03ViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cartoon_03_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7si-3p-yoe" customClass="Cartoon03VC" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p7j-66-z3h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cartoon03" translatesAutoresizingMaskIntoConstraints="NO" id="khG-jY-l1Y">
-                                <rect key="frame" x="44" y="269" width="326" height="358"/>
+                                <rect key="frame" x="-119" y="269" width="652" height="358"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -199,16 +199,16 @@
             </objects>
             <point key="canvasLocation" x="4171.0144927536239" y="111.83035714285714"/>
         </scene>
-        <!--Cartoon04 View Controller-->
+        <!--Cartoon04VC-->
         <scene sceneID="j8n-lV-KUt">
             <objects>
-                <viewController storyboardIdentifier="cartoon_04_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UCS-h7-WEp" customClass="cartoon04ViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cartoon_04_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UCS-h7-WEp" customClass="Cartoon04VC" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r24-ki-du6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cartoon04" translatesAutoresizingMaskIntoConstraints="NO" id="9LT-tj-LqF">
-                                <rect key="frame" x="36" y="269" width="342" height="358"/>
+                                <rect key="frame" x="-135" y="269" width="684" height="358"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -227,10 +227,10 @@
             </objects>
             <point key="canvasLocation" x="5111.594202898551" y="111.83035714285714"/>
         </scene>
-        <!--Cartoon08 View Controller-->
+        <!--Cartoon08VC-->
         <scene sceneID="ZDw-26-acx">
             <objects>
-                <viewController storyboardIdentifier="cartoon_08_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rtu-3T-XHx" customClass="cartoon08ViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cartoon_08_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rtu-3T-XHx" customClass="Cartoon08VC" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eWE-f5-k02">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -925,16 +925,16 @@
             </objects>
             <point key="canvasLocation" x="7669.5652173913049" y="944.86607142857133"/>
         </scene>
-        <!--Cartoon05 View Controller-->
+        <!--Cartoon05VC-->
         <scene sceneID="Jb0-74-Mu9">
             <objects>
-                <viewController storyboardIdentifier="cartoon_05_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b8s-5p-Bt7" customClass="cartoon05ViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cartoon_05_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b8s-5p-Bt7" customClass="Cartoon05VC" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A3b-wf-0uN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cartoon05" translatesAutoresizingMaskIntoConstraints="NO" id="chz-Gz-eTh">
-                                <rect key="frame" x="30.5" y="269" width="353" height="358"/>
+                                <rect key="frame" x="-146" y="269" width="706" height="358"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -953,10 +953,10 @@
             </objects>
             <point key="canvasLocation" x="5879.7101449275369" y="111.83035714285714"/>
         </scene>
-        <!--Cartoon07 View Controller-->
+        <!--Cartoon07VC-->
         <scene sceneID="PpQ-AL-amw">
             <objects>
-                <viewController storyboardIdentifier="cartoon_07_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NiX-nv-Fdo" customClass="cartoon07ViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cartoon_07_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NiX-nv-Fdo" customClass="Cartoon07VC" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7dV-9p-ETe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -981,16 +981,16 @@
             </objects>
             <point key="canvasLocation" x="7289.8550724637689" y="111.83035714285714"/>
         </scene>
-        <!--Cartoon06 View Controller-->
+        <!--Cartoon06VC-->
         <scene sceneID="yRX-4L-42I">
             <objects>
-                <viewController storyboardIdentifier="cartoon_06_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ygM-9m-SCC" customClass="cartoon06ViewController" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cartoon_06_view" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ygM-9m-SCC" customClass="Cartoon06VC" customModule="letter_mouse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pn4-fw-pOn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cartoon06" translatesAutoresizingMaskIntoConstraints="NO" id="yj6-Gl-pV6">
-                                <rect key="frame" x="43.5" y="269" width="327" height="358"/>
+                                <rect key="frame" x="-120" y="269" width="654" height="358"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

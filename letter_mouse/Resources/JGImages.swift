@@ -58,9 +58,13 @@ internal enum JGAsset {
   }
   internal enum Icons {
     internal static let archon = JGImage(name: "archon")
+    internal static let btInfo32X32 = JGImage(name: "btInfo32X32")
     internal static let cancelBtn = JGImage(name: "cancel_btn")
     internal static let currentLetter = JGImage(name: "current_letter")
     internal static let findLetterBtn = JGImage(name: "find_letter_btn")
+    internal static let imMenuLeft104X46 = JGImage(name: "imMenuLeft104X46")
+    internal static let imMenuRight104X46 = JGImage(name: "imMenuRight104X46")
+    internal static let jgBtn = JGImage(name: "jg_btn")
     internal static let mainArchon = JGImage(name: "main_archon")
     internal static let phoneBook = JGImage(name: "phone_book")
     internal static let saveLetterBtn = JGImage(name: "save_letter_btn")
@@ -92,9 +96,13 @@ internal enum JGAsset {
     Finder.finder07,
     Finder.finder08,
     Icons.archon,
+    Icons.btInfo32X32,
     Icons.cancelBtn,
     Icons.currentLetter,
     Icons.findLetterBtn,
+    Icons.imMenuLeft104X46,
+    Icons.imMenuRight104X46,
+    Icons.jgBtn,
     Icons.mainArchon,
     Icons.phoneBook,
     Icons.saveLetterBtn,

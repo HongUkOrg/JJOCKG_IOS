@@ -1,5 +1,5 @@
 //
-//  CartoonReactor.swift
+//  MainReactor.swift
 //  letter_mouse
 //
 //  Created by bleo on 2020/02/23.
@@ -7,29 +7,23 @@
 //
 
 
-
 import Foundation
 import RxSwift
 import ReactorKit
 
-final class CartoonReactor: Reactor {
+final class MainReactor: Reactor {
     
     // MARK: Action
     enum Action {
-        case pageChanged(Int)
-        case skipBtnClicked
+        case infoBtnClicked
     }
     
-    // MARK: Mutation
+    //MARK: Mutation
     enum Mutation {
-        case pageChanged(Int)
-        case navigaToMain
     }
     
     // MARK: State
     struct State {
-        
-        var currentPage: Int = 1
     }
     
     // MARK: Properties
@@ -43,25 +37,15 @@ final class CartoonReactor: Reactor {
         self.navigator = navigator
     }
     
-    // MARK: Methods
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .pageChanged(let page):
-            return .just(.pageChanged(page))
-        case .skipBtnClicked:
-            return .just(.navigaToMain)
+        case .infoBtnClicked:
+            break
         }
+        return .empty()
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
-        var state = state
-        switch mutation {
-        case .pageChanged(let page):
-            Logger.debug("page changed \(page)")
-            state.currentPage = page
-        case .navigaToMain:
-            navigator.navigate(.main(.home))
-        }
         return state
     }
 }

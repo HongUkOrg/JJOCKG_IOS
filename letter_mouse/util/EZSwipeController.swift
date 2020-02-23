@@ -1,4 +1,6 @@
 import UIKit
+import RxSwift
+import RxRelay
 
 @objc public protocol EZSwipeControllerDataSource {
     func viewControllerData() -> [UIViewController]
@@ -46,6 +48,9 @@ class EZSwipeController: BaseViewController {
         public static let lightGrayColor = UIColor(red: 248, green: 248, blue: 248, alpha: 1)
     }
     
+    // MARK: Properties
+    var currentPageRelay: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 1)
+    
     public var stackNavBars = [UINavigationBar]()
     public var stackVC: [UIViewController]!
     public var stackPageVC: [UIViewController]!
@@ -65,6 +70,7 @@ class EZSwipeController: BaseViewController {
     public var navigationBarShouldNotExist = true
     public var cancelStandardButtonEvents = false
     
+    // MARK: Initialize
     override init() {
         super.init()
         setupView()
@@ -248,7 +254,7 @@ extension EZSwipeController: UIPageViewControllerDelegate {
         let newVCIndex = stackPageVC.index(of: pageViewController.viewControllers!.first!)!
         
         datasource?.changedToPageIndex?(newVCIndex)
-        
+        currentPageRelay.accept(newVCIndex + 1)
         currentStackVC = stackPageVC[newVCIndex]
     }
 }

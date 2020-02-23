@@ -26,4 +26,8 @@ extension UIColor {
         return UIColor(red: 65.0 / 255.0, green: 58.0 / 255.0, blue: 16.0 / 255.0, alpha: 1.0)
     }
     
+    @nonobjc class var mudBrown: UIColor {
+      return UIColor(red: 58.0 / 255.0, green: 50.0 / 255.0, blue: 9.0 / 255.0, alpha: 1.0)
+    }
+    
 }
