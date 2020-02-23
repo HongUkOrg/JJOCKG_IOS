@@ -16,7 +16,7 @@ enum ViewState {
 }
 
 
-class LetterMainViewController: UIViewController, CLLocationManagerDelegate, ModalDimissDelegate_save,ModalDimissDelegate_find, W3WResponseDelegate, UpdateMainViewStateDelegate, ModalDimissDelegate_sms {
+class LetterMainViewController: UIViewController, CLLocationManagerDelegate {
     
 
     
@@ -72,12 +72,6 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
         
         w3w_text_view.layer.cornerRadius = 18
         w3w_text_view.clipsToBounds = true
-        
-        LetterController.getInstance.setLetterSaveDismissDelegate(self)
-        LetterController.getInstance.setLetterFindDismissDelegate(self)
-        LetterController.getInstance.setUpdateMainVewStateDelegate(self)
-        LetterController.getInstance.setSmsFindDismissDelegate(self)
-        HttpConnectionHandler.getInstance.setW3WResponseDelegate(self)
         
     }
     
@@ -139,11 +133,6 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate, Mod
             
             currentLatitude = locValue.latitude
             currentLongitude = locValue.longitude
-            
-            HttpConnectionHandler.getInstance.getWhat3WordsFromGPS(
-                latitude: String(format:"%f",currentLatitude!),
-                longitude: String(format:"%f",currentLongitude!)
-            )
             LetterController.getInstance.latitude = currentLatitude!
             LetterController.getInstance.longitude = currentLongitude!
             

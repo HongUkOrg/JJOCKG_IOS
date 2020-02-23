@@ -49,6 +49,11 @@
 		774767E42402735D0099105B /* Binggrae-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 774767E22402735C0099105B /* Binggrae-Bold.otf */; };
 		774767E52402735D0099105B /* Binggrae.otf in Resources */ = {isa = PBXBuildFile; fileRef = 774767E32402735D0099105B /* Binggrae.otf */; };
 		774767E7240274470099105B /* UIFont+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774767E6240274470099105B /* UIFont+extensions.swift */; };
+		774767E9240281FE0099105B /* LocationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774767E8240281FE0099105B /* LocationModule.swift */; };
+		774767EC240298490099105B /* JGServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774767EB240298490099105B /* JGServices.swift */; };
+		774767EE240298940099105B /* JGApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774767ED240298940099105B /* JGApiService.swift */; };
+		774767F02402996D0099105B /* JGEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774767EF2402996D0099105B /* JGEndPoint.swift */; };
+		774767F32402A6100099105B /* What3WordsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774767F22402A6100099105B /* What3WordsResponse.swift */; };
 		776B091C2401711500A5F0E7 /* SplashReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B091B2401711500A5F0E7 /* SplashReactor.swift */; };
 		776B091F2401728F00A5F0E7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B091E2401728F00A5F0E7 /* UIColor+Extensions.swift */; };
 		77DAF8892401034600928DDE /* JGImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF8882401034600928DDE /* JGImages.swift */; };
@@ -131,6 +136,11 @@
 		774767E22402735C0099105B /* Binggrae-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Binggrae-Bold.otf"; sourceTree = "<group>"; };
 		774767E32402735D0099105B /* Binggrae.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Binggrae.otf; sourceTree = "<group>"; };
 		774767E6240274470099105B /* UIFont+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extensions.swift"; sourceTree = "<group>"; };
+		774767E8240281FE0099105B /* LocationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModule.swift; sourceTree = "<group>"; };
+		774767EB240298490099105B /* JGServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGServices.swift; sourceTree = "<group>"; };
+		774767ED240298940099105B /* JGApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGApiService.swift; sourceTree = "<group>"; };
+		774767EF2402996D0099105B /* JGEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGEndPoint.swift; sourceTree = "<group>"; };
+		774767F22402A6100099105B /* What3WordsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What3WordsResponse.swift; sourceTree = "<group>"; };
 		776B091B2401711500A5F0E7 /* SplashReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashReactor.swift; sourceTree = "<group>"; };
 		776B091E2401728F00A5F0E7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		77DAF8882401034600928DDE /* JGImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGImages.swift; sourceTree = "<group>"; };
@@ -204,6 +214,7 @@
 		04B7EA23224625C800AADADE /* letter_mouse */ = {
 			isa = PBXGroup;
 			children = (
+				774767EA2402983F0099105B /* Services */,
 				774767CE240177840099105B /* Navigator */,
 				776B091A2401710800A5F0E7 /* View */,
 				77DAF892240107B700928DDE /* Modules */,
@@ -328,6 +339,25 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		774767EA2402983F0099105B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				774767F12402A6030099105B /* Responses */,
+				774767EB240298490099105B /* JGServices.swift */,
+				774767ED240298940099105B /* JGApiService.swift */,
+				774767EF2402996D0099105B /* JGEndPoint.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		774767F12402A6030099105B /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				774767F22402A6100099105B /* What3WordsResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
 		776B091A2401710800A5F0E7 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				77DAF893240107C500928DDE /* GIFModule.swift */,
+				774767E8240281FE0099105B /* LocationModule.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -656,8 +687,11 @@
 				04F73CDB22ACDEA000F21912 /* LetterUtils.swift in Sources */,
 				04C1DA3022ABA1A5009CBDC8 /* LetterResultViewController.swift in Sources */,
 				774767E124026D6A0099105B /* UI+Extensions.swift in Sources */,
+				774767EC240298490099105B /* JGServices.swift in Sources */,
 				04B7EA27224625C800AADADE /* SplashVC.swift in Sources */,
+				774767F32402A6100099105B /* What3WordsResponse.swift in Sources */,
 				630F2B0122E6EE9A009FB2AF /* EZSwipeController.swift in Sources */,
+				774767E9240281FE0099105B /* LocationModule.swift in Sources */,
 				77DAF8962401081600928DDE /* BaseViewController.swift in Sources */,
 				774767DB240269D10099105B /* MainVC.swift in Sources */,
 				042A0113224A67DC0070CEAE /* Cartoon01VC.swift in Sources */,
@@ -669,6 +703,7 @@
 				63F1BEB622F1578900E7454C /* GIFUtils.swift in Sources */,
 				776B091F2401728F00A5F0E7 /* UIColor+Extensions.swift in Sources */,
 				774767DD240269E50099105B /* MainReactor.swift in Sources */,
+				774767EE240298940099105B /* JGApiService.swift in Sources */,
 				77DAF8892401034600928DDE /* JGImages.swift in Sources */,
 				04C1DA2E22A69EE5009CBDC8 /* Cartoon08VC.swift in Sources */,
 				77DAF8912401066A00928DDE /* Logger.swift in Sources */,
@@ -690,6 +725,7 @@
 				042A0115224A67F30070CEAE /* Cartoon02VC.swift in Sources */,
 				77DAF88C2401060500928DDE /* UIImage+Extensions.swift in Sources */,
 				04F73CD622ACD2CD00F21912 /* LetterExtension.swift in Sources */,
+				774767F02402996D0099105B /* JGEndPoint.swift in Sources */,
 				774767D624017CCB0099105B /* CartoonMainVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

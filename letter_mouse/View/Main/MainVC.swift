@@ -10,6 +10,7 @@ import UIKit
 import ReactorKit
 import RxCocoa
 import GoogleMaps
+import RxSwift
 
 final class MainVC: BaseViewController, View {
     
@@ -31,7 +32,10 @@ final class MainVC: BaseViewController, View {
     }
     
     // MARK: UI
-    private let googleMapView = GMSMapView()
+    private let googleMapView = GMSMapView().then {
+        $0.isMyLocationEnabled = true
+        $0.settings.myLocationButton = true
+    }
     
     private let upperSafeAreaView = UIView().then {
         $0.backgroundColor = .white
@@ -46,7 +50,7 @@ final class MainVC: BaseViewController, View {
         $0.layer.masksToBounds = true
     }
     
-    private let currentPositionLabel = UILabel().then {
+    private let mainTitleLabel = UILabel().then {
         $0.text = "나의 현재 주소"
         $0.textColor = .mudBrown
         $0.textAlignment = .center
@@ -136,8 +140,8 @@ final class MainVC: BaseViewController, View {
             $0.center.equalToSuperview()
         }
         
-        view.addSubview(currentPositionLabel)
-        currentPositionLabel.snp.remakeConstraints {
+        view.addSubview(mainTitleLabel)
+        mainTitleLabel.snp.remakeConstraints {
             $0.bottom.equalTo(upperView.snp.bottom).offset(-22)
             $0.centerX.equalToSuperview()
         }
@@ -145,7 +149,7 @@ final class MainVC: BaseViewController, View {
         view.addSubview(infoBtnImageView)
         infoBtnImageView.snp.remakeConstraints {
             $0.size.equalTo(32)
-            $0.centerY.equalTo(currentPositionLabel.snp.centerY)
+            $0.centerY.equalTo(mainTitleLabel.snp.centerY)
             $0.trailing.equalToSuperview().offset(-16)
         }
         
@@ -188,5 +192,39 @@ final class MainVC: BaseViewController, View {
             .map { Reactor.Action.infoBtnClicked }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        let location = reactor.locationModule
+            .locationRelay
+            .filterNil()
+            .share()
+        
+        location
+            .take(1)
+            .subscribe(onNext: { [weak self] location in
+                self?.googleMapView.camera = GMSCameraPosition.camera(withLatitude: location.latitude,
+                                                                      longitude: location.longitude,
+                                                                      zoom: 18.0)
+            })
+            .disposed(by: disposeBag)
+        
+        Observable<Int>
+            .interval(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            .map { [weak self ] (_) in self?.googleMapView.myLocation }
+            .distinctUntilChanged()
+            .filterNil()
+            .map({ (location) -> MainReactor.Action in
+                let latitude: Double = location.coordinate.latitude
+                let longitude: Double = location.coordinate.longitude
+                let locationModel = LocationModel(latitude: latitude, longitude: longitude)
+                return Reactor.Action.locationChanged(locationModel)
+            })
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.what3Words }
+            .bind(to: W3WLabel.rx.text)
+            .disposed(by: disposeBag)
+        
     }
 }

@@ -31,18 +31,7 @@ final class SplashVC: BaseViewController, View {
     // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         Logger.debug("SplashVC view did loaded")
-        
-        for family: String in UIFont.familyNames
-        {
-            print(family)
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
-        
     }
     
     // MARK: UI
@@ -89,7 +78,7 @@ final class SplashVC: BaseViewController, View {
         
         self.rx
             .viewWillAppear
-            .take(1)
+            .take(3)
             .delay(.seconds(1), scheduler: MainScheduler.instance)
             .map { (_) in Reactor.Action.viewWillAppear }
             .bind(to: reactor.action)

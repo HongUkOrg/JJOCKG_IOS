@@ -13,7 +13,7 @@ protocol GIFModuleProtocol {
     func gifImage(_ name: String) -> UIImage?
 }
 
-class GIFModule {
+class GIFModule: GIFModuleProtocol {
     
     func gifImage(_ name: String) -> UIImage? {
         

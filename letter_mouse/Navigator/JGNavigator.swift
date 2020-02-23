@@ -58,9 +58,12 @@ class JGNavigator: JGNavigatorProtocol {
         set { }
     }
     
+    private let services: JGServicesProtocol
+    
     // MARK: Initialize
     init(_ window: UIWindow?) {
         self.window = window
+        services = JGServices()
     }
     
     // MARK: Navigate
@@ -104,7 +107,7 @@ class JGNavigator: JGNavigatorProtocol {
             Logger.info("Navigate to Main - \(destination)")
             switch destination {
             case .home:
-                let mainReactor = MainReactor(navigator: self)
+                let mainReactor = MainReactor(navigator: self, services: services)
                 let mainVC = MainVC(reactor: mainReactor)
                 self.window?.rootViewController = mainVC
                 
