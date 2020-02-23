@@ -207,6 +207,7 @@ final class MainVC: BaseViewController, View {
             })
             .disposed(by: disposeBag)
         
+        
         Observable<Int>
             .interval(.seconds(1), scheduler: MainScheduler.asyncInstance)
             .map { [weak self ] (_) in self?.googleMapView.myLocation }

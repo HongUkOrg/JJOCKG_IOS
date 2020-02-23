@@ -180,13 +180,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		042A0111224A67C30070CEAE /* cartoons */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = cartoons;
-			sourceTree = "<group>";
-		};
 		04B7EA18224625C800AADADE = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				774767EA2402983F0099105B /* Services */,
+				774767F12402A6030099105B /* Responses */,
 				774767CE240177840099105B /* Navigator */,
 				776B091A2401710800A5F0E7 /* View */,
 				77DAF892240107B700928DDE /* Modules */,
@@ -224,7 +218,6 @@
 				04F73CD922ACDE9000F21912 /* util */,
 				04F73CD422ACD2B600F21912 /* extension */,
 				04F73CD322ACD2AD00F21912 /* protocol */,
-				042A0111224A67C30070CEAE /* cartoons */,
 				04B7EA28224625C800AADADE /* Main.storyboard */,
 				04B7EA2D224625C900AADADE /* LaunchScreen.storyboard */,
 				0424C0E02250954B00DBB82E /* HttpConnectionHandler.swift */,
@@ -342,7 +335,6 @@
 		774767EA2402983F0099105B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				774767F12402A6030099105B /* Responses */,
 				774767EB240298490099105B /* JGServices.swift */,
 				774767ED240298940099105B /* JGApiService.swift */,
 				774767EF2402996D0099105B /* JGEndPoint.swift */,
