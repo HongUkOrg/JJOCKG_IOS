@@ -48,7 +48,7 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
     }
     
     private let receiverPhoneInputTextField = UITextField().then {
-        $0.font = UIFont.binggraeBold(ofSize: 12)
+        $0.font = .binggraeBold(ofSize: 12)
         $0.textColor = .mudBrown
         $0.placeholder = "010-1234-5678"
         $0.keyboardType = .numberPad
