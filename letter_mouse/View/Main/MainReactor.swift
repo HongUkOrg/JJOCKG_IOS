@@ -77,7 +77,6 @@ final class MainReactor: Reactor {
         
         switch mutation {
         case .changeW3W(let response):
-            Logger.info("reactor response : \(response)")
             state.what3Words = "/// " + response.words
             w3wStore.w3w.accept(response.words)
             

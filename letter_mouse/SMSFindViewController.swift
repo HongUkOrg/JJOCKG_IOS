@@ -50,9 +50,9 @@ class SMSFindViewController: UIViewController, UITextViewDelegate {
     */
     @IBAction func ok_btn_clicked(_ sender: Any) {
         if let paste = pastTextView.text {
-            var json : Dictionary<String,String> = Dictionary<String,String>()
+            var json: Dictionary<String, String> = Dictionary<String, String>()
             
-            var splistArr = paste.components(separatedBy: "\n")
+            let splistArr = paste.components(separatedBy: "\n")
             if splistArr.count != 4 {
                 NSLog("Invaild jjockG SMS")
                 return

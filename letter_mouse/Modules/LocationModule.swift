@@ -46,7 +46,7 @@ extension LocationModule: CLLocationManagerDelegate {
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         
-        Logger.verbose("current location Module : \(latitude), \(longitude)")
+//        Logger.verbose("current location Module : \(latitude), \(longitude)")
         locationRelay.accept(LocationModel(latitude: latitude, longitude: longitude))
     }
 }

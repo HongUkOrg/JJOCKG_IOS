@@ -34,7 +34,7 @@ class JGApiService {
             .filterSuccessfulStatusCodes()
             .map(What3WordsResponse.self, using: JSONDecoder())
             .do(onSuccess: { (response) in
-                Logger.info("response : \(response)")
+//                Logger.info("response : \(response)")
             }, onError: { (error) in
                 Logger.info("get w3w error\(error)")
             })

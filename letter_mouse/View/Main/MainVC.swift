@@ -59,11 +59,12 @@ final class MainVC: BaseViewController, View {
     
     private let infoBtnImageView = UIImageView().then {
         $0.image = JGAsset.Icons.btInfo32X32.image
-        $0.contentMode = .scaleAspectFit    }
+        $0.contentMode = .scaleAspectFit }
     
     private let currentW3WView = UIView().then {
         $0.backgroundColor = .maize
         $0.layer.cornerRadius = 20
+        $0.drawShadow()
     }
     
     private let W3WLabel = UILabel().then {
@@ -205,7 +206,6 @@ final class MainVC: BaseViewController, View {
                                                                       zoom: 18.0)
             })
             .disposed(by: disposeBag)
-        
         
         Observable<Int>
             .interval(.seconds(1), scheduler: MainScheduler.asyncInstance)

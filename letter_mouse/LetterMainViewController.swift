@@ -53,7 +53,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate {
         self.hideKeyboardWhenTappedAround()
         
         print("Main View Acitivity View Did Load!!!")
-        getViewState()
+        _ = getViewState()
         
         self.locationManager.requestAlwaysAuthorization()
         
@@ -78,7 +78,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate {
     func didReceiveDismiss_save() {
         print("MainViewController : called save didReceiveDismiss func")
         
-        getViewState()
+        _ = getViewState()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
             self.showSMSView()
         }
@@ -87,7 +87,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate {
     func didReceiveDismiss_find(_ success : Bool) {
         print("MainViewController : called find didReceiveDismiss func")
         
-        getViewState()
+        _ = getViewState()
         if success{
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
                 self.showLetterResultView()
@@ -99,7 +99,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     func didReceiveDismiss_sms() {
-        getViewState()
+        _ = getViewState()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300) ) {
             self.showSmsFindView()
         }
@@ -232,7 +232,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBAction func letterSaveBtn(_ sender: UIButton) {
         LetterController.getInstance.isSending = true
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "SaveLetterViewController") as! SaveLetterViewController
+        _ = self.storyboard?.instantiateViewController(withIdentifier: "SaveLetterViewController") as! SaveLetterViewController
 
     }
     
@@ -279,13 +279,12 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate {
         }, completion: nil)
     }
     
-    public func setDismissDelegate(delegate : ModalDimissDelegate_save ){
+    public func setDismissDelegate(delegate : ModalDimissDelegate_save ) {
         self.dismissDelegate = delegate
     }
     
-    
     func processResult(_ result: String) {
-        let words = result.characters.split(separator: ".")
+        let words = result.split(separator: ".")
         if !LetterController.getInstance.isSending {
             LetterController.getInstance.currentWhat3Words = result
             w3w_first_word.text = "\(words[0])"
@@ -295,7 +294,7 @@ class LetterMainViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func canOpenLetter(_ distance : Double) -> Bool{
+    func canOpenLetter(_ distance : Double) -> Bool {
         if distance <= 50.0 {
             print("can Open message, remained distance :\(distance)")
             return true

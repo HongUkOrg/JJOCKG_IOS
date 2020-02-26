@@ -40,6 +40,7 @@ extension JGNavigateStep {
     
     enum SendLetterStep {
         case main
+        case dismiss
     }
     
     enum FindLetterStep {
@@ -132,20 +133,29 @@ class JGNavigator: JGNavigatorProtocol {
         case .sendLetter(let destination):
             
             Logger.info("Navigate to sendLetter - \(destination)")
+            
+            let sendLetterReactor = SendLetterReactor(navigator: self, services: services)
+            
             switch destination {
             case .main:
-                break
-            default:
-                break
+                let sendLetterMainVC = SendLetterMainVC(reactor: sendLetterReactor)
+                let navigationVC = UINavigationController(rootViewController: sendLetterMainVC)
+                
+                navigationVC.isNavigationBarHidden = true
+                navigationVC.modalPresentationStyle = .overFullScreen
+                
+                rootViewController?.present(navigationVC, animated: true)
+                
+            case .dismiss:
+                rootViewController?.presentedViewController?.dismiss(animated: true)
             }
             
         case .findLetter(let destination):
             
             Logger.info("Navigate to findLetter - \(destination)")
+            
             switch destination {
             case .main:
-                break
-            default:
                 break
             }
             
