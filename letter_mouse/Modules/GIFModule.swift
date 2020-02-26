@@ -97,11 +97,9 @@ class GIFModule: GIFModuleProtocol {
         }
         
         delay = delayObject as! Double
-        
         if delay < 0.03 {
             delay = 0.03
         }
-        
         return delay
     }
     
@@ -113,9 +111,43 @@ class GIFModule: GIFModuleProtocol {
         var gcd = array[0]
         
         for val in array {
-            gcd = UIImage.gcdForPair(val, gcd)
+            gcd = gcdForPair(val, gcd)
         }
         
         return gcd
     }
+    
+    private func gcdForPair(_ a: Int?, _ b: Int?) -> Int {
+        
+        if b == nil || a == nil {
+            if b != nil {
+                return b!
+            } else if a != nil {
+                return a!
+            } else {
+                return 0
+            }
+        }
+        
+        guard var a = a, var b = b else { return 0 }
+        
+        if a < b {
+            let c = a
+            a = b
+            b = c
+        }
+        
+        var rest: Int
+        while true {
+            rest = a % b
+            
+            if rest == 0 {
+                return b
+            } else {
+                a = b
+                b = rest
+            }
+        }
+    }
+    
 }

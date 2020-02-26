@@ -17,11 +17,17 @@ final class MainReactor: Reactor {
     enum Action {
         case infoBtnClicked
         case locationChanged(LocationModel)
+        
+        case sendLetterBtnClicked
+        case findLetterBtnClicked
     }
     
     //MARK: Mutation
     enum Mutation {
         case changeW3W(What3WordsResponse)
+        
+        case presentSendLetterView
+        case presentFindLetterView
     }
     
     // MARK: State
@@ -35,6 +41,7 @@ final class MainReactor: Reactor {
     let locationModule: LocationModuleProtocol
     private let navigator: JGNavigatorProtocol
     private let services: JGServicesProtocol
+    private let w3wStore: W3WStore
     
     // MARK: Initialize
     init(navigator: JGNavigatorProtocol, services: JGServicesProtocol) {
@@ -43,6 +50,7 @@ final class MainReactor: Reactor {
         self.navigator = navigator
         self.services = services
         self.locationModule = LocationModule()
+        self.w3wStore = W3WStore.sharedInstance
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -54,6 +62,11 @@ final class MainReactor: Reactor {
                 .getW3W(location: locationModel)
                 .map(Mutation.changeW3W)
                 .asObservable()
+            
+        case .sendLetterBtnClicked:
+            return .just(.presentSendLetterView)
+        case .findLetterBtnClicked:
+            return .just(.presentFindLetterView)
         }
         return .empty()
     }
@@ -66,8 +79,12 @@ final class MainReactor: Reactor {
         case .changeW3W(let response):
             Logger.info("reactor response : \(response)")
             state.what3Words = "/// " + response.words
-        default:
-            break
+            w3wStore.w3w.accept(response.words)
+            
+        case .presentSendLetterView:
+            navigator.navigate(.sendLetter(.main))
+        case .presentFindLetterView:
+            navigator.navigate(.findLetter(.main))
         }
         return state
     }

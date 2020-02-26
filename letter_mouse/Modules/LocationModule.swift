@@ -25,7 +25,6 @@ class LocationModule: NSObject, LocationModuleProtocol {
     override init() {
         super.init()
         locationManager.delegate = self
-        
         locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {

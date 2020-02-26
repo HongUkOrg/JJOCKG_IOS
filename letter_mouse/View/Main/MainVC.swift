@@ -59,8 +59,7 @@ final class MainVC: BaseViewController, View {
     
     private let infoBtnImageView = UIImageView().then {
         $0.image = JGAsset.Icons.btInfo32X32.image
-        $0.contentMode = .scaleAspectFit
-    }
+        $0.contentMode = .scaleAspectFit    }
     
     private let currentW3WView = UIView().then {
         $0.backgroundColor = .maize
@@ -225,6 +224,18 @@ final class MainVC: BaseViewController, View {
         reactor.state
             .map { $0.what3Words }
             .bind(to: W3WLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        sendLetterButton.rx
+            .tapThrottle()
+            .map { Reactor.Action.sendLetterBtnClicked }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        findLetterButton.rx
+            .tapThrottle()
+            .map { Reactor.Action.findLetterBtnClicked }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
     }

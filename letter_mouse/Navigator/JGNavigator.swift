@@ -16,6 +16,9 @@ enum JGNavigateStep {
     case cartoon(CartoonStep)
     case main(MainStep)
     
+    case sendLetter(SendLetterStep)
+    case findLetter(FindLetterStep)
+    
 }
 
 extension JGNavigateStep {
@@ -33,6 +36,14 @@ extension JGNavigateStep {
     
     enum MainStep {
         case home
+    }
+    
+    enum SendLetterStep {
+        case main
+    }
+    
+    enum FindLetterStep {
+        case main
     }
     
 }
@@ -116,6 +127,26 @@ class JGNavigator: JGNavigatorProtocol {
                                   options: .transitionCrossDissolve,
                                   animations: {},
                                   completion: nil)
+            }
+            
+        case .sendLetter(let destination):
+            
+            Logger.info("Navigate to sendLetter - \(destination)")
+            switch destination {
+            case .main:
+                break
+            default:
+                break
+            }
+            
+        case .findLetter(let destination):
+            
+            Logger.info("Navigate to findLetter - \(destination)")
+            switch destination {
+            case .main:
+                break
+            default:
+                break
             }
             
         /// end switch
