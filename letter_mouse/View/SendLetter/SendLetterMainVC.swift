@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import RxGesture
 import RxViewController
+import RxKeyboard
 import Then
 import SnapKit
 
@@ -36,6 +37,10 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
     
     // MARK: - UI
     private let contentsView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
+    private let backgroundWhiteView = UIView().then {
         $0.backgroundColor = .white
         $0.alpha = 0.7
         $0.layer.cornerRadius = 16
@@ -72,6 +77,11 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
         $0.layer.cornerRadius = 16
     }
     
+    private let letterContentTextView = UITextView().then {
+        $0.backgroundColor = .clear
+        $0.textContainer.maximumNumberOfLines = 10
+    }
+    
     private let sendLetterButtonView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 20
@@ -101,18 +111,23 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
         
         view.addSubview(contentsView)
         contentsView.snp.remakeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        contentsView.addSubview(backgroundWhiteView)
+        backgroundWhiteView.snp.remakeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.width.equalToSuperview().offset(-26)
             $0.height.equalToSuperview().dividedBy(1.33)
         }
         
-        view.addSubview(receiverPhoneInputView)
+        contentsView.addSubview(receiverPhoneInputView)
         receiverPhoneInputView.snp.remakeConstraints {
-            $0.top.equalTo(contentsView.snp.top).offset(18)
+            $0.top.equalTo(backgroundWhiteView.snp.top).offset(18)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(40)
-            $0.width.equalTo(contentsView.snp.width).offset(-150)
+            $0.width.equalTo(backgroundWhiteView.snp.width).offset(-150)
         }
         
         receiverPhoneInputView.addSubview(receiverPhoneInputTextField)
@@ -121,28 +136,28 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
             $0.edges.equalToSuperview()
         }
         
-        view.addSubview(receiverNameLabel)
+        contentsView.addSubview(receiverNameLabel)
         receiverNameLabel.snp.remakeConstraints {
             $0.centerY.equalTo(receiverPhoneInputView)
             $0.trailing.equalTo(receiverPhoneInputView.snp.leading).offset(-9)
         }
         
-        view.addSubview(contactsImageView)
+        contentsView.addSubview(contactsImageView)
         contactsImageView.snp.remakeConstraints {
             $0.centerY.equalTo(receiverPhoneInputView)
             $0.leading.equalTo(receiverPhoneInputView.snp.trailing).offset(9)
         }
         
-        view.addSubview(letterView)
+        contentsView.addSubview(letterView)
         letterView.snp.remakeConstraints {
             $0.top.equalTo(receiverPhoneInputView.snp.bottom).offset(12)
-            $0.width.equalTo(contentsView.snp.width).offset(-38)
+            $0.width.equalTo(backgroundWhiteView.snp.width).offset(-38)
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview()
             
         }
         
-        view.addSubview(dismissButton)
+        contentsView.addSubview(dismissButton)
         dismissButton.snp.remakeConstraints {
             $0.width.equalTo(letterView.snp.width).offset(-70)
             $0.centerX.equalToSuperview()
@@ -150,7 +165,7 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
         }
         
-        view.addSubview(sendLetterButtonView)
+        contentsView.addSubview(sendLetterButtonView)
         sendLetterButtonView.snp.remakeConstraints {
             $0.width.equalTo(letterView.snp.width).offset(-70)
             $0.centerX.equalToSuperview()
@@ -162,12 +177,29 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
         sendLetterButton.snp.remakeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        contentsView.addSubview(letterContentTextView)
+        letterContentTextView.snp.remakeConstraints {
+            $0.width.equalTo(letterView.snp.width).offset(-55)
+            $0.top.equalTo(letterView.snp.top).offset(30)
+            $0.bottom.equalTo(sendLetterButtonView.snp.top).offset(-30)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     // MARK: - Binding
     func bind(reactor: Reactor) {
         
         receiverPhoneInputTextField.delegate = self
+        
+        self.rx
+            .viewWillAppear
+            .take(1)
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] (_) in
+                self?.drawLetterSubLine()
+            })
+            .disposed(by: disposeBag)
         
         self.view.rx
             .tapGesture()
@@ -201,6 +233,43 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
             .map { Reactor.Action.dismissBtnClicked }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        letterContentTextView.rx
+            .text
+            .orEmpty
+            .map { (text) in
+                let style = NSMutableParagraphStyle()
+                style.lineSpacing = 10
+                let attributes = [NSAttributedString.Key.paragraphStyle: style,
+                                  NSAttributedString.Key.font: UIFont.binggrae(ofSize: 14),
+                                  NSAttributedString.Key.foregroundColor: UIColor.mudBrown]
+                return NSAttributedString(string: text, attributes: attributes)
+            }
+            .bind(to: letterContentTextView.rx.attributedText)
+            .disposed(by: disposeBag)
+        
+        letterContentTextView.rx
+            .didBeginEditing
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (_) in
+                UIView.animate(withDuration: 0.3) { [weak self] in
+                    guard let originalHeight = self?.backgroundWhiteView.frame.height else {
+                        return
+                    }
+                    self?.contentsView.frame.origin.y -= (UIScreen.main.bounds.height - originalHeight)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        letterContentTextView.rx
+            .didEndEditing
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: {
+                UIView.animate(withDuration: 0.2) { [weak self] in
+                    self?.contentsView.frame.origin.y = 0
+                }
+            })
+            .disposed(by: disposeBag)
                 
     }
     
@@ -229,5 +298,24 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
         
         previousPhoneNumberCount = inputString.count
         return result
+    }
+    
+    private func drawLetterSubLine() {
+        let textViewHeight = letterContentTextView.frame.height
+        Logger.debug("text view height : \(textViewHeight)")
+        let lineNumber = Int( (textViewHeight - 29.0) / 29.0 )
+        Logger.debug("line Number : \(lineNumber)")
+        
+        for i in 0..<lineNumber {
+            let lineSpacing = i * 29 + 29
+            let subLine = LetterSubLine()
+            contentsView.addSubview(subLine)
+            subLine.snp.remakeConstraints {
+                $0.width.equalTo(letterContentTextView.snp.width).offset(-10)
+                $0.centerX.equalToSuperview()
+                $0.top.equalTo(letterContentTextView.snp.top).offset(lineSpacing)
+                $0.height.equalTo(1)
+            }
+        }
     }
 }

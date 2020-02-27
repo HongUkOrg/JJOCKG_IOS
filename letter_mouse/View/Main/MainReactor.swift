@@ -6,7 +6,6 @@
 //  Copyright © 2020 mac. All rights reserved.
 //
 
-
 import Foundation
 import RxSwift
 import ReactorKit
@@ -15,9 +14,12 @@ final class MainReactor: Reactor {
     
     // MARK: Action
     enum Action {
-        case infoBtnClicked
-        case locationChanged(LocationModel)
         
+        case locationChanged(LocationModel)
+        case checkLoacationPermission
+        case fetchLocation(Bool)
+        
+        case infoBtnClicked
         case sendLetterBtnClicked
         case findLetterBtnClicked
     }
@@ -25,6 +27,7 @@ final class MainReactor: Reactor {
     //MARK: Mutation
     enum Mutation {
         case changeW3W(What3WordsResponse)
+        case fetchLocation(Bool)
         
         case presentSendLetterView
         case presentFindLetterView
@@ -34,6 +37,7 @@ final class MainReactor: Reactor {
     struct State {
         var what3Words: String? = nil
         var location: LocationModel? = nil
+        var isFetchLocation: Bool = false
     }
     
     // MARK: Properties
@@ -64,9 +68,19 @@ final class MainReactor: Reactor {
                 .asObservable()
             
         case .sendLetterBtnClicked:
-            return .just(.presentSendLetterView)
+            return .concat([
+                .just(.fetchLocation(false)),
+                .just(.presentSendLetterView)
+            ])
         case .findLetterBtnClicked:
             return .just(.presentFindLetterView)
+            
+        case .checkLoacationPermission:
+            // TODO: - location permission check
+            return .just(.fetchLocation(true))
+            
+        case .fetchLocation(let value):
+            return .just(.fetchLocation(value))
         }
         return .empty()
     }
@@ -84,6 +98,9 @@ final class MainReactor: Reactor {
             navigator.navigate(.sendLetter(.main))
         case .presentFindLetterView:
             navigator.navigate(.findLetter(.main))
+            
+        case .fetchLocation(let value):
+            state.isFetchLocation = value
         }
         return state
     }

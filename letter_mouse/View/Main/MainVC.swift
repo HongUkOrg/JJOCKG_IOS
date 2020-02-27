@@ -188,6 +188,12 @@ final class MainVC: BaseViewController, View {
     // MARK: Binding
     func bind(reactor: Reactor) {
         
+        self.rx
+            .viewWillAppear
+            .map { (_) in Reactor.Action.checkLoacationPermission }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         infoBtnImageView.rx
             .tapGestureThrottle()
             .map { Reactor.Action.infoBtnClicked }
@@ -210,6 +216,7 @@ final class MainVC: BaseViewController, View {
         
         Observable<Int>
             .interval(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            .filter { (_) in reactor.currentState.isFetchLocation }
             .map { [weak self ] (_) in self?.googleMapView.myLocation }
             .distinctUntilChanged()
             .filterNil()
@@ -219,6 +226,14 @@ final class MainVC: BaseViewController, View {
                 let locationModel = LocationModel(latitude: latitude, longitude: longitude)
                 return Reactor.Action.locationChanged(locationModel)
             })
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        Observable<Int>
+            .interval(.milliseconds(500), scheduler: MainScheduler.asyncInstance)
+            .filter { [weak self] (_) in self?.presentedViewController == nil }
+            .filter { (_) in reactor.currentState.isFetchLocation == false }
+            .map { (_) in Reactor.Action.fetchLocation(true) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
