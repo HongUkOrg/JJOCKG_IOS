@@ -69,7 +69,7 @@ final class MainVC: BaseViewController, View {
     }
     
     private let W3WLabel = UILabel().then {
-        $0.text = "/// 허브.숟가락.창문"
+        $0.text = "위치 조정중..."
         $0.textColor = .mudBrown
         $0.textAlignment = .center
         $0.font = UIFont.binggrae(ofSize: 12)

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		040C4FB5226617B0009663CB /* FindLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040C4FB4226617B0009663CB /* FindLetterViewController.swift */; };
-		0424C0E12250954B00DBB82E /* HttpConnectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424C0E02250954B00DBB82E /* HttpConnectionHandler.swift */; };
 		0424C0E32250C80500DBB82E /* LetterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424C0E22250C80500DBB82E /* LetterController.swift */; };
 		0424C0E72251141200DBB82E /* SaveLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424C0E62251141200DBB82E /* SaveLetterViewController.swift */; };
 		042A0113224A67DC0070CEAE /* Cartoon01VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042A0112224A67DC0070CEAE /* Cartoon01VC.swift */; };
@@ -20,7 +19,6 @@
 		04AD639A22588BF500B6360C /* SMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD639922588BF500B6360C /* SMSViewController.swift */; };
 		04B7EA25224625C800AADADE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7EA24224625C800AADADE /* AppDelegate.swift */; };
 		04B7EA27224625C800AADADE /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7EA26224625C800AADADE /* SplashVC.swift */; };
-		04B7EA2A224625C800AADADE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B7EA28224625C800AADADE /* Main.storyboard */; };
 		04B7EA2F224625C900AADADE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B7EA2D224625C900AADADE /* LaunchScreen.storyboard */; };
 		04B7EA3A224625C900AADADE /* letter_mouseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7EA39224625C900AADADE /* letter_mouseTests.swift */; };
 		04B7EA45224625C900AADADE /* letter_mouseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7EA44224625C900AADADE /* letter_mouseUITests.swift */; };
@@ -94,7 +92,6 @@
 
 /* Begin PBXFileReference section */
 		040C4FB4226617B0009663CB /* FindLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLetterViewController.swift; sourceTree = "<group>"; };
-		0424C0E02250954B00DBB82E /* HttpConnectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpConnectionHandler.swift; sourceTree = "<group>"; };
 		0424C0E22250C80500DBB82E /* LetterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterController.swift; sourceTree = "<group>"; };
 		0424C0E62251141200DBB82E /* SaveLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLetterViewController.swift; sourceTree = "<group>"; };
 		042A0112224A67DC0070CEAE /* Cartoon01VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartoon01VC.swift; sourceTree = "<group>"; };
@@ -107,7 +104,6 @@
 		04B7EA21224625C800AADADE /* letter_mouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = letter_mouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B7EA24224625C800AADADE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04B7EA26224625C800AADADE /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
-		04B7EA29224625C800AADADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04B7EA2E224625C900AADADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04B7EA30224625C900AADADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04B7EA35224625C900AADADE /* letter_mouseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = letter_mouseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,9 +233,7 @@
 				04F73CD922ACDE9000F21912 /* Common */,
 				04F73CD422ACD2B600F21912 /* Extension */,
 				04F73CD322ACD2AD00F21912 /* protocol */,
-				04B7EA28224625C800AADADE /* Main.storyboard */,
 				04B7EA2D224625C900AADADE /* LaunchScreen.storyboard */,
-				0424C0E02250954B00DBB82E /* HttpConnectionHandler.swift */,
 				04A409FC225077F400671C3C /* LetterMainViewController.swift */,
 				0424C0E22250C80500DBB82E /* LetterController.swift */,
 				0424C0E62251141200DBB82E /* SaveLetterViewController.swift */,
@@ -582,7 +576,6 @@
 				04B7EA2F224625C900AADADE /* LaunchScreen.storyboard in Resources */,
 				63F1BEB922F158B000E7454C /* main_g.gif in Resources */,
 				774767E42402735D0099105B /* Binggrae-Bold.otf in Resources */,
-				04B7EA2A224625C800AADADE /* Main.storyboard in Resources */,
 				04C1DA2C22A69952009CBDC8 /* JGAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -771,7 +764,6 @@
 				04B7EA25224625C800AADADE /* AppDelegate.swift in Sources */,
 				04C1DA2822A69732009CBDC8 /* Cartoon06VC.swift in Sources */,
 				63F1BEBE22F16B2E00E7454C /* SMSFindViewController.swift in Sources */,
-				0424C0E12250954B00DBB82E /* HttpConnectionHandler.swift in Sources */,
 				776B091C2401711500A5F0E7 /* SplashReactor.swift in Sources */,
 				77ED097F2406B351008454EB /* SendLetterMainVC.swift in Sources */,
 				04F73CD822ACD33500F21912 /* LetterProtocol.swift in Sources */,
@@ -819,14 +811,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		04B7EA28224625C800AADADE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				04B7EA29224625C800AADADE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		04B7EA2D224625C900AADADE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

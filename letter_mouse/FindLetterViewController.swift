@@ -27,38 +27,6 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate, CNCon
     private var previousInputCount = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.hideKeyboardWhenTappedAround()
-        numberInputTextField.addShadowToTextField(cornerRadius: 18)
-        numberInputTextField.keyboardType = UIKeyboardType.numberPad
-        
-        W3W_input_view.addRoundness(cornerRadius : 18)
-        superWhiteView.addRoundness(cornerRadius : 18)
-        stackViewInW3W.addRoundness(cornerRadius : 18)
-        
-        
-        
-//        letterFindBtn.layer.cornerRadius = 18
-//        letterFindBtn.clipsToBounds = true
-//        letterFindBtn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-//        letterFindBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-//        letterFindBtn.layer.shadowOpacity = 1.0
-//        letterFindBtn.layer.shadowRadius = 0.0
-//        letterFindBtn.layer.masksToBounds = false
-//
-//        SMS_findBtn.layer.cornerRadius = 18
-//        SMS_findBtn.clipsToBounds = true
-//        SMS_findBtn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-//        SMS_findBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-//        SMS_findBtn.layer.shadowOpacity = 1.0
-//        SMS_findBtn.layer.shadowRadius = 0.0
-//        SMS_findBtn.layer.masksToBounds = false
-        
-        letterFindBtn.addRoundnessShadowToButton(cornerRadius : 18)
-        SMS_findBtn.addRoundnessShadowToButton(cornerRadius : 18)
-        // Do any additional setup after loading the view.
-        
-        HttpConnectionHandler.getInstance.setFindLetterResultDelegate(self)
     }
     
     @IBAction func findLetterBtnClicked(_ sender: UIButton) {
@@ -74,20 +42,7 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate, CNCon
         if json.count != 2 {
             return
         }
-        HttpConnectionHandler.getInstance.httpUrlConnection(isSave:false, json: json)
-        
-        
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func processFindLetterResult(_ result: String) {
         print("process find letter result : \(result)")
@@ -114,7 +69,6 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate, CNCon
         if let delegate : ModalDimissDelegate_find = LetterController.getInstance.LetterFindDismissDelegate as! ModalDimissDelegate_find {
             delegate.didReceiveDismiss_find(success)
         }
-        dismissFunc()
     }
     @IBAction func contactBtnClicked(_ sender: Any) {
         let cnPicker = CNContactPickerViewController()
@@ -128,46 +82,8 @@ class FindLetterViewController: UIViewController,FindLetterResultDelegate, CNCon
         }
     }
     @IBAction func findLetterBySMS(_ sender: Any) {
-        self.dismissFunc()
-        
         if let delegate : ModalDimissDelegate_sms = LetterController.getInstance.smsFindDismissDeleagte {
             delegate.didReceiveDismiss_sms()
         }
-    }
-    
-    
-    func dismissFunc(){
-        dismiss(animated: true, completion: nil)
-    }
-
-    @IBAction func addDashToPhoneNumber(_ sender: Any) {
-        var beforeChangeCount : Int = 0
-
-        if let input = numberInputTextField.text {
-            beforeChangeCount = input.count
-            switch input.count {
-            case 3, 8:
-                if previousInputCount == 2 || previousInputCount == 7{
-                    numberInputTextField.text = input + "-"
-                }
-            case 4:
-                if(input[input.index(input.startIndex,offsetBy: 3)] == "-"){
-                    break
-                }
-                var temp = input
-                temp.insert("-", at: input.index(input.startIndex, offsetBy: 3))
-                numberInputTextField.text = temp
-            case 9:
-                if(input[input.index(input.startIndex,offsetBy: 8)] == "-"){
-                    break
-                }
-                var temp = input
-                temp.insert("-", at: input.index(input.startIndex, offsetBy: 8))
-                numberInputTextField.text = temp
-            default:
-                break
-            }
-        }
-        previousInputCount = beforeChangeCount
     }
 }

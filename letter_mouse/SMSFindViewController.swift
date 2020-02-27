@@ -61,7 +61,6 @@ class SMSFindViewController: UIViewController, UITextViewDelegate {
             json["w3w_address"] = splistArr[2]
             
             self.dismiss(animated: true, completion: nil)
-            HttpConnectionHandler.getInstance.httpUrlConnection(isSave:false, json: json)
         }
     }
     @IBAction func cancelBtnClicked(_ sender: Any) {
