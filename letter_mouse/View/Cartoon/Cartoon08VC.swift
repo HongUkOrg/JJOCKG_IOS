@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxViewController
+import RxSwift
 
 class Cartoon08VC: BaseViewController {
 
@@ -14,6 +16,7 @@ class Cartoon08VC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view did loaded on main")
+        bind()
     }
 
     // MARK: UI
@@ -29,5 +32,16 @@ class Cartoon08VC: BaseViewController {
             $0.center.equalToSuperview()
             $0.width.equalToSuperview().offset(-30)
         }
+    }
+    
+    // MARK: - Binding
+    func bind() {
+        self.rx
+            .viewWillAppear
+            .subscribe(onNext: { (_) in
+                Logger.debug("Tutorial Cartoon completed")
+                DefaultsService.shared.set(.hasSeenCartoon, as: true)
+            })
+            .disposed(by: disposeBag)
     }
 }

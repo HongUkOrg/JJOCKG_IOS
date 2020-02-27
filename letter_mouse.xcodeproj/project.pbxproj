@@ -61,6 +61,7 @@
 		7771D7CF2407D605003A03B4 /* SendLetterResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7CE2407D605003A03B4 /* SendLetterResultVC.swift */; };
 		77A8FC6324075E4200D1430A /* LetterSubLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FC6224075E4200D1430A /* LetterSubLine.swift */; };
 		77A8FC652407730D00D1430A /* LetterStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FC642407730D00D1430A /* LetterStep.swift */; };
+		77BCC58F24080E42002E3A59 /* DefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BCC58E24080E42002E3A59 /* DefaultsService.swift */; };
 		77DAF8892401034600928DDE /* JGImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF8882401034600928DDE /* JGImages.swift */; };
 		77DAF88C2401060500928DDE /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF88B2401060500928DDE /* UIImage+Extensions.swift */; };
 		77DAF88E2401062100928DDE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF88D2401062100928DDE /* String+Extensions.swift */; };
@@ -156,6 +157,7 @@
 		7771D7CE2407D605003A03B4 /* SendLetterResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendLetterResultVC.swift; sourceTree = "<group>"; };
 		77A8FC6224075E4200D1430A /* LetterSubLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterSubLine.swift; sourceTree = "<group>"; };
 		77A8FC642407730D00D1430A /* LetterStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterStep.swift; sourceTree = "<group>"; };
+		77BCC58E24080E42002E3A59 /* DefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsService.swift; sourceTree = "<group>"; };
 		77DAF8882401034600928DDE /* JGImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGImages.swift; sourceTree = "<group>"; };
 		77DAF88B2401060500928DDE /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		77DAF88D2401062100928DDE /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -199,8 +201,6 @@
 		04B7EA18224625C800AADADE = {
 			isa = PBXGroup;
 			children = (
-				63F1BEB822F158B000E7454C /* main_g.gif */,
-				04B7EA24224625C800AADADE /* AppDelegate.swift */,
 				04B7EA23224625C800AADADE /* letter_mouse */,
 				04B7EA38224625C900AADADE /* letter_mouseTests */,
 				04B7EA43224625C900AADADE /* letter_mouseUITests */,
@@ -223,6 +223,9 @@
 		04B7EA23224625C800AADADE /* letter_mouse */ = {
 			isa = PBXGroup;
 			children = (
+				04B7EA30224625C900AADADE /* Info.plist */,
+				63F1BEB822F158B000E7454C /* main_g.gif */,
+				04B7EA24224625C800AADADE /* AppDelegate.swift */,
 				77ED09842406B527008454EB /* Model */,
 				774767EA2402983F0099105B /* Services */,
 				774767CE240177840099105B /* Navigator */,
@@ -233,16 +236,13 @@
 				04F73CD922ACDE9000F21912 /* Common */,
 				04F73CD422ACD2B600F21912 /* Extension */,
 				04F73CD322ACD2AD00F21912 /* protocol */,
-				04B7EA2D224625C900AADADE /* LaunchScreen.storyboard */,
 				04A409FC225077F400671C3C /* LetterMainViewController.swift */,
 				0424C0E22250C80500DBB82E /* LetterController.swift */,
 				0424C0E62251141200DBB82E /* SaveLetterViewController.swift */,
 				04AD639922588BF500B6360C /* SMSViewController.swift */,
 				040C4FB4226617B0009663CB /* FindLetterViewController.swift */,
 				04C1DA2F22ABA1A5009CBDC8 /* LetterResultViewController.swift */,
-				04B7EA30224625C900AADADE /* Info.plist */,
 				63F1BEBD22F16B2E00E7454C /* SMSFindViewController.swift */,
-				77DAF8952401081600928DDE /* BaseViewController.swift */,
 			);
 			path = letter_mouse;
 			sourceTree = "<group>";
@@ -289,6 +289,7 @@
 				04F73CDA22ACDEA000F21912 /* LetterUtils.swift */,
 				630F2B0022E6EE9A009FB2AF /* EZSwipeController.swift */,
 				77DAF8902401066A00928DDE /* Logger.swift */,
+				77BCC58E24080E42002E3A59 /* DefaultsService.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -368,6 +369,8 @@
 		776B091A2401710800A5F0E7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04B7EA2D224625C900AADADE /* LaunchScreen.storyboard */,
+				77DAF8952401081600928DDE /* BaseViewController.swift */,
 				77A8FC6124075E0A00D1430A /* CustomView */,
 				77ED097D2406B22A008454EB /* SendLetter */,
 				774767D9240269B70099105B /* Main */,
@@ -757,6 +760,7 @@
 				774767D02401778E0099105B /* JGNavigator.swift in Sources */,
 				0424C0E72251141200DBB82E /* SaveLetterViewController.swift in Sources */,
 				77DAF88E2401062100928DDE /* String+Extensions.swift in Sources */,
+				77BCC58F24080E42002E3A59 /* DefaultsService.swift in Sources */,
 				04A409FD225077F400671C3C /* LetterMainViewController.swift in Sources */,
 				04C1DA2A22A6973D009CBDC8 /* Cartoon07VC.swift in Sources */,
 				040C4FB5226617B0009663CB /* FindLetterViewController.swift in Sources */,

@@ -54,7 +54,12 @@ final class SplashReactor: Reactor {
         switch mutation {
         case .navigateToCartoon:
             
-            navigator.navigate(.cartoon(.main))
+            guard let hasSeenCartoon = DefaultsService.shared.get(.hasSeenCartoon),
+                hasSeenCartoon == true else {
+                    navigator.navigate(.cartoon(.main))
+                    return state
+            }
+            navigator.navigate(.main(.home))
             
         case .navigateToMain:
             

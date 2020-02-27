@@ -33,7 +33,7 @@ target 'letter_mouse' do
   # Misc.
   pod 'Then', '~> 2.6.0'
   pod 'DeviceKit', '~> 1.3'
-  pod 'SwiftyUserDefaults'
+  pod 'SwiftyUserDefaults', '4.0.0-alpha.1'
   
   target 'letter_mouseTests' do
     inherit! :search_paths

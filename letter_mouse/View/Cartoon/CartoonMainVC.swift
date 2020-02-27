@@ -83,7 +83,6 @@ final class CartoonMainVC: EZSwipeController, View {
             .bind(to: pageControlImageView.rx.image)
             .disposed(by: disposeBag)
         
-        
         skipButton.rx
             .tapThrottle()
             .map { Reactor.Action.skipBtnClicked }

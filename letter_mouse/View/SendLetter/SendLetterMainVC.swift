@@ -67,6 +67,12 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
         $0.font = UIFont.binggrae(ofSize: 12)
     }
     
+    private let contactView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 20
+        $0.drawShadow(color: .black, offset: CGSize(width: 2, height: 2), opacity: 0.7, radius: 2.0)
+    }
+    
     private let contactsImageView = UIImageView().then {
         $0.image = JGAsset.Icons.phoneBook.image
         $0.contentMode = .scaleAspectFit
@@ -139,10 +145,15 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
             $0.trailing.equalTo(receiverPhoneInputView.snp.leading).offset(-9)
         }
         
-        contentsView.addSubview(contactsImageView)
-        contactsImageView.snp.remakeConstraints {
+        contentsView.addSubview(contactView)
+        contactView.snp.remakeConstraints {
             $0.centerY.equalTo(receiverPhoneInputView)
             $0.leading.equalTo(receiverPhoneInputView.snp.trailing).offset(9)
+        }
+        
+        contactView.addSubview(contactsImageView)
+        contactsImageView.snp.remakeConstraints {
+            $0.center.equalToSuperview()
         }
         
         contentsView.addSubview(letterView)

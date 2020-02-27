@@ -90,7 +90,7 @@ final class SendLetterResultVC: BaseViewController, View {
     }
     
     private let phoneBookImageView = UIImageView().then {
-        $0.image = JGAsset.Icons.phoneBook.image
+        $0.image = JGAsset.Icons.icPhonebook20X20.image
         $0.contentMode = .scaleAspectFit
         $0.layer.cornerRadius = 20
         $0.layer.borderColor = UIColor.mudBrown.cgColor
