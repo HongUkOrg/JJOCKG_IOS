@@ -302,9 +302,7 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
     
     private func drawLetterSubLine() {
         let textViewHeight = letterContentTextView.frame.height
-        Logger.debug("text view height : \(textViewHeight)")
         let lineNumber = Int( (textViewHeight - 29.0) / 29.0 )
-        Logger.debug("line Number : \(lineNumber)")
         
         for i in 0..<lineNumber {
             let lineSpacing = i * 29 + 29
