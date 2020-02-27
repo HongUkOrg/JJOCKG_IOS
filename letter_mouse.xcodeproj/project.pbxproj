@@ -60,6 +60,7 @@
 		7771D7C92407D1D5003A03B4 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7C82407D1D5003A03B4 /* StandardButton.swift */; };
 		7771D7CB2407D1EC003A03B4 /* ArtiButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7CA2407D1EC003A03B4 /* ArtiButton.swift */; };
 		7771D7CD2407D20C003A03B4 /* CommonCircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7CC2407D20C003A03B4 /* CommonCircularButton.swift */; };
+		7771D7CF2407D605003A03B4 /* SendLetterResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7CE2407D605003A03B4 /* SendLetterResultVC.swift */; };
 		77A8FC6324075E4200D1430A /* LetterSubLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FC6224075E4200D1430A /* LetterSubLine.swift */; };
 		77A8FC652407730D00D1430A /* LetterStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FC642407730D00D1430A /* LetterStep.swift */; };
 		77DAF8892401034600928DDE /* JGImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF8882401034600928DDE /* JGImages.swift */; };
@@ -156,6 +157,7 @@
 		7771D7C82407D1D5003A03B4 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		7771D7CA2407D1EC003A03B4 /* ArtiButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtiButton.swift; sourceTree = "<group>"; };
 		7771D7CC2407D20C003A03B4 /* CommonCircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCircularButton.swift; sourceTree = "<group>"; };
+		7771D7CE2407D605003A03B4 /* SendLetterResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendLetterResultVC.swift; sourceTree = "<group>"; };
 		77A8FC6224075E4200D1430A /* LetterSubLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterSubLine.swift; sourceTree = "<group>"; };
 		77A8FC642407730D00D1430A /* LetterStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterStep.swift; sourceTree = "<group>"; };
 		77DAF8882401034600928DDE /* JGImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGImages.swift; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 			children = (
 				77ED097E2406B351008454EB /* SendLetterMainVC.swift */,
 				77ED09802406B36C008454EB /* SendLetterReactor.swift */,
+				7771D7CE2407D605003A03B4 /* SendLetterResultVC.swift */,
 			);
 			path = SendLetter;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				042A0117224A784E0070CEAE /* Cartoon03VC.swift in Sources */,
+				7771D7CF2407D605003A03B4 /* SendLetterResultVC.swift in Sources */,
 				04F73CDB22ACDEA000F21912 /* LetterUtils.swift in Sources */,
 				77ED09812406B36C008454EB /* SendLetterReactor.swift in Sources */,
 				04C1DA3022ABA1A5009CBDC8 /* LetterResultViewController.swift in Sources */,

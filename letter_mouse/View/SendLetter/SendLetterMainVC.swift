@@ -189,6 +189,20 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
         
         receiverPhoneInputTextField.delegate = self
         
+        receiverPhoneInputTextField.rx
+            .controlEvent([.editingDidBegin])
+            .subscribe(onNext: { [weak self] (_) in
+                self?.letterContentTextView.isEditable = false
+            })
+            .disposed(by: disposeBag)
+        
+        receiverPhoneInputTextField.rx
+            .controlEvent([.editingDidEnd])
+            .subscribe(onNext: { [weak self] (_) in
+                self?.letterContentTextView.isEditable = true
+            })
+            .disposed(by: disposeBag)
+        
         self.rx
             .viewWillAppear
             .take(1)

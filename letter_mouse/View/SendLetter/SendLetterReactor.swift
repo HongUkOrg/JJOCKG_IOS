@@ -84,7 +84,8 @@ final class SendLetterReactor: Reactor {
         case .setReceiverPhoneNumber(let phoneNumber):
             state.receiverPhone = phoneNumber
         case .navigateToResult(let response):
-            Logger.debug("Send Letter Response : \(response)")
+            Logger.debug("sendLetterResult : \(response)")
+            navigator.navigate(.sendLetter(.result))
         case .error:
             Logger.error("Invalid SendLetter Request")
         }

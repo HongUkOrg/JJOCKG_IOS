@@ -40,6 +40,7 @@ extension JGNavigateStep {
     
     enum SendLetterStep {
         case main
+        case result
         case dismiss
     }
     
@@ -72,6 +73,7 @@ class JGNavigator: JGNavigatorProtocol {
     
     private let services: JGServicesProtocol
     private var mainReactor: MainReactor?
+    private var sendLetterReactor: SendLetterReactor?
     
     // MARK: Initialize
     init(_ window: UIWindow?) {
@@ -139,10 +141,11 @@ class JGNavigator: JGNavigatorProtocol {
             Logger.info("Navigate to sendLetter - \(destination)")
             
             guard let mainReactor = mainReactor else { return }
-            let sendLetterReactor = SendLetterReactor(mainReactor: mainReactor, navigator: self, services: services)
             
             switch destination {
             case .main:
+                sendLetterReactor = SendLetterReactor(mainReactor: mainReactor, navigator: self, services: services)
+                guard let sendLetterReactor = sendLetterReactor else { return }
                 let sendLetterMainVC = SendLetterMainVC(reactor: sendLetterReactor)
                 let navigationVC = UINavigationController(rootViewController: sendLetterMainVC)
                 
@@ -151,6 +154,17 @@ class JGNavigator: JGNavigatorProtocol {
                 
                 rootViewController?.present(navigationVC, animated: true)
                 
+            case .result:
+                
+                guard let navigationVC = rootViewController?.presentedViewController as? UINavigationController,
+                let sendLetterReactor = sendLetterReactor else {
+                    Logger.error("Inavlid View stack")
+                    return
+                }
+                
+                let sendLetterResultVC = SendLetterResultVC(reactor: sendLetterReactor)
+                navigationVC.pushViewController(sendLetterResultVC, animated: true)
+                                
             case .dismiss:
                 rootViewController?.presentedViewController?.dismiss(animated: true)
             }

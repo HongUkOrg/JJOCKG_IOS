@@ -62,6 +62,7 @@ internal enum JGAsset {
     internal static let cancelBtn = JGImage(name: "cancel_btn")
     internal static let currentLetter = JGImage(name: "current_letter")
     internal static let findLetterBtn = JGImage(name: "find_letter_btn")
+    internal static let icLock20X20 = JGImage(name: "icLock20X20")
     internal static let imMenuLeft104X46 = JGImage(name: "imMenuLeft104X46")
     internal static let imMenuRight104X46 = JGImage(name: "imMenuRight104X46")
     internal static let jgBtn = JGImage(name: "jg_btn")
@@ -100,6 +101,7 @@ internal enum JGAsset {
     Icons.cancelBtn,
     Icons.currentLetter,
     Icons.findLetterBtn,
+    Icons.icLock20X20,
     Icons.imMenuLeft104X46,
     Icons.imMenuRight104X46,
     Icons.jgBtn,
