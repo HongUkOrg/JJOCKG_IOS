@@ -30,6 +30,7 @@ final class MainReactor: Reactor {
     enum Mutation {
         case changeW3W(What3WordsResponse)
         case fetchLocation(Bool)
+        case setLocation(LocationModel)
         case changeLetterStep(LetterStep)
         
         case presentSendLetterView
@@ -39,7 +40,6 @@ final class MainReactor: Reactor {
     // MARK: State
     struct State {
         var what3Words: String? = nil
-        var location: LocationModel? = nil
         var isFetchLocation: Bool = false
         var letterStep: LetterStep = .normal
         
@@ -59,7 +59,7 @@ final class MainReactor: Reactor {
         self.navigator = navigator
         self.services = services
         self.locationModule = LocationModule()
-        self.w3wStore = W3WStore.sharedInstance
+        self.w3wStore = W3WStore.shared
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -67,10 +67,13 @@ final class MainReactor: Reactor {
         case .infoBtnClicked:
             break
         case .locationChanged(let locationModel):
-            return services.apiService
-                .getW3W(location: locationModel)
-                .map(Mutation.changeW3W)
-                .asObservable()
+            return .concat([
+                services.apiService
+                    .getW3W(location: locationModel)
+                    .map(Mutation.changeW3W)
+                    .asObservable(),
+                .just(.setLocation(locationModel))
+            ])
             
         case .sendLetterBtnClicked:
             return .concat([
@@ -116,6 +119,9 @@ final class MainReactor: Reactor {
             
         case .changeLetterStep(let step):
             state.letterStep = step
+            
+        case .setLocation(let locationModel):
+            w3wStore.locationModel.accept(locationModel)
         }
         return state
     }

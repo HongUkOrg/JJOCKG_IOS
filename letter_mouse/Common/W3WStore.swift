@@ -11,9 +11,10 @@ import RxSwift
 
 class W3WStore {
     
-    static let sharedInstance: W3WStore = W3WStore()
+    static let shared: W3WStore = W3WStore()
     
     let w3w: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    let locationModel: BehaviorRelay<LocationModel?> = BehaviorRelay<LocationModel?>(value: nil)
     
     init() {
         

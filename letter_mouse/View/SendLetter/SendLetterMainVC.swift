@@ -83,15 +83,12 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
     }
     
     private let sendLetterButtonView = UIView().then {
-        $0.backgroundColor = .white
+        $0.backgroundColor = .clear
         $0.layer.cornerRadius = 20
         $0.drawShadow(color: .black, offset: CGSize(width: 2, height: 2), opacity: 0.3, radius: 2.0)
     }
     
-    private let sendLetterButton = UIButton().then {
-        $0.backgroundColor = .white
-        $0.setTitle("쪽지 남기기", for: .normal)
-        $0.setTitleColor(.mudBrown, for: .normal)
+    private let sendLetterButton = StandardButton(text: "쪽지 남기기", image: nil, titleColor: .mudBrown, normalColor: .white, highlightedColor: UIColor(white: 0.9, alpha: 0.9), borderColor: nil).then {
         $0.titleLabel?.textAlignment = .center
         $0.titleLabel?.font = UIFont.binggrae(ofSize: 12)
         $0.layer.cornerRadius = 20
@@ -208,10 +205,12 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
             })
             .disposed(by: disposeBag)
         
-        receiverPhoneInputTextField.rx
+        let receiverPhoneText = receiverPhoneInputTextField.rx
             .text
             .orEmpty
             .distinctUntilChanged()
+            
+        receiverPhoneText
             .map(addDashToPhoneNumber)
             .observeOn(MainScheduler.asyncInstance)
             .do(onNext: { [weak self] (text) in
@@ -220,6 +219,11 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
                 }
             })
             .bind(to: receiverPhoneInputTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        receiverPhoneText
+            .map(Reactor.Action.receiverPhoneChanged)
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         sendLetterButton.rx
@@ -269,6 +273,13 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
                     self?.contentsView.frame.origin.y = 0
                 }
             })
+            .disposed(by: disposeBag)
+        
+        letterContentTextView.rx
+            .text
+            .orEmpty
+            .map(Reactor.Action.letterContentCahnged)
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
                 
     }

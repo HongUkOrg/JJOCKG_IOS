@@ -16,14 +16,24 @@ final class SendLetterReactor: Reactor {
     enum Action {
         case sendLetterBtnClicked
         case dismissBtnClicked
+        
+        case letterContentCahnged(String)
+        case receiverPhoneChanged(String)
     }
     
     // MARK: - Mutation
     enum Mutation {
+        
+        case setLetterContent(String)
+        case setReceiverPhoneNumber(String)
+        case navigateToResult(String)
+        case error
     }
     
     // MARK: - State
     struct State {
+        var receiverPhone: String?
+        var letterText: String?
     }
 
     // MARK: - Properties
@@ -44,17 +54,58 @@ final class SendLetterReactor: Reactor {
         
         switch action {
         case .sendLetterBtnClicked:
-            break
+            guard let request = getSendLetterRequest() else {
+                return .just(.error)
+            }
+            return .concat([
+                services.apiService
+                    .sendLetter(request: request)
+                    .map(Mutation.navigateToResult)
+                    .asObservable()
+            ])
         case .dismissBtnClicked:
             mainReactor.action.onNext(.focusOnMain)
             navigator.navigate(.sendLetter(.dismiss))
-        default:
-            break
+            
+        case .letterContentCahnged(let text):
+            return .just(.setLetterContent(text))
+        case .receiverPhoneChanged(let phoneNumber):
+            return .just(.setReceiverPhoneNumber(phoneNumber))
         }
         return .empty()
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
+        var state = state
+        
+        switch mutation {
+        case .setLetterContent(let text):
+            state.letterText = text
+        case .setReceiverPhoneNumber(let phoneNumber):
+            state.receiverPhone = phoneNumber
+        case .navigateToResult(let response):
+            Logger.debug("Send Letter Response : \(response)")
+        case .error:
+            Logger.error("Invalid SendLetter Request")
+        }
         return state
+    }
+    
+    private func getSendLetterRequest() -> SendLetterRequest? {
+        
+        guard let receiverPhone = currentState.receiverPhone, receiverPhone != "",
+            let message = currentState.letterText, message != "",
+            let w3w = W3WStore.shared.w3w.value,
+            let latitude = W3WStore.shared.locationModel.value?.latitude,
+            let longitude = W3WStore.shared.locationModel.value?.latitude else {
+                Logger.error("SendLetterRequest: Invalid input!")
+                return nil
+        }
+
+        return SendLetterRequest(receiver_phone: receiverPhone,
+                          message: message,
+                          w3w_address: w3w,
+                          latitude: latitude,
+                          longitude: longitude)
     }
 }

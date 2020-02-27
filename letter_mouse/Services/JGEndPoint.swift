@@ -10,7 +10,7 @@ import Moya
 
 enum JGEndPoint {
     case getWhat3Words(String)
-    case saveLetter
+    case sendLetter(SendLetterRequest)
     case findLetter
 }
 
@@ -25,7 +25,7 @@ extension JGEndPoint: TargetType {
         switch self {
         case .getWhat3Words:
             return .what3Words
-        case .saveLetter, .findLetter:
+        case .sendLetter, .findLetter:
             return .jgServer
         }
     }
@@ -38,7 +38,7 @@ extension JGEndPoint: TargetType {
         switch self {
         case .getWhat3Words:
             return "/reverse"
-        case .saveLetter:
+        case .sendLetter:
             return "/save_letter.php"
         case .findLetter:
             return "/find_letter.php"
@@ -49,7 +49,7 @@ extension JGEndPoint: TargetType {
         switch self {
         case .getWhat3Words:
             return .get
-        case .findLetter, .saveLetter:
+        case .findLetter, .sendLetter:
             return .post
         }
     }
@@ -69,6 +69,8 @@ extension JGEndPoint: TargetType {
                                                        "lang": "ko"
                 ],
                 encoding: encoding)
+        case .sendLetter(let request):
+            return .requestJSONEncodable(request)
         default:
             return .requestPlain
         }

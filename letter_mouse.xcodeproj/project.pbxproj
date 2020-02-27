@@ -55,6 +55,11 @@
 		774767F32402A6100099105B /* What3WordsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774767F22402A6100099105B /* What3WordsResponse.swift */; };
 		776B091C2401711500A5F0E7 /* SplashReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B091B2401711500A5F0E7 /* SplashReactor.swift */; };
 		776B091F2401728F00A5F0E7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B091E2401728F00A5F0E7 /* UIColor+Extensions.swift */; };
+		7771D7C42407C742003A03B4 /* SendLetterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7C32407C742003A03B4 /* SendLetterRequest.swift */; };
+		7771D7C72407C7A1003A03B4 /* SendLetterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7C62407C7A0003A03B4 /* SendLetterResponse.swift */; };
+		7771D7C92407D1D5003A03B4 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7C82407D1D5003A03B4 /* StandardButton.swift */; };
+		7771D7CB2407D1EC003A03B4 /* ArtiButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7CA2407D1EC003A03B4 /* ArtiButton.swift */; };
+		7771D7CD2407D20C003A03B4 /* CommonCircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7CC2407D20C003A03B4 /* CommonCircularButton.swift */; };
 		77A8FC6324075E4200D1430A /* LetterSubLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FC6224075E4200D1430A /* LetterSubLine.swift */; };
 		77A8FC652407730D00D1430A /* LetterStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FC642407730D00D1430A /* LetterStep.swift */; };
 		77DAF8892401034600928DDE /* JGImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF8882401034600928DDE /* JGImages.swift */; };
@@ -146,6 +151,11 @@
 		774767F22402A6100099105B /* What3WordsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What3WordsResponse.swift; sourceTree = "<group>"; };
 		776B091B2401711500A5F0E7 /* SplashReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashReactor.swift; sourceTree = "<group>"; };
 		776B091E2401728F00A5F0E7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		7771D7C32407C742003A03B4 /* SendLetterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendLetterRequest.swift; sourceTree = "<group>"; };
+		7771D7C62407C7A0003A03B4 /* SendLetterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendLetterResponse.swift; sourceTree = "<group>"; };
+		7771D7C82407D1D5003A03B4 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
+		7771D7CA2407D1EC003A03B4 /* ArtiButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtiButton.swift; sourceTree = "<group>"; };
+		7771D7CC2407D20C003A03B4 /* CommonCircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCircularButton.swift; sourceTree = "<group>"; };
 		77A8FC6224075E4200D1430A /* LetterSubLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterSubLine.swift; sourceTree = "<group>"; };
 		77A8FC642407730D00D1430A /* LetterStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterStep.swift; sourceTree = "<group>"; };
 		77DAF8882401034600928DDE /* JGImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGImages.swift; sourceTree = "<group>"; };
@@ -217,7 +227,6 @@
 			children = (
 				77ED09842406B527008454EB /* Model */,
 				774767EA2402983F0099105B /* Services */,
-				774767F12402A6030099105B /* Responses */,
 				774767CE240177840099105B /* Navigator */,
 				776B091A2401710800A5F0E7 /* View */,
 				77DAF892240107B700928DDE /* Modules */,
@@ -355,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				774767F22402A6100099105B /* What3WordsResponse.swift */,
+				7771D7C62407C7A0003A03B4 /* SendLetterResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -371,10 +381,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7771D7C52407C773003A03B4 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				7771D7C32407C742003A03B4 /* SendLetterRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
 		77A8FC6124075E0A00D1430A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
 				77A8FC6224075E4200D1430A /* LetterSubLine.swift */,
+				7771D7C82407D1D5003A03B4 /* StandardButton.swift */,
+				7771D7CA2407D1EC003A03B4 /* ArtiButton.swift */,
+				7771D7CC2407D20C003A03B4 /* CommonCircularButton.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -424,6 +445,8 @@
 			isa = PBXGroup;
 			children = (
 				77A8FC642407730D00D1430A /* LetterStep.swift */,
+				7771D7C52407C773003A03B4 /* Requests */,
+				774767F12402A6030099105B /* Responses */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -709,6 +732,7 @@
 				04C1DA3022ABA1A5009CBDC8 /* LetterResultViewController.swift in Sources */,
 				774767E124026D6A0099105B /* UI+Extensions.swift in Sources */,
 				774767EC240298490099105B /* JGServices.swift in Sources */,
+				7771D7C72407C7A1003A03B4 /* SendLetterResponse.swift in Sources */,
 				04B7EA27224625C800AADADE /* SplashVC.swift in Sources */,
 				774767F32402A6100099105B /* What3WordsResponse.swift in Sources */,
 				630F2B0122E6EE9A009FB2AF /* EZSwipeController.swift in Sources */,
@@ -722,12 +746,15 @@
 				042A0119224A78570070CEAE /* Cartoon04VC.swift in Sources */,
 				77DAF894240107C500928DDE /* GIFModule.swift in Sources */,
 				774767DF24026D0F0099105B /* Rx+Extensions.swift in Sources */,
+				7771D7C92407D1D5003A03B4 /* StandardButton.swift in Sources */,
 				776B091F2401728F00A5F0E7 /* UIColor+Extensions.swift in Sources */,
 				774767DD240269E50099105B /* MainReactor.swift in Sources */,
+				7771D7CD2407D20C003A03B4 /* CommonCircularButton.swift in Sources */,
 				774767EE240298940099105B /* JGApiService.swift in Sources */,
 				77DAF8892401034600928DDE /* JGImages.swift in Sources */,
 				77A8FC652407730D00D1430A /* LetterStep.swift in Sources */,
 				04C1DA2E22A69EE5009CBDC8 /* Cartoon08VC.swift in Sources */,
+				7771D7CB2407D1EC003A03B4 /* ArtiButton.swift in Sources */,
 				77DAF8912401066A00928DDE /* Logger.swift in Sources */,
 				042A011B224A78C10070CEAE /* Cartoon05VC.swift in Sources */,
 				774767D02401778E0099105B /* JGNavigator.swift in Sources */,
@@ -751,6 +778,7 @@
 				04F73CD622ACD2CD00F21912 /* LetterExtension.swift in Sources */,
 				774767F02402996D0099105B /* JGEndPoint.swift in Sources */,
 				774767D624017CCB0099105B /* CartoonMainVC.swift in Sources */,
+				7771D7C42407C742003A03B4 /* SendLetterRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

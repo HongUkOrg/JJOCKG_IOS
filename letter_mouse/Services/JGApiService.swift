@@ -39,4 +39,17 @@ class JGApiService {
                 Logger.info("get w3w error\(error)")
             })
     }
+    
+    func sendLetter(request: SendLetterRequest) -> Single<String> {
+        
+        return provider.rx
+            .request(.sendLetter(request))
+            .filterSuccessfulStatusCodes()
+            .map { $0.data.description }
+            .do(onSuccess: { (response) in
+                Logger.debug("SendLetter Response : \(response)")
+            }, onError: { (error) in
+                Logger.info("SendLetter Error\(error)")
+            })
+    }
 }
