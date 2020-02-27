@@ -16,7 +16,6 @@
 		042A0119224A78570070CEAE /* Cartoon04VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042A0118224A78570070CEAE /* Cartoon04VC.swift */; };
 		042A011B224A78C10070CEAE /* Cartoon05VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042A011A224A78C10070CEAE /* Cartoon05VC.swift */; };
 		04A409FD225077F400671C3C /* LetterMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A409FC225077F400671C3C /* LetterMainViewController.swift */; };
-		04AD639A22588BF500B6360C /* SMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AD639922588BF500B6360C /* SMSViewController.swift */; };
 		04B7EA25224625C800AADADE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7EA24224625C800AADADE /* AppDelegate.swift */; };
 		04B7EA27224625C800AADADE /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7EA26224625C800AADADE /* SplashVC.swift */; };
 		04B7EA2F224625C900AADADE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B7EA2D224625C900AADADE /* LaunchScreen.storyboard */; };
@@ -71,6 +70,7 @@
 		77ED097F2406B351008454EB /* SendLetterMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED097E2406B351008454EB /* SendLetterMainVC.swift */; };
 		77ED09812406B36C008454EB /* SendLetterReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED09802406B36C008454EB /* SendLetterReactor.swift */; };
 		77ED09832406B485008454EB /* W3WStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED09822406B485008454EB /* W3WStore.swift */; };
+		77FDCDB924081F440093DD05 /* SMSTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FDCDB824081F440093DD05 /* SMSTraits.swift */; };
 		DA3434D2B5D1B954807DE436 /* Pods_letter_mouse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDE75F8B990B91B7CF487CC /* Pods_letter_mouse.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,7 +101,6 @@
 		042A0118224A78570070CEAE /* Cartoon04VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartoon04VC.swift; sourceTree = "<group>"; };
 		042A011A224A78C10070CEAE /* Cartoon05VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartoon05VC.swift; sourceTree = "<group>"; };
 		04A409FC225077F400671C3C /* LetterMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterMainViewController.swift; sourceTree = "<group>"; };
-		04AD639922588BF500B6360C /* SMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSViewController.swift; sourceTree = "<group>"; };
 		04B7EA21224625C800AADADE /* letter_mouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = letter_mouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B7EA24224625C800AADADE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04B7EA26224625C800AADADE /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
@@ -167,6 +166,7 @@
 		77ED097E2406B351008454EB /* SendLetterMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendLetterMainVC.swift; sourceTree = "<group>"; };
 		77ED09802406B36C008454EB /* SendLetterReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendLetterReactor.swift; sourceTree = "<group>"; };
 		77ED09822406B485008454EB /* W3WStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = W3WStore.swift; sourceTree = "<group>"; };
+		77FDCDB824081F440093DD05 /* SMSTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSTraits.swift; sourceTree = "<group>"; };
 		95D6A9F5D51C6183DBFDDDB9 /* Pods-letter_mouseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouseUITests.release.xcconfig"; path = "Target Support Files/Pods-letter_mouseUITests/Pods-letter_mouseUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,7 +239,6 @@
 				04A409FC225077F400671C3C /* LetterMainViewController.swift */,
 				0424C0E22250C80500DBB82E /* LetterController.swift */,
 				0424C0E62251141200DBB82E /* SaveLetterViewController.swift */,
-				04AD639922588BF500B6360C /* SMSViewController.swift */,
 				040C4FB4226617B0009663CB /* FindLetterViewController.swift */,
 				04C1DA2F22ABA1A5009CBDC8 /* LetterResultViewController.swift */,
 				63F1BEBD22F16B2E00E7454C /* SMSFindViewController.swift */,
@@ -427,6 +426,7 @@
 			children = (
 				77DAF893240107C500928DDE /* GIFModule.swift */,
 				774767E8240281FE0099105B /* LocationModule.swift */,
+				77FDCDB824081F440093DD05 /* SMSTraits.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -754,6 +754,7 @@
 				77DAF8892401034600928DDE /* JGImages.swift in Sources */,
 				77A8FC652407730D00D1430A /* LetterStep.swift in Sources */,
 				04C1DA2E22A69EE5009CBDC8 /* Cartoon08VC.swift in Sources */,
+				77FDCDB924081F440093DD05 /* SMSTraits.swift in Sources */,
 				7771D7CB2407D1EC003A03B4 /* ArtiButton.swift in Sources */,
 				77DAF8912401066A00928DDE /* Logger.swift in Sources */,
 				042A011B224A78C10070CEAE /* Cartoon05VC.swift in Sources */,
@@ -764,7 +765,6 @@
 				04A409FD225077F400671C3C /* LetterMainViewController.swift in Sources */,
 				04C1DA2A22A6973D009CBDC8 /* Cartoon07VC.swift in Sources */,
 				040C4FB5226617B0009663CB /* FindLetterViewController.swift in Sources */,
-				04AD639A22588BF500B6360C /* SMSViewController.swift in Sources */,
 				04B7EA25224625C800AADADE /* AppDelegate.swift in Sources */,
 				04C1DA2822A69732009CBDC8 /* Cartoon06VC.swift in Sources */,
 				63F1BEBE22F16B2E00E7454C /* SMSFindViewController.swift in Sources */,

@@ -89,13 +89,17 @@ final class SendLetterResultVC: BaseViewController, View {
         $0.font = .binggrae(ofSize: 12)
     }
     
-    private let phoneBookImageView = UIImageView().then {
-        $0.image = JGAsset.Icons.icPhonebook20X20.image
-        $0.contentMode = .scaleAspectFit
+    private let contactsView = UIView().then {
+        $0.backgroundColor = .white
         $0.layer.cornerRadius = 20
         $0.layer.borderColor = UIColor.mudBrown.cgColor
         $0.layer.borderWidth = 1.0
         
+    }
+    
+    private let contactImageView = UIImageView().then {
+        $0.image = JGAsset.Icons.icPhonebook20X20.image
+        $0.contentMode = .scaleAspectFit
     }
     
     private let lockView = UIView().then {
@@ -182,20 +186,25 @@ final class SendLetterResultVC: BaseViewController, View {
             $0.center.equalToSuperview()
         }
         
-        lowerLetterView.addSubview(phoneBookImageView)
-        phoneBookImageView.snp.remakeConstraints {
+        lowerLetterView.addSubview(contactsView)
+        contactsView.snp.remakeConstraints {
             $0.height.equalTo(40)
             $0.width.equalTo(60)
             $0.trailing.equalTo(w3wResultView.snp.trailing)
             $0.top.equalTo(w3wResultView.snp.bottom).offset(28)
         }
         
+        contactsView.addSubview(contactImageView)
+        contactImageView.snp.remakeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
         lowerLetterView.addSubview(phoneResultView)
         phoneResultView.snp.remakeConstraints {
             $0.height.equalTo(40)
             $0.leading.equalTo(w3wResultView.snp.leading)
-            $0.centerY.equalTo(phoneBookImageView.snp.centerY)
-            $0.trailing.equalTo(phoneBookImageView.snp.leading).offset(-11.5)
+            $0.centerY.equalTo(contactsView.snp.centerY)
+            $0.trailing.equalTo(contactsView.snp.leading).offset(-11.5)
         }
         
         phoneResultView.addSubview(phoneResultLabel)
@@ -245,10 +254,23 @@ final class SendLetterResultVC: BaseViewController, View {
         reactor.state
             .map { $0.receiverPhone }
             .filterNil()
+            .distinctUntilChanged()
             .do(onNext: { phone in
                 Logger.debug("receiver phone : \(phone)")
             })
             .bind(to: phoneResultLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        smsSendButton.rx
+            .tapThrottle()
+            .map { Reactor.Action.smsSendBtnClicked }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        dismissButton.rx
+            .tapThrottle()
+            .map { Reactor.Action.dismissBtnClicked }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
 }

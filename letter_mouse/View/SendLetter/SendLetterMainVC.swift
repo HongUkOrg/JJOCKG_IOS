@@ -149,6 +149,7 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
         contactView.snp.remakeConstraints {
             $0.centerY.equalTo(receiverPhoneInputView)
             $0.leading.equalTo(receiverPhoneInputView.snp.trailing).offset(9)
+            $0.trailing.equalTo(backgroundWhiteView.snp.trailing).offset(-22)
         }
         
         contactView.addSubview(contactsImageView)
@@ -316,18 +317,18 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
         switch inputString.count {
         case 3, 8:
             if previousPhoneNumberCount == 2 || previousPhoneNumberCount == 7 {
-                result += "-"
+                result += "."
             }
         case 4:
-            if result[result.index(result.startIndex, offsetBy: 3)] == "-" {
+            if result[result.index(result.startIndex, offsetBy: 3)] == "." {
                 break
             }
-            result.insert("-", at: result.index(result.startIndex, offsetBy: 3))
+            result.insert(".", at: result.index(result.startIndex, offsetBy: 3))
         case 9:
-            if result[result.index(result.startIndex, offsetBy: 8)] == "-" {
+            if result[result.index(result.startIndex, offsetBy: 8)] == "." {
                 break
             }
-            result.insert("-", at: result.index(result.startIndex, offsetBy: 8))
+            result.insert(".", at: result.index(result.startIndex, offsetBy: 8))
         default:
             break
         }

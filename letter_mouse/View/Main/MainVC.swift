@@ -44,7 +44,7 @@ final class MainVC: BaseViewController, View {
     
     private let upperView = UIView().then {
         $0.backgroundColor = .white
-        $0.alpha = 0.7
+        $0.alpha = 0.85
         $0.layer.cornerRadius = 20
         $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         $0.layer.masksToBounds = true
@@ -60,12 +60,13 @@ final class MainVC: BaseViewController, View {
     private let infoBtnImageView = UIImageView().then {
         $0.image = JGAsset.Icons.btInfo32X32.image
         $0.contentMode = .scaleAspectFit
+        $0.drawShadow(color: .black, offset: CGSize(width: 2, height: 2), opacity: 0.7, radius: 2.0)
     }
     
     private let currentW3WView = UIView().then {
         $0.backgroundColor = .maize
         $0.layer.cornerRadius = 20
-        $0.drawShadow()
+        $0.drawShadow(color: .black, offset: CGSize(width: 2, height: 2), opacity: 0.7, radius: 2.0)
     }
     
     private let W3WLabel = UILabel().then {

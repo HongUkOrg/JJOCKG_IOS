@@ -7,7 +7,7 @@
 //
 import Foundation
 import UIKit
-import ReplayKit
+import MessageUI
 
 // MARK: Navigation Step
 enum JGNavigateStep {
@@ -18,6 +18,8 @@ enum JGNavigateStep {
     
     case sendLetter(SendLetterStep)
     case findLetter(FindLetterStep)
+    
+    case etc(EtcStep)
     
 }
 
@@ -48,6 +50,10 @@ extension JGNavigateStep {
         case main
     }
     
+    enum EtcStep {
+        case sms(String?)
+    }
+    
 }
 
 protocol JGNavigatorProtocol {
@@ -60,7 +66,7 @@ protocol JGNavigatorProtocol {
     func navigate(_ step: JGNavigateStep)
 }
 
-class JGNavigator: JGNavigatorProtocol {
+class JGNavigator: NSObject, JGNavigatorProtocol, SMSTraits {
     
     // MARK: Properties
     var window: UIWindow?
@@ -178,8 +184,27 @@ class JGNavigator: JGNavigatorProtocol {
                 break
             }
             
+        case .etc(let destination):
+            switch destination {
+            case .sms(let receiver):
+                
+                // TODO: make as Traits
+                guard let receiver = receiver else {
+                    Logger.error("Inavlid Receiver phone number")
+                    return
+                }
+                
+                sendSMS(rootView: rootViewController, receiver, delegate: self)
+                
+            }
         /// end switch
         }
     }
     
+}
+
+extension JGNavigator: MFMessageComposeViewControllerDelegate {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true)
+    }
 }

@@ -19,6 +19,8 @@ final class SendLetterReactor: Reactor {
         
         case letterContentCahnged(String)
         case receiverPhoneChanged(String)
+        
+        case smsSendBtnClicked
     }
     
     // MARK: - Mutation
@@ -27,6 +29,7 @@ final class SendLetterReactor: Reactor {
         case setLetterContent(String)
         case setReceiverPhoneNumber(String)
         case navigateToResult(String)
+        case navigateToSMS
         case error
     }
     
@@ -71,6 +74,8 @@ final class SendLetterReactor: Reactor {
             return .just(.setLetterContent(text))
         case .receiverPhoneChanged(let phoneNumber):
             return .just(.setReceiverPhoneNumber(phoneNumber))
+        case .smsSendBtnClicked:
+            return .just(.navigateToSMS)
         }
         return .empty()
     }
@@ -88,6 +93,8 @@ final class SendLetterReactor: Reactor {
             navigator.navigate(.sendLetter(.result))
         case .error:
             Logger.error("Invalid SendLetter Request")
+        case .navigateToSMS:
+            navigator.navigate(.etc(.sms(currentState.receiverPhone)))
         }
         return state
     }
