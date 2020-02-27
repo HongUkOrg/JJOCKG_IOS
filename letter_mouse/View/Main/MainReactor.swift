@@ -19,6 +19,8 @@ final class MainReactor: Reactor {
         case checkLoacationPermission
         case fetchLocation(Bool)
         
+        case focusOnMain
+        
         case infoBtnClicked
         case sendLetterBtnClicked
         case findLetterBtnClicked
@@ -28,6 +30,7 @@ final class MainReactor: Reactor {
     enum Mutation {
         case changeW3W(What3WordsResponse)
         case fetchLocation(Bool)
+        case changeLetterStep(LetterStep)
         
         case presentSendLetterView
         case presentFindLetterView
@@ -38,6 +41,8 @@ final class MainReactor: Reactor {
         var what3Words: String? = nil
         var location: LocationModel? = nil
         var isFetchLocation: Bool = false
+        var letterStep: LetterStep = .normal
+        
     }
     
     // MARK: Properties
@@ -70,6 +75,7 @@ final class MainReactor: Reactor {
         case .sendLetterBtnClicked:
             return .concat([
                 .just(.fetchLocation(false)),
+                .just(.changeLetterStep(.send)),
                 .just(.presentSendLetterView)
             ])
         case .findLetterBtnClicked:
@@ -81,6 +87,12 @@ final class MainReactor: Reactor {
             
         case .fetchLocation(let value):
             return .just(.fetchLocation(value))
+            
+        case .focusOnMain:
+            return .concat([
+                .just(.fetchLocation(true)),
+                .just(.changeLetterStep(.normal))
+            ])
         }
         return .empty()
     }
@@ -101,6 +113,9 @@ final class MainReactor: Reactor {
             
         case .fetchLocation(let value):
             state.isFetchLocation = value
+            
+        case .changeLetterStep(let step):
+            state.letterStep = step
         }
         return state
     }

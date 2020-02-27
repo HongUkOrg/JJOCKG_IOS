@@ -30,12 +30,14 @@ final class SendLetterReactor: Reactor {
     let initialState: State
     private let navigator: JGNavigatorProtocol
     private let services: JGServicesProtocol
+    private let mainReactor: MainReactor
     
-    init(navigator: JGNavigatorProtocol, services: JGServicesProtocol) {
+    init(mainReactor: MainReactor, navigator: JGNavigatorProtocol, services: JGServicesProtocol) {
         defer { _ = self.state }
         self.initialState = State()
         self.navigator = navigator
         self.services = services
+        self.mainReactor = mainReactor
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -44,6 +46,7 @@ final class SendLetterReactor: Reactor {
         case .sendLetterBtnClicked:
             break
         case .dismissBtnClicked:
+            mainReactor.action.onNext(.focusOnMain)
             navigator.navigate(.sendLetter(.dismiss))
         default:
             break

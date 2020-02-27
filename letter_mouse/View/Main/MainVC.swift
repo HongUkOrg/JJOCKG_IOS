@@ -229,18 +229,16 @@ final class MainVC: BaseViewController, View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        Observable<Int>
-            .interval(.milliseconds(500), scheduler: MainScheduler.asyncInstance)
-            .filter { [weak self] (_) in self?.presentedViewController == nil }
-            .filter { (_) in reactor.currentState.isFetchLocation == false }
-            .map { (_) in Reactor.Action.fetchLocation(true) }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
         reactor.state
             .map { $0.what3Words }
             .filterNil()
             .bind(to: W3WLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.letterStep }
+            .map { $0.titleName() }
+            .bind(to: mainTitleLabel.rx.text)
             .disposed(by: disposeBag)
         
         sendLetterButton.rx

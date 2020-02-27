@@ -71,11 +71,12 @@ class JGNavigator: JGNavigatorProtocol {
     }
     
     private let services: JGServicesProtocol
+    private var mainReactor: MainReactor?
     
     // MARK: Initialize
     init(_ window: UIWindow?) {
         self.window = window
-        services = JGServices()
+        self.services = JGServices()
     }
     
     // MARK: Navigate
@@ -119,7 +120,10 @@ class JGNavigator: JGNavigatorProtocol {
             Logger.info("Navigate to Main - \(destination)")
             switch destination {
             case .home:
-                let mainReactor = MainReactor(navigator: self, services: services)
+                mainReactor = MainReactor(navigator: self, services: services)
+                
+                guard let mainReactor = mainReactor else { return }
+                
                 let mainVC = MainVC(reactor: mainReactor)
                 self.window?.rootViewController = mainVC
                 
@@ -134,7 +138,8 @@ class JGNavigator: JGNavigatorProtocol {
             
             Logger.info("Navigate to sendLetter - \(destination)")
             
-            let sendLetterReactor = SendLetterReactor(navigator: self, services: services)
+            guard let mainReactor = mainReactor else { return }
+            let sendLetterReactor = SendLetterReactor(mainReactor: mainReactor, navigator: self, services: services)
             
             switch destination {
             case .main:
