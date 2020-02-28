@@ -139,7 +139,7 @@ final class FindLetterReactor: Reactor {
         
         let w3w = firstWord + "." + secondWord + "." + thirdWord
 
-        return FindLetterRequest(receiver_phone: receiverPhone.removeSwiftLineBreak(), w3w_address: w3w)
+        return FindLetterRequest(receiver_phone: receiverPhone, w3w_address: w3w)
     }
     
 }

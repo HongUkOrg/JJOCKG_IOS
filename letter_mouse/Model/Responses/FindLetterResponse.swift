@@ -12,8 +12,8 @@ struct LetterResponse: Decodable {
     
     var title: String?
     var message: String
-    var latitude: Double
-    var longitude: Double
+    var latitude: String
+    var longitude: String
     var time_lock: String?
 }
 

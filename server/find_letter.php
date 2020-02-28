@@ -32,7 +32,8 @@
         // output data of each row
         echo "{\"letter\":[";
         while($row = $result->fetch_assoc()) {
-            echo "{\"title\":\"". $row["title"]."\",\"message\":\"".$row["message"]. "\",\"latitude\":\"".$row["latitude"]."\",\"longitude\":\"". $row["longitude"]."\",\"time_lock\":\"".$row["time_lock"]."\"}";
+            $s = preg_replace("!\r?\n!", "\\n", $row["message"]);
+            echo "{\"title\":\"". $row["title"]."\",\"message\":\"".$s."\",\"latitude\":\"".$row["latitude"]."\",\"longitude\":\"". $row["longitude"]."\",\"time_lock\":\"".$row["time_lock"]."\"}";
             if($result->num_rows != $count) echo ",";
             else echo "]}";
             $count++;

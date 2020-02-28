@@ -11,7 +11,6 @@ import ContactsUI
 
 class SaveLetterViewController: UIViewController, CNContactPickerDelegate {
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }

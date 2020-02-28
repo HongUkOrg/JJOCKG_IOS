@@ -112,10 +112,10 @@ final class SendLetterReactor: Reactor {
         Logger.unknown("letter msg : \(message)")
 
         return SendLetterRequest(receiver_phone: receiverPhone,
-                          message: message,
-                          w3w_address: w3w,
-                          latitude: latitude,
-                          longitude: longitude)
+                                 message: message.removeSwiftLineBreak(),
+                                 w3w_address: w3w,
+                                 latitude: latitude,
+                                 longitude: longitude)
     }
     
 }
