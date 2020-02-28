@@ -14,7 +14,6 @@ protocol JGApiServiceProtocol {
     // MARK: Moya
     var provider: MoyaProvider<JGEndPoint> { get }
     
-
 }
 
 class JGApiService {
@@ -50,6 +49,20 @@ class JGApiService {
                 Logger.debug("SendLetter Response : \(response)")
             }, onError: { (error) in
                 Logger.info("SendLetter Error\(error)")
+            })
+    }
+    
+    func findLetter(request: FindLetterRequest) -> Single<FindLetterResponse> {
+        
+        Logger.debug("request : \(request)")
+        return provider.rx
+            .request(.findLetter(request))
+            .filterSuccessfulStatusCodes()
+            .map(FindLetterResponse.self, using: JSONDecoder())
+            .do(onSuccess: { (response) in
+                Logger.debug("FindLetter Response : \(response)")
+            }, onError: { (error) in
+                Logger.info("FindLetter Error\(error)")
             })
     }
 }

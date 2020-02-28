@@ -48,6 +48,7 @@ extension JGNavigateStep {
     
     enum FindLetterStep {
         case main
+        case dismiss
     }
     
     enum EtcStep {
@@ -80,6 +81,7 @@ class JGNavigator: NSObject, JGNavigatorProtocol, SMSTraits {
     private let services: JGServicesProtocol
     private var mainReactor: MainReactor?
     private var sendLetterReactor: SendLetterReactor?
+    private var findLetterReactor: FindLetterReactor?
     
     // MARK: Initialize
     init(_ window: UIWindow?) {
@@ -181,7 +183,23 @@ class JGNavigator: NSObject, JGNavigatorProtocol, SMSTraits {
             
             switch destination {
             case .main:
-                break
+                
+                guard let mainReactor = mainReactor else { return }
+                
+                findLetterReactor = FindLetterReactor(mainReactor: mainReactor, navigator: self, services: services)
+                
+                guard let findLetterReactor = findLetterReactor else { return }
+                
+                let findLetterMainVC = FindLetterMainVC(reactor: findLetterReactor)
+                let navigationVC = UINavigationController(rootViewController: findLetterMainVC)
+                navigationVC.isNavigationBarHidden = true
+                navigationVC.modalPresentationStyle = .overCurrentContext
+                
+                rootViewController?.present(navigationVC, animated: true)
+                
+            case .dismiss:
+                rootViewController?.presentedViewController?.dismiss(animated: true)
+                
             }
             
         case .etc(let destination):

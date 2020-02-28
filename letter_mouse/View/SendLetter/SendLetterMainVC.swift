@@ -42,7 +42,7 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
     
     private let backgroundWhiteView = UIView().then {
         $0.backgroundColor = .white
-        $0.alpha = 0.7
+        $0.alpha = 0.8
         $0.layer.cornerRadius = 16
     }
     

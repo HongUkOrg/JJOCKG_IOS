@@ -82,7 +82,10 @@ final class MainReactor: Reactor {
                 .just(.presentSendLetterView)
             ])
         case .findLetterBtnClicked:
-            return .just(.presentFindLetterView)
+            return .concat([
+                .just(.changeLetterStep(.send)),
+                .just(.presentFindLetterView)
+            ])
             
         case .checkLoacationPermission:
             // TODO: - location permission check

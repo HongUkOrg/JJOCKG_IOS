@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+extension String {
+    
+    func removeSwiftLineBreak() -> String {
+        return self.replacingOccurrences(of: "\\n", with: "\n")
+    }
+}

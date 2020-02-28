@@ -109,6 +109,7 @@ final class SendLetterReactor: Reactor {
                 Logger.error("SendLetterRequest: Invalid input!")
                 return nil
         }
+        Logger.unknown("letter msg : \(message)")
 
         return SendLetterRequest(receiver_phone: receiverPhone,
                           message: message,
@@ -116,4 +117,5 @@ final class SendLetterReactor: Reactor {
                           latitude: latitude,
                           longitude: longitude)
     }
+    
 }

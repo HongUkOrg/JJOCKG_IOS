@@ -9,7 +9,7 @@
     
     $receiver_phone = $data->{'receiver_phone'};
     $w3w_address = $data->{'w3w_address'};
-   
+    $title = $data->{'title'};
     
     
     $servername = "localhost";
@@ -38,7 +38,7 @@
             $count++;
         }
     } else {
-        echo "{\"letter\":[{\"title\":\"find_fail\"}]}";
+        http_response_code(500);
     }
     $conn->close();
     ?>

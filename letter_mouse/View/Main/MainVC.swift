@@ -39,12 +39,12 @@ final class MainVC: BaseViewController, View {
     
     private let upperSafeAreaView = UIView().then {
         $0.backgroundColor = .white
-        $0.alpha = 0.7
+        $0.alpha = 0.9
     }
     
     private let upperView = UIView().then {
         $0.backgroundColor = .white
-        $0.alpha = 0.85
+        $0.alpha = 0.9
         $0.layer.cornerRadius = 20
         $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         $0.layer.masksToBounds = true

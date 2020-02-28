@@ -58,6 +58,10 @@
 		7771D7CB2407D1EC003A03B4 /* ArtiButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7CA2407D1EC003A03B4 /* ArtiButton.swift */; };
 		7771D7CD2407D20C003A03B4 /* CommonCircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7CC2407D20C003A03B4 /* CommonCircularButton.swift */; };
 		7771D7CF2407D605003A03B4 /* SendLetterResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7771D7CE2407D605003A03B4 /* SendLetterResultVC.swift */; };
+		77A8CDB824095160005788A7 /* FindLetterMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8CDB724095160005788A7 /* FindLetterMainVC.swift */; };
+		77A8CDBA240951A3005788A7 /* FindLetterReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8CDB9240951A3005788A7 /* FindLetterReactor.swift */; };
+		77A8CDBC24096515005788A7 /* FindLetterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8CDBB24096515005788A7 /* FindLetterRequest.swift */; };
+		77A8CDBE24096585005788A7 /* FindLetterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8CDBD24096585005788A7 /* FindLetterResponse.swift */; };
 		77A8FC6324075E4200D1430A /* LetterSubLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FC6224075E4200D1430A /* LetterSubLine.swift */; };
 		77A8FC652407730D00D1430A /* LetterStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FC642407730D00D1430A /* LetterStep.swift */; };
 		77BCC58F24080E42002E3A59 /* DefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BCC58E24080E42002E3A59 /* DefaultsService.swift */; };
@@ -154,6 +158,10 @@
 		7771D7CA2407D1EC003A03B4 /* ArtiButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtiButton.swift; sourceTree = "<group>"; };
 		7771D7CC2407D20C003A03B4 /* CommonCircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCircularButton.swift; sourceTree = "<group>"; };
 		7771D7CE2407D605003A03B4 /* SendLetterResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendLetterResultVC.swift; sourceTree = "<group>"; };
+		77A8CDB724095160005788A7 /* FindLetterMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLetterMainVC.swift; sourceTree = "<group>"; };
+		77A8CDB9240951A3005788A7 /* FindLetterReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLetterReactor.swift; sourceTree = "<group>"; };
+		77A8CDBB24096515005788A7 /* FindLetterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLetterRequest.swift; sourceTree = "<group>"; };
+		77A8CDBD24096585005788A7 /* FindLetterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLetterResponse.swift; sourceTree = "<group>"; };
 		77A8FC6224075E4200D1430A /* LetterSubLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterSubLine.swift; sourceTree = "<group>"; };
 		77A8FC642407730D00D1430A /* LetterStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterStep.swift; sourceTree = "<group>"; };
 		77BCC58E24080E42002E3A59 /* DefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsService.swift; sourceTree = "<group>"; };
@@ -361,6 +369,7 @@
 			children = (
 				774767F22402A6100099105B /* What3WordsResponse.swift */,
 				7771D7C62407C7A0003A03B4 /* SendLetterResponse.swift */,
+				77A8CDBD24096585005788A7 /* FindLetterResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -370,6 +379,7 @@
 			children = (
 				04B7EA2D224625C900AADADE /* LaunchScreen.storyboard */,
 				77DAF8952401081600928DDE /* BaseViewController.swift */,
+				77A8CDB624095148005788A7 /* FindLetter */,
 				77A8FC6124075E0A00D1430A /* CustomView */,
 				77ED097D2406B22A008454EB /* SendLetter */,
 				774767D9240269B70099105B /* Main */,
@@ -383,8 +393,18 @@
 			isa = PBXGroup;
 			children = (
 				7771D7C32407C742003A03B4 /* SendLetterRequest.swift */,
+				77A8CDBB24096515005788A7 /* FindLetterRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		77A8CDB624095148005788A7 /* FindLetter */ = {
+			isa = PBXGroup;
+			children = (
+				77A8CDB724095160005788A7 /* FindLetterMainVC.swift */,
+				77A8CDB9240951A3005788A7 /* FindLetterReactor.swift */,
+			);
+			path = FindLetter;
 			sourceTree = "<group>";
 		};
 		77A8FC6124075E0A00D1430A /* CustomView */ = {
@@ -731,11 +751,13 @@
 				77ED09812406B36C008454EB /* SendLetterReactor.swift in Sources */,
 				04C1DA3022ABA1A5009CBDC8 /* LetterResultViewController.swift in Sources */,
 				774767E124026D6A0099105B /* UI+Extensions.swift in Sources */,
+				77A8CDBC24096515005788A7 /* FindLetterRequest.swift in Sources */,
 				774767EC240298490099105B /* JGServices.swift in Sources */,
 				7771D7C72407C7A1003A03B4 /* SendLetterResponse.swift in Sources */,
 				04B7EA27224625C800AADADE /* SplashVC.swift in Sources */,
 				774767F32402A6100099105B /* What3WordsResponse.swift in Sources */,
 				630F2B0122E6EE9A009FB2AF /* EZSwipeController.swift in Sources */,
+				77A8CDBA240951A3005788A7 /* FindLetterReactor.swift in Sources */,
 				774767E9240281FE0099105B /* LocationModule.swift in Sources */,
 				77DAF8962401081600928DDE /* BaseViewController.swift in Sources */,
 				774767DB240269D10099105B /* MainVC.swift in Sources */,
@@ -770,7 +792,9 @@
 				63F1BEBE22F16B2E00E7454C /* SMSFindViewController.swift in Sources */,
 				776B091C2401711500A5F0E7 /* SplashReactor.swift in Sources */,
 				77ED097F2406B351008454EB /* SendLetterMainVC.swift in Sources */,
+				77A8CDBE24096585005788A7 /* FindLetterResponse.swift in Sources */,
 				04F73CD822ACD33500F21912 /* LetterProtocol.swift in Sources */,
+				77A8CDB824095160005788A7 /* FindLetterMainVC.swift in Sources */,
 				774767D424017A3C0099105B /* CartoonReactor.swift in Sources */,
 				77A8FC6324075E4200D1430A /* LetterSubLine.swift in Sources */,
 				042A0115224A67F30070CEAE /* Cartoon02VC.swift in Sources */,

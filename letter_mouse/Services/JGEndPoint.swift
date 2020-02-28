@@ -11,7 +11,7 @@ import Moya
 enum JGEndPoint {
     case getWhat3Words(String)
     case sendLetter(SendLetterRequest)
-    case findLetter
+    case findLetter(FindLetterRequest)
 }
 
 extension JGEndPoint: TargetType {
@@ -71,12 +71,12 @@ extension JGEndPoint: TargetType {
                 encoding: encoding)
         case .sendLetter(let request):
             return .requestJSONEncodable(request)
-        default:
-            return .requestPlain
+        case .findLetter(let request):
+            return .requestJSONEncodable(request)
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         return [
             "Content-Type": "application/json"
         ]
