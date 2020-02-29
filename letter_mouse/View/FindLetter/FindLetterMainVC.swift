@@ -39,7 +39,6 @@ final class FindLetterMainVC: BaseViewController, View {
     }
     
     private let backgroundView = UIView().then {
-        $0.isUserInteractionEnabled = false
         $0.backgroundColor = .white
         $0.alpha = 0.95
         $0.layer.cornerRadius = 16
@@ -187,7 +186,7 @@ final class FindLetterMainVC: BaseViewController, View {
         receiverPhoneInputView.addSubview(receiverPhoneInputTextField)
         receiverPhoneInputTextField.snp.remakeConstraints {
             $0.center.equalToSuperview()
-            $0.edges.equalToSuperview()
+            $0.width.equalToSuperview().offset(-20)
         }
         
         contentsView.addSubview(receiverNameLabel)
@@ -237,7 +236,7 @@ final class FindLetterMainVC: BaseViewController, View {
         w3wHorizontalStackView.addArrangedSubview(w3wThirdTextField)
         
         w3wPrefixLabel.snp.remakeConstraints {
-            $0.width.equalTo(50)
+            $0.width.equalTo(40)
         }
         
         w3wFirstTextField.snp.remakeConstraints {
@@ -291,13 +290,6 @@ final class FindLetterMainVC: BaseViewController, View {
     // MARK: - Binding
     func bind(reactor: Reactor) {
 
-        self.contentsView.rx
-            .tapGesture()
-            .subscribe(onNext: { [weak self] (_) in
-                self?.view.endEditing(true)
-            })
-            .disposed(by: disposeBag)
-        
         self.rx
             .viewWillDisappear
             .take(1)
@@ -305,6 +297,17 @@ final class FindLetterMainVC: BaseViewController, View {
             .subscribe(onNext: { [weak self] (_) in
                 Logger.debug("will disappear")
                 self?.contentsView.isHidden = true
+            })
+            .disposed(by: disposeBag)
+        
+        contentsView.rx
+            .tapGesture()
+            .subscribe(onNext: { [weak self] (tap) in
+                let location = tap.location(in: self?.contentsView)
+                guard let contain = self?.backgroundView.frame.contains(location), contain else {
+                    self?.view.endEditing(true)
+                    return
+                }
             })
             .disposed(by: disposeBag)
         
