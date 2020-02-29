@@ -105,7 +105,7 @@ final class SendLetterReactor: Reactor {
             let message = currentState.letterText, message != "",
             let w3w = W3WStore.shared.w3w.value,
             let latitude = W3WStore.shared.locationModel.value?.latitude,
-            let longitude = W3WStore.shared.locationModel.value?.latitude else {
+            let longitude = W3WStore.shared.locationModel.value?.longitude else {
                 Logger.error("SendLetterRequest: Invalid input!")
                 return nil
         }

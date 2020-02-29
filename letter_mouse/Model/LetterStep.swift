@@ -8,7 +8,7 @@
 
 enum LetterStep {
     case normal
-    case send
+    case sendWriting
     case find
     case tracking
 }
@@ -18,7 +18,7 @@ extension LetterStep {
         switch self {
         case .normal:
             return "나의 현재 주소"
-        case .send:
+        case .sendWriting:
             return "쪽지 남기기"
         case .find, .tracking:
             return "쪽지 찾기"

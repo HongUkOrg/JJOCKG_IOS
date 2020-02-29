@@ -11,6 +11,8 @@ import ReactorKit
 import RxCocoa
 import GoogleMaps
 import RxSwift
+import RxAnimated
+import RxSwiftExt
 
 final class MainVC: BaseViewController, View {
     
@@ -48,6 +50,20 @@ final class MainVC: BaseViewController, View {
         $0.layer.masksToBounds = true
     }
     
+    private let trackingView = UIView().then {
+        $0.backgroundColor = .whiteAlpha9
+        $0.layer.cornerRadius = 16
+        $0.isHidden = true
+    }
+    
+    private let trackingDiscriptionLabel = UILabel().then {
+        $0.text = "거리 계산중..."
+        $0.textColor = .mudBrown
+        $0.textAlignment = .center
+        $0.font = .binggraeBold(ofSize: 16)
+        $0.numberOfLines = 2
+    }
+    
     private let mainTitleLabel = UILabel().then {
         $0.text = "나의 현재 주소"
         $0.textColor = .mudBrown
@@ -68,6 +84,7 @@ final class MainVC: BaseViewController, View {
     }
     
     private let W3WLabel = UILabel().then {
+        $0.backgroundColor = .clear
         $0.text = "위치 조정중..."
         $0.textColor = .mudBrown
         $0.textAlignment = .center
@@ -111,6 +128,19 @@ final class MainVC: BaseViewController, View {
         view.addSubview(googleMapView)
         googleMapView.snp.remakeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        view.addSubview(trackingView)
+        trackingView.snp.remakeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(160)
+        }
+        
+        trackingView.addSubview(trackingDiscriptionLabel)
+        trackingDiscriptionLabel.snp.remakeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(trackingView.snp.bottom).offset(-50)
         }
         
         view.addSubview(upperSafeAreaView)
@@ -242,8 +272,23 @@ final class MainVC: BaseViewController, View {
         
         reactor.state
             .map { $0.letterStep == .tracking }
+            .distinctUntilChanged()
             .map { $0 ? UIColor.maize : UIColor.whiteAlpha9 }
-            .bind(to: upperView.rx.backgroundColor)
+            .bind(to: upperView.rx.backgroundColor, upperSafeAreaView.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        let isTracking = reactor.state
+            .map { $0.letterStep == .tracking }
+            .distinctUntilChanged()
+            .share()
+            
+        isTracking
+            .bind(animated: currentW3WView.rx.animated.fade(duration: 0.2).isHidden)
+            .disposed(by: disposeBag)
+        
+        isTracking
+            .not()
+            .bind(animated: trackingView.rx.animated.fade(duration: 0.2).isHidden)
             .disposed(by: disposeBag)
         
         sendLetterButton.rx
@@ -256,6 +301,13 @@ final class MainVC: BaseViewController, View {
             .tapThrottle()
             .map { Reactor.Action.findLetterBtnClicked }
             .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.distanceToLetter }
+            .filterNil()
+            .map { "쪽지까지\n앞으로 \($0)미터!" }
+            .bind(to: trackingDiscriptionLabel.rx.text)
             .disposed(by: disposeBag)
         
     }

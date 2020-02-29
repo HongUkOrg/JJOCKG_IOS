@@ -25,6 +25,9 @@ final class MainReactor: Reactor {
         case infoBtnClicked
         case sendLetterBtnClicked
         case findLetterBtnClicked
+        
+        // tracking
+//        case updateDistance(Int)
     }
     
     //MARK: Mutation
@@ -34,6 +37,9 @@ final class MainReactor: Reactor {
         case setLocation(LocationModel)
         case changeLetterStep(LetterStep)
         
+        /// tracking
+        case updateDistance(Int?)
+
         case presentSendLetterView
         case presentFindLetterView
     }
@@ -44,6 +50,8 @@ final class MainReactor: Reactor {
         var isFetchLocation: Bool = false
         var letterStep: LetterStep = .normal
         
+        var distanceToLetter: Int?
+        var letterLocation: LocationModel?
     }
     
     // MARK: Properties
@@ -73,13 +81,14 @@ final class MainReactor: Reactor {
                     .getW3W(location: locationModel)
                     .map(Mutation.changeW3W)
                     .asObservable(),
-                .just(.setLocation(locationModel))
+                .just(.setLocation(locationModel)),
+                .just(.updateDistance(services.letterService.distance))
             ])
             
         case .sendLetterBtnClicked:
             return .concat([
                 .just(.fetchLocation(false)),
-                .just(.changeLetterStep(.send)),
+                .just(.changeLetterStep(.sendWriting)),
                 .just(.presentSendLetterView)
             ])
         case .findLetterBtnClicked:
@@ -103,6 +112,7 @@ final class MainReactor: Reactor {
             
         case .changeLetterStep(let step):
             return .just(.changeLetterStep(step))
+
         }
         return .empty()
     }
@@ -115,6 +125,7 @@ final class MainReactor: Reactor {
         case .changeW3W(let response):
             state.what3Words = "/// " + response.words
             w3wStore.w3w.accept(response.words)
+            services.letterService.w3w.accept(response.words)
             
         case .presentSendLetterView:
             navigator.navigate(.sendLetter(.main))
@@ -129,6 +140,11 @@ final class MainReactor: Reactor {
             
         case .setLocation(let locationModel):
             w3wStore.locationModel.accept(locationModel)
+            services.letterService.currentLocation.accept(locationModel)
+            
+        case .updateDistance(let distance):
+            state.distanceToLetter = distance
+            
         }
         return state
     }

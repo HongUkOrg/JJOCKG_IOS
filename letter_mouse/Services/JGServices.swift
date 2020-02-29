@@ -13,14 +13,16 @@ protocol JGServicesProtocol {
     
     // MARK: Services
     var apiService: JGApiService { get }
+    var letterService: LetterServiceType { get }
 }
 class JGServices: JGServicesProtocol {
     
     // MARK: Services
-    var apiService: JGApiService
+    let apiService: JGApiService
+    let letterService: LetterServiceType
     
     init() {
-        
         self.apiService = JGApiService(provider: MoyaProvider<JGEndPoint>())
+        self.letterService = LetterService()
     }
 }

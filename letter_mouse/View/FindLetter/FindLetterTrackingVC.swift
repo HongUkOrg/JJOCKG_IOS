@@ -46,6 +46,7 @@ final class FindLetterTrackingVC: BaseViewController, View {
         $0.layer.cornerRadius = 16
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.layer.zPosition = -1
+        $0.isUserInteractionEnabled = false
     }
     
     private let letterContentLabel = UILabel().then {
@@ -107,7 +108,6 @@ final class FindLetterTrackingVC: BaseViewController, View {
         letterContentLabel.snp.remakeConstraints {
             $0.width.equalToSuperview().offset(-65)
             $0.top.equalToSuperview().offset(40)
-//            $0.bottom.equalToSuperview().offset(-30)
             $0.centerX.equalToSuperview()
         }
         
@@ -137,13 +137,13 @@ final class FindLetterTrackingVC: BaseViewController, View {
     func bind(reactor: Reactor) {
         
         self.rx
-        .viewWillAppear
-        .take(1)
-        .observeOn(MainScheduler.asyncInstance)
-        .subscribe(onNext: { [weak self] (_) in
-            self?.drawLetterSubLine()
-        })
-        .disposed(by: disposeBag)
+            .viewWillAppear
+            .take(1)
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] (_) in
+                self?.drawLetterSubLine()
+            })
+            .disposed(by: disposeBag)
         
         let canRead = reactor.state
             .map { $0.canRead }
@@ -158,9 +158,43 @@ final class FindLetterTrackingVC: BaseViewController, View {
             .bind(to: letterOpenButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
+        letterOpenButton.rx
+            .tapThrottle()
+            .observeOn(MainScheduler.instance)
+            .do(onNext: { [weak self] (_) in
+                // FIXME: animation doesn't work if layoutSubview is not called in close down
+                if reactor.currentState.letterOpend == false {
+                    self?.letterOpenButton.setTitle("쪽지 닫기", for: .normal)
+                    self?.view.layoutIfNeeded()
+                    UIView.animate(withDuration: 0.5) {
+                        self?.letterContentView.frame.origin.y = self?.getLetterOriginY(open: true) ?? 0
+                    }
+                } else {
+                    self?.letterOpenButton.setTitle("쪽지 열어보기", for: .normal)
+                    UIView.animate(withDuration: 0.5) {
+                        self?.letterContentView.frame.origin.y = self?.getLetterOriginY(open: false) ?? 0
+                    }
+                }
+            })
+            .map { Reactor.Action.letterOpenToggle }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.letterContent }
+            .filterNil()
+            .bind(to: letterContentLabel.rx.text)
+            .disposed(by: disposeBag)
+        
         dismissButton.rx
             .tapThrottle()
             .map { Reactor.Action.cancelBtnClicked }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        Observable<Int>
+            .interval(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            .map { (_) in Reactor.Action.checkDistance }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
@@ -179,6 +213,16 @@ final class FindLetterTrackingVC: BaseViewController, View {
                 $0.top.equalToSuperview().offset(lineSpacing)
                 $0.height.equalTo(1)
             }
+        }
+    }
+    
+    private func getLetterOriginY(open: Bool) -> CGFloat {
+        let letterOffset = (UIScreen.main.bounds.height / 2.0) - 40
+        
+        if open {
+            return whiteBackgroundView.frame.origin.y - letterOffset
+        } else {
+            return whiteBackgroundView.frame.origin.y - 40.0
         }
     }
 }

@@ -21,7 +21,10 @@ final class FindLetterReactor: Reactor {
         case firstWordChanged(String)
         case secondWordChanged(String)
         case thirdWordChanged(String)
-
+        
+        case letterOpenToggle
+        case checkDistance
+        
     }
 
     // MARK: - Mutation
@@ -35,6 +38,10 @@ final class FindLetterReactor: Reactor {
         case firstWordChanged(String)
         case secondWordChanged(String)
         case thirdWordChanged(String)
+        
+        case letterOpenToggle
+        case checkDistance(Int?)
+        
     }
     
     // MARK: - State
@@ -53,6 +60,7 @@ final class FindLetterReactor: Reactor {
         
         /// tracking
         var canRead: Bool = false
+        var letterOpend: Bool = false
         
     }
     
@@ -82,7 +90,7 @@ final class FindLetterReactor: Reactor {
             
             guard let request = getFindLetterRequest() else {
                 Logger.error("Inavlid Request")
-                return .empty()
+                return .just(.error)
             }
             return .concat([
                 services.apiService
@@ -100,6 +108,12 @@ final class FindLetterReactor: Reactor {
             return .just(.secondWordChanged(text))
         case .thirdWordChanged(let text):
             return .just(.thirdWordChanged(text))
+            
+        case .letterOpenToggle:
+            return .just(.letterOpenToggle)
+            
+        case .checkDistance:
+            return .just(.checkDistance(services.letterService.distance))
         }
     }
     
@@ -113,24 +127,27 @@ final class FindLetterReactor: Reactor {
             mainReactor.action.onNext(.focusOnMain)
             
         case .dismiss:
+            Logger.debug("tracking dismiss")
+            services.letterService.reset()
             navigator.navigate(.findLetter(.dismiss))
             
         case .findLetterSuccess(let response):
             Logger.debug("Find letter response : \(response)")
             
-            mainReactor.action.onNext(.changeLetterStep(.tracking))
-            navigator.navigate(.findLetter(.tracking))
-            guard let firstLetter = response.letter.first else {
+            guard let firstLetter = response.letter.first,
+                let latitude = Double(firstLetter.latitude),
+                let longitude = Double(firstLetter.longitude) else {
                     Logger.error("Invalid Letter result")
                     return state
             }
-            state.letterContent = firstLetter.message
-            state.latitude = Double(firstLetter.latitude)
-            state.longitude = Double(firstLetter.longitude)
-            
-        case .error:
             mainReactor.action.onNext(.changeLetterStep(.tracking))
             navigator.navigate(.findLetter(.tracking))
+            state.letterContent = firstLetter.message
+            
+            let locationModel = LocationModel(latitude: latitude, longitude: longitude)
+            services.letterService.letterLocation.accept(locationModel)
+            
+        case .error:
             Logger.error("Find letter error")
             
         case .receiverPhoneChanged(let phoneNumber):
@@ -144,6 +161,14 @@ final class FindLetterReactor: Reactor {
             
         case .thirdWordChanged(let text):
             state.thirdWord = text
+            
+        case .letterOpenToggle:
+            state.letterOpend = !state.letterOpend // toggle
+            
+        case .checkDistance(let distance):
+            guard let distance = distance else { return state }
+            state.canRead = distance <= 50
+            
         }
         return state
     }
@@ -162,5 +187,4 @@ final class FindLetterReactor: Reactor {
 
         return FindLetterRequest(receiver_phone: receiverPhone, w3w_address: w3w)
     }
-    
 }

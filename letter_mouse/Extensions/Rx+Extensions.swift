@@ -190,3 +190,18 @@ extension RxSwift.Reactive where Base: UIApplication {
             .merge()
     }
 }
+
+extension Observable {
+
+    public func bind(animated observers: [Binder<Element>]) -> Disposable {
+        return self.subscribe { event in
+            observers.forEach { $0.on(event) }
+        }
+    }
+    
+    public func bind(animated observers: Binder<Element>...) -> Disposable {
+        return self.subscribe { event in
+            observers.forEach { $0.on(event) }
+        }
+    }
+}

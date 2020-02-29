@@ -30,6 +30,9 @@ final class FindLetterMainVC: BaseViewController, View {
 
     }
     
+    // MARK: - Properteis
+    private var previousPhoneNumberCount: Int = 0
+    
     // MARK: - UI
     private let contentsView = UIView().then {
         $0.backgroundColor = .clear
@@ -325,6 +328,14 @@ final class FindLetterMainVC: BaseViewController, View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        receiverPhoneInputTextField.rx
+            .text
+            .orEmpty
+            .distinctUntilChanged()
+            .map(addDashToPhoneNumber)
+            .bind(to: receiverPhoneInputTextField.rx.text)
+            .disposed(by: disposeBag)
+        
         w3wFirstTextField.rx
             .text
             .orEmpty
@@ -370,5 +381,32 @@ final class FindLetterMainVC: BaseViewController, View {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func addDashToPhoneNumber(_ inputString: String) -> String {
+        
+        var result = inputString
+        
+        switch inputString.count {
+        case 3, 8:
+            if previousPhoneNumberCount == 2 || previousPhoneNumberCount == 7 {
+                result += "."
+            }
+        case 4:
+            if result[result.index(result.startIndex, offsetBy: 3)] == "." {
+                break
+            }
+            result.insert(".", at: result.index(result.startIndex, offsetBy: 3))
+        case 9:
+            if result[result.index(result.startIndex, offsetBy: 8)] == "." {
+                break
+            }
+            result.insert(".", at: result.index(result.startIndex, offsetBy: 8))
+        default:
+            break
+        }
+        
+        previousPhoneNumberCount = inputString.count
+        return result
     }
 }

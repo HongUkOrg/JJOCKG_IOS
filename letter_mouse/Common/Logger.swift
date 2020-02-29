@@ -76,7 +76,7 @@ final class Logger: LoggerProtocol {
     static private func log(_ msg: String, level: LogLevel = .verbose, file: StaticString, line: UInt) {
         if Logger.logLevels.contains(level) {
             #if DEBUG || QA
-            print("\(level.rawValue) :: \(msg) #\(file):L\(line)")
+            print("\(level.rawValue) :: \(msg) #\(file.description.split(separator: "/").last!):L\(line)")
             #else
             NSLog("\(level.rawValue) :: \(msg) #\(file):L\(line)")
             #endif
