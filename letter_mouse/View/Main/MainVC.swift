@@ -38,13 +38,11 @@ final class MainVC: BaseViewController, View {
     }
     
     private let upperSafeAreaView = UIView().then {
-        $0.backgroundColor = .white
-        $0.alpha = 0.9
+        $0.backgroundColor = .whiteAlpha9
     }
     
     private let upperView = UIView().then {
-        $0.backgroundColor = .white
-        $0.alpha = 0.9
+        $0.backgroundColor = .whiteAlpha9
         $0.layer.cornerRadius = 20
         $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         $0.layer.masksToBounds = true
@@ -240,6 +238,12 @@ final class MainVC: BaseViewController, View {
             .map { $0.letterStep }
             .map { $0.titleName() }
             .bind(to: mainTitleLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.letterStep == .tracking }
+            .map { $0 ? UIColor.maize : UIColor.whiteAlpha9 }
+            .bind(to: upperView.rx.backgroundColor)
             .disposed(by: disposeBag)
         
         sendLetterButton.rx

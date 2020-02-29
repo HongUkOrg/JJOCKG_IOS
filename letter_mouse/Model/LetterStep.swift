@@ -10,6 +10,7 @@ enum LetterStep {
     case normal
     case send
     case find
+    case tracking
 }
 
 extension LetterStep {
@@ -19,7 +20,7 @@ extension LetterStep {
             return "나의 현재 주소"
         case .send:
             return "쪽지 남기기"
-        case .find:
+        case .find, .tracking:
             return "쪽지 찾기"
         }
     }

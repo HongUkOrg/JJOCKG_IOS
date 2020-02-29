@@ -295,6 +295,16 @@ final class FindLetterMainVC: BaseViewController, View {
             })
             .disposed(by: disposeBag)
         
+        self.rx
+            .viewWillDisappear
+            .take(1)
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] (_) in
+                Logger.debug("will disappear")
+                self?.contentsView.isHidden = true
+            })
+            .disposed(by: disposeBag)
+        
         cancelButton.rx
             .tapThrottle()
             .map { Reactor.Action.cancelBtnClicked }

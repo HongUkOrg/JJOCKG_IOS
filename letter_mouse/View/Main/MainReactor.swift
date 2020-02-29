@@ -19,6 +19,7 @@ final class MainReactor: Reactor {
         case checkLoacationPermission
         case fetchLocation(Bool)
         
+        case changeLetterStep(LetterStep)
         case focusOnMain
         
         case infoBtnClicked
@@ -83,7 +84,7 @@ final class MainReactor: Reactor {
             ])
         case .findLetterBtnClicked:
             return .concat([
-                .just(.changeLetterStep(.send)),
+                .just(.changeLetterStep(.find)),
                 .just(.presentFindLetterView)
             ])
             
@@ -99,6 +100,9 @@ final class MainReactor: Reactor {
                 .just(.fetchLocation(true)),
                 .just(.changeLetterStep(.normal))
             ])
+            
+        case .changeLetterStep(let step):
+            return .just(.changeLetterStep(step))
         }
         return .empty()
     }

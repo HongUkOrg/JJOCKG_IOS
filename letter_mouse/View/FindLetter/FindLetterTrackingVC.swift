@@ -44,7 +44,22 @@ final class FindLetterTrackingVC: BaseViewController, View {
     private let letterContentView = UIView().then {
         $0.backgroundColor = .maize
         $0.layer.cornerRadius = 16
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.layer.zPosition = -1
+    }
+    
+    private let letterContentLabel = UILabel().then {
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 10
+        let attributes = [NSAttributedString.Key.paragraphStyle: style,
+                          NSAttributedString.Key.font: UIFont.binggrae(ofSize: 14),
+                          NSAttributedString.Key.foregroundColor: UIColor.mudBrown,
+        ]
+        
+        $0.numberOfLines = 0
+        $0.textColor = .mudBrown
+        $0.textAlignment = .left
+        $0.attributedText = NSAttributedString(string: "아아아\n아아아\n아아\n아아\n아아\n아아\n아아\n아아\n아아\n", attributes: attributes)
     }
     
     private let letterOpenButton = UIButton().then {
@@ -52,10 +67,12 @@ final class FindLetterTrackingVC: BaseViewController, View {
         $0.setTitleColor(.mudBrown, for: .normal)
         $0.titleLabel?.textAlignment = .center
         $0.titleLabel?.font = .binggrae(ofSize: 12)
+        $0.isEnabled = false
     }
     
     private let horizontalSperator = UIView().then {
         $0.backgroundColor = .mudBrown
+        $0.alpha = 0.8
     }
     
     private let dismissButton = UIButton().then {
@@ -64,7 +81,7 @@ final class FindLetterTrackingVC: BaseViewController, View {
     
     // MARK: - Remake UI Constraints
     override func setupConstraints() {
-     
+        
         view.addSubview(contentsView)
         contentsView.snp.remakeConstraints {
             $0.edges.equalToSuperview()
@@ -75,14 +92,23 @@ final class FindLetterTrackingVC: BaseViewController, View {
             $0.bottom.equalToSuperview()
             $0.width.equalToSuperview().offset(-26)
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(166)
+            $0.height.equalTo(200)
         }
         
         view.addSubview(letterContentView)
         letterContentView.snp.remakeConstraints {
-            $0.height.equalToSuperview().dividedBy(1.42)
+            $0.height.equalToSuperview().dividedBy(2)
+            $0.width.equalTo(whiteBackgroundView.snp.width).offset(-40)
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(whiteBackgroundView.snp.top).offset(-60)
+            $0.top.equalTo(whiteBackgroundView.snp.top).offset(-40)
+        }
+        
+        letterContentView.addSubview(letterContentLabel)
+        letterContentLabel.snp.remakeConstraints {
+            $0.width.equalToSuperview().offset(-65)
+            $0.top.equalToSuperview().offset(40)
+//            $0.bottom.equalToSuperview().offset(-30)
+            $0.centerX.equalToSuperview()
         }
         
         whiteBackgroundView.addSubview(letterOpenButton)
@@ -105,12 +131,55 @@ final class FindLetterTrackingVC: BaseViewController, View {
             $0.top.equalTo(horizontalSperator.snp.bottom).offset(30)
         }
         
-        
     }
     
     // MARK: - Binding
     func bind(reactor: Reactor) {
         
+        self.rx
+        .viewWillAppear
+        .take(1)
+        .observeOn(MainScheduler.asyncInstance)
+        .subscribe(onNext: { [weak self] (_) in
+            self?.drawLetterSubLine()
+        })
+        .disposed(by: disposeBag)
+        
+        let canRead = reactor.state
+            .map { $0.canRead }
+            .share()
+        
+        canRead
+            .map { $0 ? UIColor.white : UIColor(white: 0.8, alpha: 0.8) }
+            .bind(to: letterOpenButton.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        canRead
+            .bind(to: letterOpenButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        dismissButton.rx
+            .tapThrottle()
+            .map { Reactor.Action.cancelBtnClicked }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    }
+    
+    private func drawLetterSubLine() {
+        let textViewHeight = letterContentView.frame.height
+        let lineNumber = Int( (textViewHeight - 59.0) / 29.0 )
+        
+        for i in 0..<lineNumber {
+            let lineSpacing = i * 29 + 59
+            let subLine = LetterSubLine()
+            letterContentView.addSubview(subLine)
+            subLine.snp.remakeConstraints {
+                $0.width.equalToSuperview().offset(-60)
+                $0.centerX.equalToSuperview()
+                $0.top.equalToSuperview().offset(lineSpacing)
+                $0.height.equalTo(1)
+            }
+        }
     }
 }
 

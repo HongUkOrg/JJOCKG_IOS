@@ -51,6 +51,9 @@ final class FindLetterReactor: Reactor {
         var latitude: Double?
         var longitude: Double?
         
+        /// tracking
+        var canRead: Bool = false
+        
     }
     
     // MARK: - Properties
@@ -115,6 +118,7 @@ final class FindLetterReactor: Reactor {
         case .findLetterSuccess(let response):
             Logger.debug("Find letter response : \(response)")
             
+            mainReactor.action.onNext(.changeLetterStep(.tracking))
             navigator.navigate(.findLetter(.tracking))
             guard let firstLetter = response.letter.first else {
                     Logger.error("Invalid Letter result")
@@ -125,6 +129,8 @@ final class FindLetterReactor: Reactor {
             state.longitude = Double(firstLetter.longitude)
             
         case .error:
+            mainReactor.action.onNext(.changeLetterStep(.tracking))
+            navigator.navigate(.findLetter(.tracking))
             Logger.error("Find letter error")
             
         case .receiverPhoneChanged(let phoneNumber):
