@@ -124,6 +124,30 @@ enum AppState: Equatable, Hashable {
     case terminated
 }
 
+extension RxSwift.Reactive where Base: NotificationCenter {
+    var keyboardWillShow: Observable<CGFloat> {
+        return NotificationCenter.default.rx
+            .notification(UIResponder.keyboardWillShowNotification)
+            .map { $0.userInfo }
+            .filterNil()
+            .map { $0[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue }
+            .filterNil()
+            .map { $0.cgRectValue.height }
+        
+    }
+    
+    var keyboardWillHide: Observable<CGFloat> {
+        return NotificationCenter.default.rx
+            .notification(UIResponder.keyboardWillHideNotification)
+            .map { $0.userInfo }
+            .filterNil()
+            .map { $0[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue }
+            .filterNil()
+            .map { $0.cgRectValue.height }
+        
+    }
+}
+
 extension RxSwift.Reactive where Base: UIApplication {
     var applicationDidBecomeActive: Observable<AppState> {
         return NotificationCenter.default.rx

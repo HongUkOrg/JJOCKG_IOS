@@ -307,7 +307,6 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
             .map(Reactor.Action.letterContentCahnged)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-                
     }
     
     private func addDashToPhoneNumber(_ inputString: String) -> String {

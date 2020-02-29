@@ -18,6 +18,13 @@ PODS:
     - RxSwift (~> 5.0)
   - ReactorKit (2.0.1):
     - RxSwift (~> 5.0)
+  - RxAnimated (0.6.1):
+    - RxAnimated/Core (= 0.6.1)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxAnimated/Core (0.6.1):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxCocoa (5.0.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -61,6 +68,7 @@ DEPENDENCIES:
   - Moya
   - Moya/RxSwift
   - ReactorKit
+  - RxAnimated
   - RxCocoa
   - RxDataSources
   - RxGesture
@@ -83,6 +91,7 @@ SPEC REPOS:
     - GooglePlaces
     - Moya
     - ReactorKit
+    - RxAnimated
     - RxCocoa
     - RxDataSources
     - RxGesture
@@ -105,6 +114,7 @@ SPEC CHECKSUMS:
   GooglePlaces: d5f70c3e9e427964fdeca1301a665d276ccd8754
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   ReactorKit: a63c5e11e0fd32d59d672e54178b0ed2876b764b
+  RxAnimated: 0c7f4c2898c06aa069507813aa50a4d01cb52bce
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxGesture: a3f8dd6adf078110ed5e1c9c30d09d705a09852e
@@ -119,6 +129,6 @@ SPEC CHECKSUMS:
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
   TouchAreaInsets: eb1ad705965a142a30a9c6a3405bec5e46d8613b
 
-PODFILE CHECKSUM: d93c3a6305961382597aff4dd076a4b810f91b52
+PODFILE CHECKSUM: cdc232555451f30028ce551ba68b307fb31de326
 
 COCOAPODS: 1.8.4

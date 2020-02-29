@@ -65,6 +65,7 @@
 		77A8FC6324075E4200D1430A /* LetterSubLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FC6224075E4200D1430A /* LetterSubLine.swift */; };
 		77A8FC652407730D00D1430A /* LetterStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FC642407730D00D1430A /* LetterStep.swift */; };
 		77BCC58F24080E42002E3A59 /* DefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BCC58E24080E42002E3A59 /* DefaultsService.swift */; };
+		77BFF606240A4DFB000AFF83 /* FindLetterTrackingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BFF605240A4DFB000AFF83 /* FindLetterTrackingVC.swift */; };
 		77DAF8892401034600928DDE /* JGImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF8882401034600928DDE /* JGImages.swift */; };
 		77DAF88C2401060500928DDE /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF88B2401060500928DDE /* UIImage+Extensions.swift */; };
 		77DAF88E2401062100928DDE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF88D2401062100928DDE /* String+Extensions.swift */; };
@@ -165,6 +166,7 @@
 		77A8FC6224075E4200D1430A /* LetterSubLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterSubLine.swift; sourceTree = "<group>"; };
 		77A8FC642407730D00D1430A /* LetterStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterStep.swift; sourceTree = "<group>"; };
 		77BCC58E24080E42002E3A59 /* DefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsService.swift; sourceTree = "<group>"; };
+		77BFF605240A4DFB000AFF83 /* FindLetterTrackingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLetterTrackingVC.swift; sourceTree = "<group>"; };
 		77DAF8882401034600928DDE /* JGImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGImages.swift; sourceTree = "<group>"; };
 		77DAF88B2401060500928DDE /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		77DAF88D2401062100928DDE /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 			children = (
 				77A8CDB724095160005788A7 /* FindLetterMainVC.swift */,
 				77A8CDB9240951A3005788A7 /* FindLetterReactor.swift */,
+				77BFF605240A4DFB000AFF83 /* FindLetterTrackingVC.swift */,
 			);
 			path = FindLetter;
 			sourceTree = "<group>";
@@ -756,6 +759,7 @@
 				7771D7C72407C7A1003A03B4 /* SendLetterResponse.swift in Sources */,
 				04B7EA27224625C800AADADE /* SplashVC.swift in Sources */,
 				774767F32402A6100099105B /* What3WordsResponse.swift in Sources */,
+				77BFF606240A4DFB000AFF83 /* FindLetterTrackingVC.swift in Sources */,
 				630F2B0122E6EE9A009FB2AF /* EZSwipeController.swift in Sources */,
 				77A8CDBA240951A3005788A7 /* FindLetterReactor.swift in Sources */,
 				774767E9240281FE0099105B /* LocationModule.swift in Sources */,

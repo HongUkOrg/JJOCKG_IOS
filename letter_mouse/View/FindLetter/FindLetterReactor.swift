@@ -40,10 +40,16 @@ final class FindLetterReactor: Reactor {
     // MARK: - State
     struct State {
 
+        /// input
         var receiverPhone: String?
         var firstWord: String?
         var secondWord: String?
         var thirdWord: String?
+        
+        /// output
+        var letterContent: String?
+        var latitude: Double?
+        var longitude: Double?
         
     }
     
@@ -108,6 +114,15 @@ final class FindLetterReactor: Reactor {
             
         case .findLetterSuccess(let response):
             Logger.debug("Find letter response : \(response)")
+            
+            navigator.navigate(.findLetter(.tracking))
+            guard let firstLetter = response.letter.first else {
+                    Logger.error("Invalid Letter result")
+                    return state
+            }
+            state.letterContent = firstLetter.message
+            state.latitude = Double(firstLetter.latitude)
+            state.longitude = Double(firstLetter.longitude)
             
         case .error:
             Logger.error("Find letter error")

@@ -48,6 +48,7 @@ extension JGNavigateStep {
     
     enum FindLetterStep {
         case main
+        case tracking
         case dismiss
     }
     
@@ -180,11 +181,11 @@ class JGNavigator: NSObject, JGNavigatorProtocol, SMSTraits {
         case .findLetter(let destination):
             
             Logger.info("Navigate to findLetter - \(destination)")
+            guard let mainReactor = mainReactor else { return }
             
             switch destination {
             case .main:
                 
-                guard let mainReactor = mainReactor else { return }
                 
                 findLetterReactor = FindLetterReactor(mainReactor: mainReactor, navigator: self, services: services)
                 
@@ -197,6 +198,14 @@ class JGNavigator: NSObject, JGNavigatorProtocol, SMSTraits {
                 
                 rootViewController?.present(navigationVC, animated: true)
                 
+            case .tracking:
+                
+                guard let findLetterReactor = findLetterReactor,
+                    let navigationVC = rootViewController?.presentedViewController as? UINavigationController else { return }
+                
+                let findLetterTrackingVC = FindLetterTrackingVC(reactor: findLetterReactor)
+                navigationVC.pushViewController(findLetterTrackingVC, animated: true)
+
             case .dismiss:
                 rootViewController?.presentedViewController?.dismiss(animated: true)
                 

@@ -25,6 +25,7 @@ target 'letter_mouse' do
   pod 'RxGesture'
   pod 'RxViewController'
   pod 'RxSwiftExt'
+  pod 'RxAnimated'
   
   # UI
   pod 'SnapKit'

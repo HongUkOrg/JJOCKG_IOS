@@ -36,6 +36,7 @@ final class FindLetterMainVC: BaseViewController, View {
     }
     
     private let backgroundView = UIView().then {
+        $0.isUserInteractionEnabled = false
         $0.backgroundColor = .white
         $0.alpha = 0.95
         $0.layer.cornerRadius = 16
@@ -167,7 +168,7 @@ final class FindLetterMainVC: BaseViewController, View {
         contentsView.addSubview(backgroundView)
         backgroundView.snp.remakeConstraints {
             $0.centerX.equalToSuperview()
-            $0.height.equalToSuperview().dividedBy(2.5)
+            $0.height.equalTo(300)
             $0.width.equalToSuperview().offset(-27)
             $0.bottom.equalToSuperview()
         }
@@ -286,12 +287,8 @@ final class FindLetterMainVC: BaseViewController, View {
     
     // MARK: - Binding
     func bind(reactor: Reactor) {
-        
-        w3wFirstTextField.delegate = self
-        w3wSecondTextField.delegate = self
-        w3wThirdTextField.delegate = self
 
-        self.view.rx
+        self.contentsView.rx
             .tapGesture()
             .subscribe(onNext: { [weak self] (_) in
                 self?.view.endEditing(true)
@@ -340,6 +337,28 @@ final class FindLetterMainVC: BaseViewController, View {
             .distinctUntilChanged()
             .map { Reactor.Action.thirdWordChanged($0) }
             .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    
+        NotificationCenter.default.rx
+            .keyboardWillShow
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] (keyboardHeight) in
+                guard self?.view.frame.origin.y == 0 else { return }
+                UIView.animate(withDuration: 0.3) {
+                    self?.view.frame.origin.y -= keyboardHeight
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx
+            .keyboardWillHide
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] (keyboardHeight) in
+                guard self?.view.frame.origin.y != 0 else { return }
+                UIView.animate(withDuration: 0.3) {
+                    self?.view.frame.origin.y = 0
+                }
+            })
             .disposed(by: disposeBag)
     }
 }

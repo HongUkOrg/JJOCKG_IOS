@@ -21,6 +21,6 @@ class JGServices: JGServicesProtocol {
     
     init() {
         
-        self.apiService = JGApiService(provider: MoyaProvider<JGEndPoint>(plugins: [NetworkLoggerPlugin(configuration: NetworkLoggerPlugin.Configuration(logOptions: .verbose))]))
+        self.apiService = JGApiService(provider: MoyaProvider<JGEndPoint>())
     }
 }
