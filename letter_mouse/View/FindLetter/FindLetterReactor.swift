@@ -32,7 +32,7 @@ final class FindLetterReactor: Reactor {
         case dismiss
         case focusOnMain
         case findLetterSuccess(FindLetterResponse)
-        case error
+        case error(FindLetterError)
         
         case receiverPhoneChanged(String)
         case firstWordChanged(String)
@@ -88,15 +88,25 @@ final class FindLetterReactor: Reactor {
             
         case .findLetterBtnClicked:
             
-            guard let request = getFindLetterRequest() else {
-                Logger.error("Inavlid Request")
-                return .just(.error)
+            guard currentState.firstWord?.isNotEmpty ?? false,
+                currentState.secondWord?.isNotEmpty ?? false,
+                currentState.secondWord?.isNotEmpty ?? false else {
+                    return .just(.error(.emptyW3W))
             }
+            
+            guard currentState.receiverPhone?.isNotEmpty ?? false else {
+                return .just(.error(.emptyPassword))
+            }
+            
+            guard let request = getFindLetterRequest() else {
+                return .just(.error(.invalidInput))
+            }
+            
             return .concat([
                 services.apiService
                     .findLetter(request: request)
                     .map(Mutation.findLetterSuccess)
-                    .catchErrorJustReturn(.error)
+                    .catchErrorJustReturn(.error(.findFail))
                     .asObservable()
             ])
             
@@ -147,8 +157,8 @@ final class FindLetterReactor: Reactor {
             let locationModel = LocationModel(latitude: latitude, longitude: longitude)
             services.letterService.letterLocation.accept(locationModel)
             
-        case .error:
-            Logger.error("Find letter error")
+        case .error(let error):
+            navigator.navigate(.etc(.alert(.findLetter(error))))
             
         case .receiverPhoneChanged(let phoneNumber):
             state.receiverPhone = phoneNumber

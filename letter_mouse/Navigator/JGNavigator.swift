@@ -54,6 +54,7 @@ extension JGNavigateStep {
     
     enum EtcStep {
         case sms(String?)
+        case alert(AlertType)
     }
     
 }
@@ -223,6 +224,10 @@ class JGNavigator: NSObject, JGNavigatorProtocol, SMSTraits {
                 
                 sendSMS(rootView: rootViewController, receiver, delegate: self)
                 
+            case .alert(let alertType):
+                let alertVC = UIAlertController.createAlert(alertType)
+                rootViewController?.presentedViewController?.present(alertVC, animated: true)
+                
             }
         /// end switch
         }
@@ -234,4 +239,13 @@ extension JGNavigator: MFMessageComposeViewControllerDelegate {
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true)
     }
+}
+
+extension JGNavigator {
+    
+    private func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+    }
+    
 }

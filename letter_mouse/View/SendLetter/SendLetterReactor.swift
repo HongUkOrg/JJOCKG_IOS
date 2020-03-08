@@ -30,7 +30,7 @@ final class SendLetterReactor: Reactor {
         case setReceiverPhoneNumber(String)
         case navigateToResult(String)
         case navigateToSMS
-        case error
+        case error(SendLetterError)
     }
     
     // MARK: - State
@@ -57,9 +57,16 @@ final class SendLetterReactor: Reactor {
         
         switch action {
         case .sendLetterBtnClicked:
-            guard let request = getSendLetterRequest() else {
-                return .just(.error)
+            guard currentState.receiverPhone?.isNotEmpty ?? false else {
+                return .just(.error(.emptyPassword))
             }
+            guard currentState.letterText?.isNotEmpty ?? false else {
+                return .just(.error(.emptyContent))
+            }
+            guard let request = getSendLetterRequest() else {
+                return .just(.error(.invalidRequestInput))
+            }
+            
             return .concat([
                 services.apiService
                     .sendLetter(request: request)
@@ -91,7 +98,8 @@ final class SendLetterReactor: Reactor {
         case .navigateToResult(let response):
             Logger.debug("sendLetterResult : \(response)")
             navigator.navigate(.sendLetter(.result))
-        case .error:
+        case .error(let error):
+            navigator.navigate(.etc(.alert(.sendLetter(error))))
             Logger.error("Invalid SendLetter Request")
         case .navigateToSMS:
             navigator.navigate(.etc(.sms(currentState.receiverPhone)))
@@ -109,7 +117,6 @@ final class SendLetterReactor: Reactor {
                 Logger.error("SendLetterRequest: Invalid input!")
                 return nil
         }
-        Logger.unknown("letter msg : \(message)")
 
         return SendLetterRequest(receiver_phone: receiverPhone,
                                  message: message.removeSwiftLineBreak(),

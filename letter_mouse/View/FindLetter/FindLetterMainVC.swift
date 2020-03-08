@@ -45,36 +45,25 @@ final class FindLetterMainVC: BaseViewController, View {
         $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
-    private let receiverPhoneInputView = UIView().then {
+    private let passwordInputView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 20
         $0.drawShadow(color: .black, offset: CGSize(width: 2, height: 2), opacity: 0.7, radius: 2.0)
     }
     
-    private let receiverPhoneInputTextField = UITextField().then {
+    private let passwordInputTextField = UITextField().then {
         $0.font = .binggraeBold(ofSize: 12)
         $0.textColor = .mudBrown
-        $0.placeholder = "010-1234-5678"
-        $0.keyboardType = .decimalPad
+        $0.placeholder = "회색고양이"
+        $0.keyboardType = .default
         $0.textAlignment = .center
     }
     
-    private let receiverNameLabel = UILabel().then {
-        $0.text = "내 번호"
+    private let passwordTitleLabel = UILabel().then {
+        $0.text = "봉인 암호"
         $0.textColor = .mudBrown
         $0.textAlignment = .center
         $0.font = UIFont.binggrae(ofSize: 12)
-    }
-    
-    private let contactView = UIView().then {
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 20
-        $0.drawShadow(color: .black, offset: CGSize(width: 2, height: 2), opacity: 0.7, radius: 2.0)
-    }
-    
-    private let contactsImageView = UIImageView().then {
-        $0.image = JGAsset.Icons.phoneBook.image
-        $0.contentMode = .scaleAspectFit
     }
     
     private let receivedW3wLabel = UILabel().then {
@@ -105,12 +94,12 @@ final class FindLetterMainVC: BaseViewController, View {
     }
     
     private let w3wFirstTextField = UITextField().then {
-        $0.placeholder = "단어를"
+        $0.placeholder = "주소를"
         $0.font = .binggrae(ofSize: 12)
     }
     
     private let w3wSeperator = UILabel().then {
-        $0.text = "."
+        $0.text = "ㄷ"
         $0.textColor = .mudBrown
         $0.textAlignment = .center
         $0.font = .binggraeBold(ofSize: 12)
@@ -170,55 +159,23 @@ final class FindLetterMainVC: BaseViewController, View {
         contentsView.addSubview(backgroundView)
         backgroundView.snp.remakeConstraints {
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(300)
+            $0.height.equalTo(350)
             $0.width.equalToSuperview().offset(-27)
             $0.bottom.equalToSuperview()
         }
         
-        contentsView.addSubview(receiverPhoneInputView)
-        receiverPhoneInputView.snp.remakeConstraints {
-            $0.top.equalTo(backgroundView.snp.top).offset(18)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(40)
-            $0.width.equalTo(backgroundView.snp.width).offset(-150)
-        }
-        
-        receiverPhoneInputView.addSubview(receiverPhoneInputTextField)
-        receiverPhoneInputTextField.snp.remakeConstraints {
-            $0.center.equalToSuperview()
-            $0.width.equalToSuperview().offset(-20)
-        }
-        
-        contentsView.addSubview(receiverNameLabel)
-        receiverNameLabel.snp.remakeConstraints {
-            $0.centerY.equalTo(receiverPhoneInputView)
-            $0.trailing.equalTo(receiverPhoneInputView.snp.leading).offset(-9)
-        }
-        
-        contentsView.addSubview(contactView)
-        contactView.snp.remakeConstraints {
-            $0.centerY.equalTo(receiverPhoneInputView)
-            $0.leading.equalTo(receiverPhoneInputView.snp.trailing).offset(9)
-            $0.trailing.equalTo(backgroundView.snp.trailing).offset(-22)
-        }
-        
-        contactView.addSubview(contactsImageView)
-        contactsImageView.snp.remakeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        contentsView.addSubview(receivedW3wLabel)
+        backgroundView.addSubview(receivedW3wLabel)
         receivedW3wLabel.snp.remakeConstraints {
-            $0.top.equalTo(receiverPhoneInputView.snp.bottom).offset(24)
-            $0.leading.equalTo(receiverNameLabel.snp.leading)
+            $0.leading.equalToSuperview().offset(20)
+            $0.top.equalToSuperview().offset(30)
         }
         
         contentsView.addSubview(w3wView)
         w3wView.snp.remakeConstraints {
+            $0.top.equalTo(receivedW3wLabel.snp.bottom).offset(10)
             $0.height.equalTo(40)
-            $0.width.equalTo(backgroundView).offset(-60)
+            $0.width.equalTo(backgroundView.snp.width).offset(-60)
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(receivedW3wLabel.snp.bottom).offset(8)
         }
         
         w3wView.addSubview(w3wHorizontalStackView)
@@ -259,11 +216,31 @@ final class FindLetterMainVC: BaseViewController, View {
             $0.width.equalTo(50)
         }
         
+        contentsView.addSubview(passwordTitleLabel)
+        passwordTitleLabel.snp.remakeConstraints {
+            $0.top.equalTo(w3wView.snp.bottom).offset(24)
+            $0.leading.equalTo(receivedW3wLabel.snp.leading)
+        }
+        
+        contentsView.addSubview(passwordInputView)
+        passwordInputView.snp.remakeConstraints {
+            $0.height.equalTo(40)
+            $0.width.equalTo(backgroundView).offset(-60)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(passwordTitleLabel.snp.bottom).offset(10)
+        }
+        
+        passwordInputView.addSubview(passwordInputTextField)
+        passwordInputTextField.snp.remakeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.equalToSuperview().offset(-20)
+        }
+        
         contentsView.addSubview(findLetterButtonView)
         findLetterButtonView.snp.remakeConstraints {
             $0.width.equalTo(backgroundView.snp.width).offset(-60)
             $0.height.equalTo(40)
-            $0.top.equalTo(w3wView.snp.bottom).offset(30)
+            $0.top.equalTo(passwordInputView.snp.bottom).offset(30)
             $0.centerX.equalToSuperview()
         }
         
@@ -323,7 +300,7 @@ final class FindLetterMainVC: BaseViewController, View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        receiverPhoneInputTextField.rx
+        passwordInputTextField.rx
             .text
             .orEmpty
             .distinctUntilChanged()
@@ -331,12 +308,12 @@ final class FindLetterMainVC: BaseViewController, View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        receiverPhoneInputTextField.rx
+        passwordInputTextField.rx
             .text
             .orEmpty
             .distinctUntilChanged()
-            .map(addDashToPhoneNumber)
-            .bind(to: receiverPhoneInputTextField.rx.text)
+            .map(limitMaximumStringCount)
+            .bind(to: passwordInputTextField.rx.text)
             .disposed(by: disposeBag)
         
         w3wFirstTextField.rx
@@ -386,30 +363,14 @@ final class FindLetterMainVC: BaseViewController, View {
             .disposed(by: disposeBag)
     }
     
-    private func addDashToPhoneNumber(_ inputString: String) -> String {
+    private func limitMaximumStringCount(_ inputString: String) -> String {
         
         var result = inputString
         
-        switch inputString.count {
-        case 3, 8:
-            if previousPhoneNumberCount == 2 || previousPhoneNumberCount == 7 {
-                result += "."
-            }
-        case 4:
-            if result[result.index(result.startIndex, offsetBy: 3)] == "." {
-                break
-            }
-            result.insert(".", at: result.index(result.startIndex, offsetBy: 3))
-        case 9:
-            if result[result.index(result.startIndex, offsetBy: 8)] == "." {
-                break
-            }
-            result.insert(".", at: result.index(result.startIndex, offsetBy: 8))
-        default:
-            break
+        if result.count > 10 {
+            result = String(result.prefix(10))
         }
         
-        previousPhoneNumberCount = inputString.count
         return result
     }
 }

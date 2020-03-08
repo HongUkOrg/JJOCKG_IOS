@@ -42,6 +42,7 @@ final class SplashVC: BaseViewController, View {
     
     private let horizontalDivider = UIView().then {
         $0.backgroundColor = .armyGreen
+        $0.alpha = 0.5
     }
     
     private let appNameImageView = UIImageView().then {
@@ -61,8 +62,8 @@ final class SplashVC: BaseViewController, View {
         view.addSubview(horizontalDivider)
         horizontalDivider.snp.remakeConstraints {
             $0.width.equalToSuperview()
-            $0.height.equalTo(1)
-            $0.top.equalTo(splashGifImageView.snp.bottom).offset(-10)
+            $0.height.equalTo(3)
+            $0.top.equalTo(splashGifImageView.snp.bottom).offset(-32)
         }
         
         view.addSubview(appNameImageView)
@@ -78,8 +79,7 @@ final class SplashVC: BaseViewController, View {
         
         self.rx
             .viewWillAppear
-            .take(3)
-            .delay(.seconds(1), scheduler: MainScheduler.instance)
+            .delay(.milliseconds(2500), scheduler: MainScheduler.instance)
             .map { (_) in Reactor.Action.viewWillAppear }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)

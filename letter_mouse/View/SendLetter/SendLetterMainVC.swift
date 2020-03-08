@@ -32,9 +32,6 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
         super.viewDidLoad()
     }
     
-    // MARK: - Properties
-    private var previousPhoneNumberCount: Int = 0
-    
     // MARK: - UI
     private let contentsView = UIView().then {
         $0.backgroundColor = .clear
@@ -42,40 +39,29 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
     
     private let backgroundWhiteView = UIView().then {
         $0.backgroundColor = .white
-        $0.alpha = 0.8
+        $0.alpha = 0.95
         $0.layer.cornerRadius = 16
     }
     
     private let receiverPhoneInputView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 20
-        $0.drawShadow(color: .black, offset: CGSize(width: 2, height: 2), opacity: 0.7, radius: 2.0)
+        $0.drawShadow(color: .black, offset: CGSize(width: 1, height: 1), opacity: 0.7, radius: 1.0)
     }
     
     private let receiverPhoneInputTextField = UITextField().then {
         $0.font = .binggraeBold(ofSize: 12)
         $0.textColor = .mudBrown
-        $0.placeholder = "010-1234-5678"
-        $0.keyboardType = .numberPad
+        $0.placeholder = "회색고양이"
+        $0.keyboardType = .default
         $0.textAlignment = .center
     }
     
-    private let receiverNameLabel = UILabel().then {
-        $0.text = "받는이"
+    private let sealPasswordLabel = UILabel().then {
+        $0.text = "봉인 암호"
         $0.textColor = .mudBrown
         $0.textAlignment = .center
         $0.font = UIFont.binggrae(ofSize: 12)
-    }
-    
-    private let contactView = UIView().then {
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 20
-        $0.drawShadow(color: .black, offset: CGSize(width: 2, height: 2), opacity: 0.7, radius: 2.0)
-    }
-    
-    private let contactsImageView = UIImageView().then {
-        $0.image = JGAsset.Icons.phoneBook.image
-        $0.contentMode = .scaleAspectFit
     }
     
     private let letterView = UIView().then {
@@ -128,9 +114,9 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
         contentsView.addSubview(receiverPhoneInputView)
         receiverPhoneInputView.snp.remakeConstraints {
             $0.top.equalTo(backgroundWhiteView.snp.top).offset(18)
-            $0.centerX.equalToSuperview()
+            $0.centerX.equalToSuperview().offset(20)
             $0.height.equalTo(40)
-            $0.width.equalTo(backgroundWhiteView.snp.width).offset(-150)
+            $0.width.equalTo(180)
         }
         
         receiverPhoneInputView.addSubview(receiverPhoneInputTextField)
@@ -139,22 +125,10 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
             $0.edges.equalToSuperview()
         }
         
-        contentsView.addSubview(receiverNameLabel)
-        receiverNameLabel.snp.remakeConstraints {
+        contentsView.addSubview(sealPasswordLabel)
+        sealPasswordLabel.snp.remakeConstraints {
             $0.centerY.equalTo(receiverPhoneInputView)
             $0.trailing.equalTo(receiverPhoneInputView.snp.leading).offset(-9)
-        }
-        
-        contentsView.addSubview(contactView)
-        contactView.snp.remakeConstraints {
-            $0.centerY.equalTo(receiverPhoneInputView)
-            $0.leading.equalTo(receiverPhoneInputView.snp.trailing).offset(9)
-            $0.trailing.equalTo(backgroundWhiteView.snp.trailing).offset(-22)
-        }
-        
-        contactView.addSubview(contactsImageView)
-        contactsImageView.snp.remakeConstraints {
-            $0.center.equalToSuperview()
         }
         
         contentsView.addSubview(letterView)
@@ -237,13 +211,8 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
             .distinctUntilChanged()
             
         receiverPhoneText
-            .map(addDashToPhoneNumber)
+            .map(limitMaximumStringCount)
             .observeOn(MainScheduler.asyncInstance)
-            .do(onNext: { [weak self] (text) in
-                if text.count == 13 {
-                    self?.view.endEditing(true)
-                }
-            })
             .bind(to: receiverPhoneInputTextField.rx.text)
             .disposed(by: disposeBag)
         
@@ -309,30 +278,14 @@ final class SendLetterMainVC: BaseViewController, ReactorKit.View {
             .disposed(by: disposeBag)
     }
     
-    private func addDashToPhoneNumber(_ inputString: String) -> String {
+    private func limitMaximumStringCount(_ inputString: String) -> String {
         
         var result = inputString
         
-        switch inputString.count {
-        case 3, 8:
-            if previousPhoneNumberCount == 2 || previousPhoneNumberCount == 7 {
-                result += "."
-            }
-        case 4:
-            if result[result.index(result.startIndex, offsetBy: 3)] == "." {
-                break
-            }
-            result.insert(".", at: result.index(result.startIndex, offsetBy: 3))
-        case 9:
-            if result[result.index(result.startIndex, offsetBy: 8)] == "." {
-                break
-            }
-            result.insert(".", at: result.index(result.startIndex, offsetBy: 8))
-        default:
-            break
+        if result.count > 10 {
+            result = String(result.prefix(10))
         }
         
-        previousPhoneNumberCount = inputString.count
         return result
     }
     

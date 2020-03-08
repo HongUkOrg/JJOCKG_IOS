@@ -16,13 +16,13 @@ protocol SMSTraits {
 
 extension SMSTraits {
     
-    private func checkCanSendSMS()-> Bool {
+    private func checkCanSendSMS() -> Bool {
         return MFMessageComposeViewController.canSendText()
     }
     
-    func getMessage(_ receiverPhone: String?) -> String? {
+    func getMessage(_ password: String?) -> String? {
         guard checkCanSendSMS(),
-            let receiverPhone = receiverPhone,
+            let password = password,
             let w3w = W3WStore.shared.w3w.value else {
             Logger.error("Can't send SMS")
             return nil
@@ -30,19 +30,17 @@ extension SMSTraits {
         }
         
         var content = "쪽지가 도착했습니다.\n"
-        content += "발신자 : \(receiverPhone)\n"
-        content += "주소 : \(w3w)\n"
-        content += "from. 쪽쥐 in AppStore"
+        content += "위치 : ///\(w3w)\n"
+        content += "암호 : \(password)\n"
+        content += "from. 쪽쥐 on AppStore"
         
         return content
     }
     
     func sendSMS(rootView: UIViewController?, _ receiverPhone: String, delegate: MFMessageComposeViewControllerDelegate) {
         
-        Logger.debug("send sms")
         let composeVC = MFMessageComposeViewController()
         composeVC.messageComposeDelegate = delegate
-        
         composeVC.recipients = [receiverPhone]
         composeVC.body = getMessage(receiverPhone)
         

@@ -63,6 +63,13 @@ final class SendLetterResultVC: BaseViewController, View {
         $0.backgroundColor = .white
     }
     
+    private let sealedLocationLabel = UILabel().then {
+        $0.text = "남겨진 쪽지 주소"
+        $0.textColor = .mudBrown
+        $0.textAlignment = .center
+        $0.font = .binggraeBold(ofSize: 12)
+    }
+    
     private let w3wResultView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.borderColor = UIColor.mudBrown.cgColor
@@ -73,10 +80,17 @@ final class SendLetterResultVC: BaseViewController, View {
     private let w3wResultLabel = UILabel().then {
         $0.textColor = .mudBrown
         $0.textAlignment = .center
-        $0.font = .binggrae(ofSize: 12)
+        $0.font = .binggrae(ofSize: 13)
     }
     
-    private let phoneResultView = UIView().then {
+    private let passwordTitleView = UILabel().then {
+        $0.text = "봉인 암호"
+        $0.textColor = .mudBrown
+        $0.textAlignment = .center
+        $0.font = .binggraeBold(ofSize: 12)
+    }
+    
+    private let passwordView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.borderColor = UIColor.mudBrown.cgColor
         $0.layer.borderWidth = 1.0
@@ -86,20 +100,7 @@ final class SendLetterResultVC: BaseViewController, View {
     private let phoneResultLabel = UILabel().then {
         $0.textColor = .mudBrown
         $0.textAlignment = .center
-        $0.font = .binggrae(ofSize: 12)
-    }
-    
-    private let contactsView = UIView().then {
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 20
-        $0.layer.borderColor = UIColor.mudBrown.cgColor
-        $0.layer.borderWidth = 1.0
-        
-    }
-    
-    private let contactImageView = UIImageView().then {
-        $0.image = JGAsset.Icons.icPhonebook20X20.image
-        $0.contentMode = .scaleAspectFit
+        $0.font = .binggrae(ofSize: 13)
     }
     
     private let lockView = UIView().then {
@@ -113,12 +114,12 @@ final class SendLetterResultVC: BaseViewController, View {
         $0.contentMode = .scaleAspectFit
     }
     
-    private let smsSendButton = UIButton().then {
+    private let shareButton = UIButton().then {
         $0.backgroundColor = .armyGreenTwo
-        $0.setTitle("SMS 보내서 알려주기", for: .normal)
+        $0.setTitle("쪽지 공유하기", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.textAlignment = .center
-        $0.titleLabel?.font = .binggrae(ofSize: 12)
+        $0.titleLabel?.font = .binggrae(ofSize: 13)
     }
     
     private let dismissButton = UIButton().then {
@@ -175,10 +176,16 @@ final class SendLetterResultVC: BaseViewController, View {
         
         lowerLetterView.addSubview(w3wResultView)
         w3wResultView.snp.remakeConstraints {
-            $0.top.equalToSuperview().offset(33.5)
+            $0.top.equalToSuperview().offset(60)
             $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().offset(-62)
+            $0.width.equalToSuperview().offset(-120)
             $0.height.equalTo(44)
+        }
+        
+        lowerLetterView.addSubview(sealedLocationLabel)
+        sealedLocationLabel.snp.remakeConstraints {
+            $0.leading.equalTo(w3wResultView.snp.leading).offset(5)
+            $0.bottom.equalTo(w3wResultView.snp.top).offset(-10)
         }
         
         w3wResultView.addSubview(w3wResultLabel)
@@ -186,30 +193,23 @@ final class SendLetterResultVC: BaseViewController, View {
             $0.center.equalToSuperview()
         }
         
-        lowerLetterView.addSubview(contactsView)
-        contactsView.snp.remakeConstraints {
-            $0.height.equalTo(40)
-            $0.width.equalTo(60)
-            $0.trailing.equalTo(w3wResultView.snp.trailing)
-            $0.top.equalTo(w3wResultView.snp.bottom).offset(28)
-        }
-        
-        contactsView.addSubview(contactImageView)
-        contactImageView.snp.remakeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        lowerLetterView.addSubview(phoneResultView)
-        phoneResultView.snp.remakeConstraints {
-            $0.height.equalTo(40)
+        lowerLetterView.addSubview(passwordView)
+        passwordView.snp.remakeConstraints {
+            $0.top.equalTo(w3wResultView.snp.bottom).offset(50)
             $0.leading.equalTo(w3wResultView.snp.leading)
-            $0.centerY.equalTo(contactsView.snp.centerY)
-            $0.trailing.equalTo(contactsView.snp.leading).offset(-11.5)
+            $0.width.equalToSuperview().offset(-120)
+            $0.height.equalTo(44)
         }
         
-        phoneResultView.addSubview(phoneResultLabel)
+        passwordView.addSubview(phoneResultLabel)
         phoneResultLabel.snp.remakeConstraints {
             $0.center.equalToSuperview()
+        }
+        
+        lowerLetterView.addSubview(passwordTitleView)
+        passwordTitleView.snp.remakeConstraints {
+            $0.leading.equalTo(passwordView.snp.leading).offset(5)
+            $0.bottom.equalTo(passwordView.snp.top).offset(-5)
         }
         
         contentsView.addSubview(lockView)
@@ -231,8 +231,8 @@ final class SendLetterResultVC: BaseViewController, View {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
         }
         
-        contentsView.addSubview(smsSendButton)
-        smsSendButton.snp.remakeConstraints {
+        contentsView.addSubview(shareButton)
+        shareButton.snp.remakeConstraints {
             $0.width.equalToSuperview()
             $0.centerX.equalToSuperview()
             $0.height.equalTo(88)
@@ -261,7 +261,7 @@ final class SendLetterResultVC: BaseViewController, View {
             .bind(to: phoneResultLabel.rx.text)
             .disposed(by: disposeBag)
         
-        smsSendButton.rx
+        shareButton.rx
             .tapThrottle()
             .map { Reactor.Action.smsSendBtnClicked }
             .bind(to: reactor.action)

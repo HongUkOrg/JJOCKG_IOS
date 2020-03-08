@@ -21,7 +21,6 @@
 		04C1DA2A22A6973D009CBDC8 /* Cartoon07VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DA2922A6973D009CBDC8 /* Cartoon07VC.swift */; };
 		04C1DA2C22A69952009CBDC8 /* JGAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C1DA2B22A69952009CBDC8 /* JGAssets.xcassets */; };
 		04C1DA2E22A69EE5009CBDC8 /* Cartoon08VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C1DA2D22A69EE5009CBDC8 /* Cartoon08VC.swift */; };
-		04F73CDB22ACDEA000F21912 /* LetterUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F73CDA22ACDEA000F21912 /* LetterUtils.swift */; };
 		10F3BA933D8460B72F4532CC /* Pods_letter_mouseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B78A5E955DD11E5FB987AA /* Pods_letter_mouseUITests.framework */; };
 		3DD3F08E0EB622DA3AC04AAA /* Pods_letter_mouseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67011DF8190CF15B5ECA6FBE /* Pods_letter_mouseTests.framework */; };
 		630F2B0122E6EE9A009FB2AF /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630F2B0022E6EE9A009FB2AF /* EZSwipeController.swift */; };
@@ -65,6 +64,8 @@
 		77DAF8912401066A00928DDE /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF8902401066A00928DDE /* Logger.swift */; };
 		77DAF894240107C500928DDE /* GIFModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF893240107C500928DDE /* GIFModule.swift */; };
 		77DAF8962401081600928DDE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAF8952401081600928DDE /* BaseViewController.swift */; };
+		77DCB75A2415584100690858 /* LetterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DCB7592415584100690858 /* LetterError.swift */; };
+		77DCB75C2415597D00690858 /* UIAlert+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DCB75B2415597D00690858 /* UIAlert+Extensions.swift */; };
 		77ED097F2406B351008454EB /* SendLetterMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED097E2406B351008454EB /* SendLetterMainVC.swift */; };
 		77ED09812406B36C008454EB /* SendLetterReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED09802406B36C008454EB /* SendLetterReactor.swift */; };
 		77ED09832406B485008454EB /* W3WStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED09822406B485008454EB /* W3WStore.swift */; };
@@ -110,7 +111,6 @@
 		04C1DA2922A6973D009CBDC8 /* Cartoon07VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartoon07VC.swift; sourceTree = "<group>"; };
 		04C1DA2B22A69952009CBDC8 /* JGAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = JGAssets.xcassets; sourceTree = "<group>"; };
 		04C1DA2D22A69EE5009CBDC8 /* Cartoon08VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartoon08VC.swift; sourceTree = "<group>"; };
-		04F73CDA22ACDEA000F21912 /* LetterUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterUtils.swift; sourceTree = "<group>"; };
 		2B42B42440795A00CEAD9FEE /* Pods-letter_mouseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouseTests.debug.xcconfig"; path = "Target Support Files/Pods-letter_mouseTests/Pods-letter_mouseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2B6BF9A07BF9C3986A468580 /* Pods-letter_mouseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letter_mouseUITests.debug.xcconfig"; path = "Target Support Files/Pods-letter_mouseUITests/Pods-letter_mouseUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2EDE75F8B990B91B7CF487CC /* Pods_letter_mouse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_letter_mouse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +160,8 @@
 		77DAF8902401066A00928DDE /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		77DAF893240107C500928DDE /* GIFModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFModule.swift; sourceTree = "<group>"; };
 		77DAF8952401081600928DDE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		77DCB7592415584100690858 /* LetterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterError.swift; sourceTree = "<group>"; };
+		77DCB75B2415597D00690858 /* UIAlert+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlert+Extensions.swift"; sourceTree = "<group>"; };
 		77ED097E2406B351008454EB /* SendLetterMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendLetterMainVC.swift; sourceTree = "<group>"; };
 		77ED09802406B36C008454EB /* SendLetterReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendLetterReactor.swift; sourceTree = "<group>"; };
 		77ED09822406B485008454EB /* W3WStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = W3WStore.swift; sourceTree = "<group>"; };
@@ -257,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				77ED09822406B485008454EB /* W3WStore.swift */,
-				04F73CDA22ACDEA000F21912 /* LetterUtils.swift */,
 				630F2B0022E6EE9A009FB2AF /* EZSwipeController.swift */,
 				77DAF8902401066A00928DDE /* Logger.swift */,
 				77BCC58E24080E42002E3A59 /* DefaultsService.swift */,
@@ -399,6 +400,7 @@
 		77DAF88A240105FA00928DDE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				77DCB75B2415597D00690858 /* UIAlert+Extensions.swift */,
 				77DAF88B2401060500928DDE /* UIImage+Extensions.swift */,
 				77DAF88D2401062100928DDE /* String+Extensions.swift */,
 				774767DE24026D0F0099105B /* Rx+Extensions.swift */,
@@ -419,6 +421,14 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
+		77DCB7582415583600690858 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				77DCB7592415584100690858 /* LetterError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		77ED097D2406B22A008454EB /* SendLetter */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				77A8FC642407730D00D1430A /* LetterStep.swift */,
+				77DCB7582415583600690858 /* Error */,
 				7771D7C52407C773003A03B4 /* Requests */,
 				774767F12402A6030099105B /* Responses */,
 			);
@@ -715,7 +726,6 @@
 			files = (
 				042A0117224A784E0070CEAE /* Cartoon03VC.swift in Sources */,
 				7771D7CF2407D605003A03B4 /* SendLetterResultVC.swift in Sources */,
-				04F73CDB22ACDEA000F21912 /* LetterUtils.swift in Sources */,
 				77ED09812406B36C008454EB /* SendLetterReactor.swift in Sources */,
 				774767E124026D6A0099105B /* UI+Extensions.swift in Sources */,
 				77A8CDBC24096515005788A7 /* FindLetterRequest.swift in Sources */,
@@ -748,6 +758,7 @@
 				77FDCDB924081F440093DD05 /* SMSTraits.swift in Sources */,
 				7771D7CB2407D1EC003A03B4 /* ArtiButton.swift in Sources */,
 				77DAF8912401066A00928DDE /* Logger.swift in Sources */,
+				77DCB75C2415597D00690858 /* UIAlert+Extensions.swift in Sources */,
 				042A011B224A78C10070CEAE /* Cartoon05VC.swift in Sources */,
 				774767D02401778E0099105B /* JGNavigator.swift in Sources */,
 				77DAF88E2401062100928DDE /* String+Extensions.swift in Sources */,
@@ -763,6 +774,7 @@
 				77A8FC6324075E4200D1430A /* LetterSubLine.swift in Sources */,
 				042A0115224A67F30070CEAE /* Cartoon02VC.swift in Sources */,
 				77DAF88C2401060500928DDE /* UIImage+Extensions.swift in Sources */,
+				77DCB75A2415584100690858 /* LetterError.swift in Sources */,
 				774767F02402996D0099105B /* JGEndPoint.swift in Sources */,
 				774767D624017CCB0099105B /* CartoonMainVC.swift in Sources */,
 				7771D7C42407C742003A03B4 /* SendLetterRequest.swift in Sources */,
