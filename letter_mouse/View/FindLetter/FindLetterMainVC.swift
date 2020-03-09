@@ -27,7 +27,10 @@ final class FindLetterMainVC: BaseViewController, View {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.frame = CGRect(x: 0.0,
+                            y: UIScreen.main.bounds.height - 350.0,
+                            width: UIScreen.main.bounds.width,
+                            height: 350.0)
     }
     
     // MARK: - Properteis
@@ -57,6 +60,7 @@ final class FindLetterMainVC: BaseViewController, View {
         $0.placeholder = "회색고양이"
         $0.keyboardType = .default
         $0.textAlignment = .center
+        $0.text = "D"
     }
     
     private let passwordTitleLabel = UILabel().then {
@@ -94,18 +98,20 @@ final class FindLetterMainVC: BaseViewController, View {
     }
     
     private let w3wFirstTextField = UITextField().then {
+        $0.text = "연습실"
         $0.placeholder = "주소를"
         $0.font = .binggrae(ofSize: 12)
     }
     
     private let w3wSeperator = UILabel().then {
-        $0.text = "ㄷ"
+        $0.text = "."
         $0.textColor = .mudBrown
         $0.textAlignment = .center
         $0.font = .binggraeBold(ofSize: 12)
     }
     
     private let w3wSecondTextField = UITextField().then {
+        $0.text = "호감"
         $0.placeholder = "여기에"
         $0.font = .binggrae(ofSize: 12)
     }
@@ -118,6 +124,7 @@ final class FindLetterMainVC: BaseViewController, View {
     }
     
     private let w3wThirdTextField = UITextField().then {
+        $0.text = "입체"
         $0.placeholder = "입력!"
         $0.font = .binggrae(ofSize: 12)
     }
@@ -266,16 +273,6 @@ final class FindLetterMainVC: BaseViewController, View {
     
     // MARK: - Binding
     func bind(reactor: Reactor) {
-
-        self.rx
-            .viewWillDisappear
-            .take(1)
-            .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] (_) in
-                Logger.debug("will disappear")
-                self?.contentsView.isHidden = true
-            })
-            .disposed(by: disposeBag)
         
         contentsView.rx
             .tapGesture()

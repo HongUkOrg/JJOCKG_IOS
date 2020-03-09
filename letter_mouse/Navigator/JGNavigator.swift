@@ -50,6 +50,7 @@ extension JGNavigateStep {
         case main
         case tracking
         case dismiss
+        case dismissWithNoAnimation
     }
     
     enum EtcStep {
@@ -187,7 +188,6 @@ class JGNavigator: NSObject, JGNavigatorProtocol, SMSTraits {
             switch destination {
             case .main:
                 
-                
                 findLetterReactor = FindLetterReactor(mainReactor: mainReactor, navigator: self, services: services)
                 
                 guard let findLetterReactor = findLetterReactor else { return }
@@ -205,10 +205,13 @@ class JGNavigator: NSObject, JGNavigatorProtocol, SMSTraits {
                     let navigationVC = rootViewController?.presentedViewController as? UINavigationController else { return }
                 
                 let findLetterTrackingVC = FindLetterTrackingVC(reactor: findLetterReactor)
-                navigationVC.pushViewController(findLetterTrackingVC, animated: true)
+                navigationVC.pushViewController(findLetterTrackingVC, animated: false)
 
             case .dismiss:
                 rootViewController?.presentedViewController?.dismiss(animated: true)
+                
+            case .dismissWithNoAnimation:
+                rootViewController?.presentedViewController?.dismiss(animated: false)
                 
             }
             

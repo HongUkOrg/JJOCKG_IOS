@@ -16,6 +16,7 @@ final class FindLetterReactor: Reactor {
     enum Action {
         case cancelBtnClicked
         case findLetterBtnClicked
+        case returnToMain
         
         case receiverPhoneChanged(String)
         case firstWordChanged(String)
@@ -41,6 +42,7 @@ final class FindLetterReactor: Reactor {
         
         case letterOpenToggle
         case checkDistance(Int?)
+        case returnToMain
         
     }
     
@@ -61,6 +63,8 @@ final class FindLetterReactor: Reactor {
         /// tracking
         var canRead: Bool = false
         var letterOpend: Bool = false
+        var distanceToLetter: Int = 0
+        var letterLocation: LocationModel?
         
     }
     
@@ -124,6 +128,9 @@ final class FindLetterReactor: Reactor {
             
         case .checkDistance:
             return .just(.checkDistance(services.letterService.distance))
+            
+        case .returnToMain:
+            return .just(.returnToMain)
         }
     }
     
@@ -155,6 +162,7 @@ final class FindLetterReactor: Reactor {
             state.letterContent = firstLetter.message
             
             let locationModel = LocationModel(latitude: latitude, longitude: longitude)
+            state.letterLocation = locationModel
             services.letterService.letterLocation.accept(locationModel)
             
         case .error(let error):
@@ -177,7 +185,11 @@ final class FindLetterReactor: Reactor {
             
         case .checkDistance(let distance):
             guard let distance = distance else { return state }
+            state.distanceToLetter = distance
             state.canRead = distance <= 50
+            
+        case .returnToMain:
+            navigator.navigate(.findLetter(.dismissWithNoAnimation))
             
         }
         return state
