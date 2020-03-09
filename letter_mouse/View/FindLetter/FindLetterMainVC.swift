@@ -60,7 +60,6 @@ final class FindLetterMainVC: BaseViewController, View {
         $0.placeholder = "회색고양이"
         $0.keyboardType = .default
         $0.textAlignment = .center
-        $0.text = "D"
     }
     
     private let passwordTitleLabel = UILabel().then {
@@ -98,7 +97,6 @@ final class FindLetterMainVC: BaseViewController, View {
     }
     
     private let w3wFirstTextField = UITextField().then {
-        $0.text = "연습실"
         $0.placeholder = "주소를"
         $0.font = .binggrae(ofSize: 12)
     }
@@ -111,7 +109,6 @@ final class FindLetterMainVC: BaseViewController, View {
     }
     
     private let w3wSecondTextField = UITextField().then {
-        $0.text = "호감"
         $0.placeholder = "여기에"
         $0.font = .binggrae(ofSize: 12)
     }
@@ -124,7 +121,6 @@ final class FindLetterMainVC: BaseViewController, View {
     }
     
     private let w3wThirdTextField = UITextField().then {
-        $0.text = "입체"
         $0.placeholder = "입력!"
         $0.font = .binggrae(ofSize: 12)
     }
